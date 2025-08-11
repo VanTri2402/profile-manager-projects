@@ -1,0 +1,3503 @@
+[
+  {
+    "id": 1,
+    "chinese": "爱",
+    "pinyin": "ài",
+    "vietnamese": "yêu, thích",
+    "type": "HSK 1"
+  },
+  {
+    "id": 2,
+    "chinese": "爱好",
+    "pinyin": "àihào",
+    "vietnamese": "sở thích",
+    "type": "HSK 1"
+  },
+  {
+    "id": 3,
+    "chinese": "八",
+    "pinyin": "bā",
+    "vietnamese": "số 8",
+    "type": "HSK 1"
+  },
+  {
+    "id": 4,
+    "chinese": "爸爸｜爸",
+    "pinyin": "bàba｜bà",
+    "vietnamese": "bố, ba, cha",
+    "type": "HSK 1"
+  },
+  {
+    "id": 5,
+    "chinese": "吧",
+    "pinyin": "ba",
+    "vietnamese": "nào, nhé, chứ, đi (trợ từ)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 6,
+    "chinese": "白",
+    "pinyin": "bái",
+    "vietnamese": "trắng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 7,
+    "chinese": "白天",
+    "pinyin": "báitiān",
+    "vietnamese": "ban ngày",
+    "type": "HSK 1"
+  },
+  {
+    "id": 8,
+    "chinese": "百",
+    "pinyin": "bǎi",
+    "vietnamese": "một trăm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 9,
+    "chinese": "班",
+    "pinyin": "bān",
+    "vietnamese": "lớp",
+    "type": "HSK 1"
+  },
+  {
+    "id": 10,
+    "chinese": "半",
+    "pinyin": "bàn",
+    "vietnamese": "một nửa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 11,
+    "chinese": "半年",
+    "pinyin": "bàn nián",
+    "vietnamese": "nửa năm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 12,
+    "chinese": "半天",
+    "pinyin": "bàn tiān",
+    "vietnamese": "nửa ngày",
+    "type": "HSK 1"
+  },
+  {
+    "id": 13,
+    "chinese": "帮",
+    "pinyin": "bāng",
+    "vietnamese": "giúp đỡ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 14,
+    "chinese": "帮忙",
+    "pinyin": "bāng//máng",
+    "vietnamese": "giúp đỡ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 15,
+    "chinese": "包",
+    "pinyin": "bāo",
+    "vietnamese": "bao, cái túi; gói, bọc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 16,
+    "chinese": "包子",
+    "pinyin": "bāozi",
+    "vietnamese": "bánh bao",
+    "type": "HSK 1"
+  },
+  {
+    "id": 17,
+    "chinese": "杯",
+    "pinyin": "bēi",
+    "vietnamese": "cốc, ly",
+    "type": "HSK 1"
+  },
+  {
+    "id": 18,
+    "chinese": "杯子",
+    "pinyin": "bēizi",
+    "vietnamese": "cốc, chén, ly",
+    "type": "HSK 1"
+  },
+  {
+    "id": 19,
+    "chinese": "北",
+    "pinyin": "běi",
+    "vietnamese": "bắc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 20,
+    "chinese": "北边",
+    "pinyin": "běibiān",
+    "vietnamese": "phía Bắc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 21,
+    "chinese": "北京",
+    "pinyin": "Běijīng",
+    "vietnamese": "Bắc Kinh",
+    "type": "HSK 1"
+  },
+  {
+    "id": 22,
+    "chinese": "本",
+    "pinyin": "běn",
+    "vietnamese": "cuốn, quyển, tập",
+    "type": "HSK 1"
+  },
+  {
+    "id": 23,
+    "chinese": "本子",
+    "pinyin": "běn zi",
+    "vietnamese": "vở, cuốn vở",
+    "type": "HSK 1"
+  },
+  {
+    "id": 24,
+    "chinese": "比",
+    "pinyin": "bǐ",
+    "vietnamese": "so, so với",
+    "type": "HSK 1"
+  },
+  {
+    "id": 25,
+    "chinese": "别",
+    "pinyin": "bié",
+    "vietnamese": "đừng, không được",
+    "type": "HSK 1"
+  },
+  {
+    "id": 26,
+    "chinese": "别的",
+    "pinyin": "biéde",
+    "vietnamese": "cái khác",
+    "type": "HSK 1"
+  },
+  {
+    "id": 27,
+    "chinese": "别人",
+    "pinyin": "bié·rén",
+    "vietnamese": "người khác, người ta",
+    "type": "HSK 1"
+  },
+  {
+    "id": 28,
+    "chinese": "病",
+    "pinyin": "bìng",
+    "vietnamese": "bệnh",
+    "type": "HSK 1"
+  },
+  {
+    "id": 29,
+    "chinese": "病人",
+    "pinyin": "bìngrén",
+    "vietnamese": "bệnh nhân",
+    "type": "HSK 1"
+  },
+  {
+    "id": 30,
+    "chinese": "不大",
+    "pinyin": "bú dà",
+    "vietnamese": "nhỏ, không lớn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 31,
+    "chinese": "不对",
+    "pinyin": "búduì",
+    "vietnamese": "không đúng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 32,
+    "chinese": "不客气",
+    "pinyin": "bú kèqi",
+    "vietnamese": "không có gì",
+    "type": "HSK 1"
+  },
+  {
+    "id": 33,
+    "chinese": "不用",
+    "pinyin": "búyòng",
+    "vietnamese": "không cần",
+    "type": "HSK 1"
+  },
+  {
+    "id": 34,
+    "chinese": "不",
+    "pinyin": "bù",
+    "vietnamese": "không",
+    "type": "HSK 1"
+  },
+  {
+    "id": 35,
+    "chinese": "菜",
+    "pinyin": "cài",
+    "vietnamese": "đồ ăn, món ăn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 36,
+    "chinese": "差",
+    "pinyin": "chà",
+    "vietnamese": "thiếu, kém",
+    "type": "HSK 1"
+  },
+  {
+    "id": 37,
+    "chinese": "茶",
+    "pinyin": "chá",
+    "vietnamese": "trà",
+    "type": "HSK 1"
+  },
+  {
+    "id": 38,
+    "chinese": "常",
+    "pinyin": "cháng",
+    "vietnamese": "thường",
+    "type": "HSK 1"
+  },
+  {
+    "id": 39,
+    "chinese": "常常",
+    "pinyin": "chángcháng",
+    "vietnamese": "thường thường",
+    "type": "HSK 1"
+  },
+  {
+    "id": 40,
+    "chinese": "唱",
+    "pinyin": "chàng",
+    "vietnamese": "hát",
+    "type": "HSK 1"
+  },
+  {
+    "id": 41,
+    "chinese": "唱歌",
+    "pinyin": "chànggē",
+    "vietnamese": "hát, ca hát",
+    "type": "HSK 1"
+  },
+  {
+    "id": 42,
+    "chinese": "车",
+    "pinyin": "chē",
+    "vietnamese": "xe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 43,
+    "chinese": "车票",
+    "pinyin": "chēpiào",
+    "vietnamese": "vé xe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 44,
+    "chinese": "车上",
+    "pinyin": "chē shang",
+    "vietnamese": "trên xe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 45,
+    "chinese": "车站",
+    "pinyin": "chēzhàn",
+    "vietnamese": "bến xe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 46,
+    "chinese": "吃",
+    "pinyin": "chī",
+    "vietnamese": "ăn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 47,
+    "chinese": "吃饭",
+    "pinyin": "chī//fàn",
+    "vietnamese": "ăn cơm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 48,
+    "chinese": "出",
+    "pinyin": "chū",
+    "vietnamese": "ra, xuất",
+    "type": "HSK 1"
+  },
+  {
+    "id": 49,
+    "chinese": "出来",
+    "pinyin": "chūlái",
+    "vietnamese": "xuất hiện, đi ra",
+    "type": "HSK 1"
+  },
+  {
+    "id": 50,
+    "chinese": "出去",
+    "pinyin": "chūqù",
+    "vietnamese": "ra, ra ngoài",
+    "type": "HSK 1"
+  },
+  {
+    "id": 51,
+    "chinese": "穿",
+    "pinyin": "chuān",
+    "vietnamese": "mặc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 52,
+    "chinese": "床",
+    "pinyin": "chuáng",
+    "vietnamese": "giường, đệm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 53,
+    "chinese": "次",
+    "pinyin": "cì",
+    "vietnamese": "lần",
+    "type": "HSK 1"
+  },
+  {
+    "id": 54,
+    "chinese": "从",
+    "pinyin": "cóng",
+    "vietnamese": "từ, qua, theo",
+    "type": "HSK 1"
+  },
+  {
+    "id": 55,
+    "chinese": "错",
+    "pinyin": "cuò",
+    "vietnamese": "sai",
+    "type": "HSK 1"
+  },
+  {
+    "id": 56,
+    "chinese": "打",
+    "pinyin": "dǎ",
+    "vietnamese": "đánh, bắt",
+    "type": "HSK 1"
+  },
+  {
+    "id": 57,
+    "chinese": "打车",
+    "pinyin": "dǎchē",
+    "vietnamese": "bắt xe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 58,
+    "chinese": "打电话",
+    "pinyin": "dǎ diànhuà",
+    "vietnamese": "gọi điện",
+    "type": "HSK 1"
+  },
+  {
+    "id": 59,
+    "chinese": "打开",
+    "pinyin": "dǎkāi",
+    "vietnamese": "mở, mở ra",
+    "type": "HSK 1"
+  },
+  {
+    "id": 60,
+    "chinese": "打球",
+    "pinyin": "dǎ qiú",
+    "vietnamese": "chơi bóng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 61,
+    "chinese": "大",
+    "pinyin": "dà",
+    "vietnamese": "to, lớn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 62,
+    "chinese": "大学",
+    "pinyin": "dàxué",
+    "vietnamese": "đại học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 63,
+    "chinese": "大学生",
+    "pinyin": "dàxuéshēng",
+    "vietnamese": "sinh viên đại học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 64,
+    "chinese": "到",
+    "pinyin": "dào",
+    "vietnamese": "đến, tới",
+    "type": "HSK 1"
+  },
+  {
+    "id": 65,
+    "chinese": "得到",
+    "pinyin": "dédào",
+    "vietnamese": "đạt được, nhận được",
+    "type": "HSK 1"
+  },
+  {
+    "id": 66,
+    "chinese": "地",
+    "pinyin": "de",
+    "vietnamese": "biểu thị từ trước nó là trạng ngữ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 67,
+    "chinese": "的",
+    "pinyin": "de",
+    "vietnamese": "(biểu thị sự sở hữu) của",
+    "type": "HSK 1"
+  },
+  {
+    "id": 68,
+    "chinese": "等",
+    "pinyin": "děng",
+    "vietnamese": "đợi, chờ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 69,
+    "chinese": "地",
+    "pinyin": "dì",
+    "vietnamese": "đất, lục địa; trái đất",
+    "type": "HSK 1"
+  },
+  {
+    "id": 70,
+    "chinese": "地点",
+    "pinyin": "dìdiǎn",
+    "vietnamese": "địa điểm, nơi chốn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 71,
+    "chinese": "地方",
+    "pinyin": "dìfang",
+    "vietnamese": "nơi, địa phương",
+    "type": "HSK 1"
+  },
+  {
+    "id": 72,
+    "chinese": "地上",
+    "pinyin": "dìshang",
+    "vietnamese": "trên mặt đất",
+    "type": "HSK 1"
+  },
+  {
+    "id": 73,
+    "chinese": "地图",
+    "pinyin": "dìtú",
+    "vietnamese": "bản đồ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 74,
+    "chinese": "弟弟| 弟",
+    "pinyin": "dìdi|dì",
+    "vietnamese": "em trai",
+    "type": "HSK 1"
+  },
+  {
+    "id": 75,
+    "chinese": "第（第二）",
+    "pinyin": "dì（dì-èr）",
+    "vietnamese": "thứ ... (số thứ tự)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 76,
+    "chinese": "点",
+    "pinyin": "diǎn",
+    "vietnamese": "ít, chút, hơi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 77,
+    "chinese": "电",
+    "pinyin": "diàn",
+    "vietnamese": "điện, pin",
+    "type": "HSK 1"
+  },
+  {
+    "id": 78,
+    "chinese": "电话",
+    "pinyin": "diànhuà",
+    "vietnamese": "điện thoại",
+    "type": "HSK 1"
+  },
+  {
+    "id": 79,
+    "chinese": "电脑",
+    "pinyin": "diànnǎo",
+    "vietnamese": "máy tính",
+    "type": "HSK 1"
+  },
+  {
+    "id": 80,
+    "chinese": "电视",
+    "pinyin": "diànshì",
+    "vietnamese": "truyền hình; TV",
+    "type": "HSK 1"
+  },
+  {
+    "id": 81,
+    "chinese": "电视机",
+    "pinyin": "diànshìjī",
+    "vietnamese": "(chiếc) TV",
+    "type": "HSK 1"
+  },
+  {
+    "id": 82,
+    "chinese": "电影",
+    "pinyin": "diànyǐng",
+    "vietnamese": "điện ảnh, phim (nói chung)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 83,
+    "chinese": "电影院",
+    "pinyin": "diànyǐngyuàn",
+    "vietnamese": "rạp chiếu phim",
+    "type": "HSK 1"
+  },
+  {
+    "id": 84,
+    "chinese": "东",
+    "pinyin": "dōng",
+    "vietnamese": "đông",
+    "type": "HSK 1"
+  },
+  {
+    "id": 85,
+    "chinese": "东边",
+    "pinyin": "dōngbian",
+    "vietnamese": "phía đông",
+    "type": "HSK 1"
+  },
+  {
+    "id": 86,
+    "chinese": "东西",
+    "pinyin": "dōngxi",
+    "vietnamese": "đồ đạc, đồ, vật",
+    "type": "HSK 1"
+  },
+  {
+    "id": 87,
+    "chinese": "动",
+    "pinyin": "dòng",
+    "vietnamese": "động, chạm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 88,
+    "chinese": "动作",
+    "pinyin": "dòngzuò",
+    "vietnamese": "động tác, hoạt động",
+    "type": "HSK 1"
+  },
+  {
+    "id": 89,
+    "chinese": "都",
+    "pinyin": "dōu",
+    "vietnamese": "đều",
+    "type": "HSK 1"
+  },
+  {
+    "id": 90,
+    "chinese": "读",
+    "pinyin": "dú",
+    "vietnamese": "đọc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 91,
+    "chinese": "读书",
+    "pinyin": "dú//shū",
+    "vietnamese": "đọc sách",
+    "type": "HSK 1"
+  },
+  {
+    "id": 92,
+    "chinese": "对",
+    "pinyin": "duì",
+    "vietnamese": "đúng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 93,
+    "chinese": "对不起",
+    "pinyin": "duìbuqǐ",
+    "vietnamese": "xin lỗi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 94,
+    "chinese": "多",
+    "pinyin": "duō",
+    "vietnamese": "Nhiều (đại từ nghi vấn) bao nhiêu",
+    "type": "HSK 1"
+  },
+  {
+    "id": 95,
+    "chinese": "多少",
+    "pinyin": "duōshǎo",
+    "vietnamese": "bao nhiêu",
+    "type": "HSK 1"
+  },
+  {
+    "id": 96,
+    "chinese": "饿",
+    "pinyin": "è",
+    "vietnamese": "đói",
+    "type": "HSK 1"
+  },
+  {
+    "id": 97,
+    "chinese": "儿子",
+    "pinyin": "érzi",
+    "vietnamese": "con trai",
+    "type": "HSK 1"
+  },
+  {
+    "id": 98,
+    "chinese": "二",
+    "pinyin": "èr",
+    "vietnamese": "số 2",
+    "type": "HSK 1"
+  },
+  {
+    "id": 99,
+    "chinese": "饭",
+    "pinyin": "fàn",
+    "vietnamese": "cơm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 100,
+    "chinese": "饭店",
+    "pinyin": "fàndiàn",
+    "vietnamese": "quán ăn/ nhà hàng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 101,
+    "chinese": "房间",
+    "pinyin": "fángjiān",
+    "vietnamese": "căn phòng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 102,
+    "chinese": "房子",
+    "pinyin": "fángzi",
+    "vietnamese": "căn nhà/ căn hộ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 103,
+    "chinese": "放",
+    "pinyin": "fàng",
+    "vietnamese": "thả, đặt, để",
+    "type": "HSK 1"
+  },
+  {
+    "id": 104,
+    "chinese": "放假",
+    "pinyin": "fàng//jià",
+    "vietnamese": "nghỉ, nghỉ định kỳ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 105,
+    "chinese": "放学",
+    "pinyin": "fàng//xué",
+    "vietnamese": "tan học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 106,
+    "chinese": "飞",
+    "pinyin": "fēi",
+    "vietnamese": "bay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 107,
+    "chinese": "飞机",
+    "pinyin": "fēijī",
+    "vietnamese": "máy bay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 108,
+    "chinese": "非常",
+    "pinyin": "fēicháng",
+    "vietnamese": "vô cùng, hết sức, rất",
+    "type": "HSK 1"
+  },
+  {
+    "id": 109,
+    "chinese": "分",
+    "pinyin": "fēn",
+    "vietnamese": "phút",
+    "type": "HSK 1"
+  },
+  {
+    "id": 110,
+    "chinese": "风",
+    "pinyin": "fēng",
+    "vietnamese": "gió",
+    "type": "HSK 1"
+  },
+  {
+    "id": 111,
+    "chinese": "干",
+    "pinyin": "gān",
+    "vietnamese": "khô",
+    "type": "HSK 1"
+  },
+  {
+    "id": 112,
+    "chinese": "干净",
+    "pinyin": "gānjìng",
+    "vietnamese": "sạch sẽ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 113,
+    "chinese": "干",
+    "pinyin": "gàn",
+    "vietnamese": "làm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 114,
+    "chinese": "干什么",
+    "pinyin": "gànshénme",
+    "vietnamese": "làm gì đó",
+    "type": "HSK 1"
+  },
+  {
+    "id": 115,
+    "chinese": "高",
+    "pinyin": "gāo",
+    "vietnamese": "cao",
+    "type": "HSK 1"
+  },
+  {
+    "id": 116,
+    "chinese": "高兴",
+    "pinyin": "gāoxìng",
+    "vietnamese": "vui vẻ, vui mừng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 117,
+    "chinese": "告诉",
+    "pinyin": "gàosù",
+    "vietnamese": "nói, kể lại",
+    "type": "HSK 1"
+  },
+  {
+    "id": 118,
+    "chinese": "哥哥｜哥",
+    "pinyin": "gēge｜gē",
+    "vietnamese": "anh trai",
+    "type": "HSK 1"
+  },
+  {
+    "id": 119,
+    "chinese": "歌",
+    "pinyin": "gē",
+    "vietnamese": "bài hát",
+    "type": "HSK 1"
+  },
+  {
+    "id": 120,
+    "chinese": "个",
+    "pinyin": "gè",
+    "vietnamese": "cái",
+    "type": "HSK 1"
+  },
+  {
+    "id": 121,
+    "chinese": "给",
+    "pinyin": "gěi",
+    "vietnamese": "cho",
+    "type": "HSK 1"
+  },
+  {
+    "id": 122,
+    "chinese": "跟",
+    "pinyin": "gēn",
+    "vietnamese": "và, cùng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 123,
+    "chinese": "工人",
+    "pinyin": "gōngrén",
+    "vietnamese": "công nhân, người lao động nói chung",
+    "type": "HSK 1"
+  },
+  {
+    "id": 124,
+    "chinese": "工作",
+    "pinyin": "gōngzuò",
+    "vietnamese": "công việc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 125,
+    "chinese": "关（动）",
+    "pinyin": "guān",
+    "vietnamese": "đóng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 126,
+    "chinese": "关上",
+    "pinyin": "guānshàng",
+    "vietnamese": "khép vào",
+    "type": "HSK 1"
+  },
+  {
+    "id": 127,
+    "chinese": "贵",
+    "pinyin": "guì",
+    "vietnamese": "đắt",
+    "type": "HSK 1"
+  },
+  {
+    "id": 128,
+    "chinese": "国",
+    "pinyin": "guó",
+    "vietnamese": "đất nước, nước nhà, Tổ quốc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 129,
+    "chinese": "国家",
+    "pinyin": "guójiā",
+    "vietnamese": "đất nước, Quốc Gia",
+    "type": "HSK 1"
+  },
+  {
+    "id": 130,
+    "chinese": "国外",
+    "pinyin": "guó wài",
+    "vietnamese": "nước ngoài",
+    "type": "HSK 1"
+  },
+  {
+    "id": 131,
+    "chinese": "过",
+    "pinyin": "guò",
+    "vietnamese": "(đi) qua, (bước) qua",
+    "type": "HSK 1"
+  },
+  {
+    "id": 132,
+    "chinese": "还",
+    "pinyin": "hái",
+    "vietnamese": "vẫn, còn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 133,
+    "chinese": "还是",
+    "pinyin": "háishi",
+    "vietnamese": "hay là",
+    "type": "HSK 1"
+  },
+  {
+    "id": 134,
+    "chinese": "还有",
+    "pinyin": "hái yǒu",
+    "vietnamese": "còn có, còn nữa là",
+    "type": "HSK 1"
+  },
+  {
+    "id": 135,
+    "chinese": "孩子",
+    "pinyin": "háizi",
+    "vietnamese": "đứa trẻ, con (tôi)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 136,
+    "chinese": "汉语",
+    "pinyin": "Hànyǔ",
+    "vietnamese": "(ngôn ngữ) tiếng Trung",
+    "type": "HSK 1"
+  },
+  {
+    "id": 137,
+    "chinese": "汉字",
+    "pinyin": "Hànzì",
+    "vietnamese": "chữ Hán",
+    "type": "HSK 1"
+  },
+  {
+    "id": 138,
+    "chinese": "好",
+    "pinyin": "hǎo",
+    "vietnamese": "tốt, đẹp",
+    "type": "HSK 1"
+  },
+  {
+    "id": 139,
+    "chinese": "好吃",
+    "pinyin": "hǎochī",
+    "vietnamese": "ngon",
+    "type": "HSK 1"
+  },
+  {
+    "id": 140,
+    "chinese": "好看",
+    "pinyin": "hǎokàn",
+    "vietnamese": "đẹp, xinh, hay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 141,
+    "chinese": "好听",
+    "pinyin": "hǎotīng",
+    "vietnamese": "êm tai, du dương, dễ nghe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 142,
+    "chinese": "好玩儿",
+    "pinyin": "hǎowánr",
+    "vietnamese": "(chơi) vui",
+    "type": "HSK 1"
+  },
+  {
+    "id": 143,
+    "chinese": "号",
+    "pinyin": "hào",
+    "vietnamese": "ngày",
+    "type": "HSK 1"
+  },
+  {
+    "id": 144,
+    "chinese": "喝",
+    "pinyin": "hē",
+    "vietnamese": "uống",
+    "type": "HSK 1"
+  },
+  {
+    "id": 145,
+    "chinese": "和",
+    "pinyin": "hé",
+    "vietnamese": "và",
+    "type": "HSK 1"
+  },
+  {
+    "id": 146,
+    "chinese": "很",
+    "pinyin": "hěn",
+    "vietnamese": "rất",
+    "type": "HSK 1"
+  },
+  {
+    "id": 147,
+    "chinese": "后",
+    "pinyin": "hòu",
+    "vietnamese": "sau",
+    "type": "HSK 1"
+  },
+  {
+    "id": 148,
+    "chinese": "后边",
+    "pinyin": "hòubian",
+    "vietnamese": "phía sau",
+    "type": "HSK 1"
+  },
+  {
+    "id": 149,
+    "chinese": "后天",
+    "pinyin": "hòutiān",
+    "vietnamese": "ngày kia",
+    "type": "HSK 1"
+  },
+  {
+    "id": 150,
+    "chinese": "花",
+    "pinyin": "huā",
+    "vietnamese": "đóa hoa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 151,
+    "chinese": "话",
+    "pinyin": "huà",
+    "vietnamese": "lời nói",
+    "type": "HSK 1"
+  },
+  {
+    "id": 152,
+    "chinese": "坏",
+    "pinyin": "huài",
+    "vietnamese": "xấu, hỏng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 153,
+    "chinese": "还",
+    "pinyin": "huán",
+    "vietnamese": "trả",
+    "type": "HSK 1"
+  },
+  {
+    "id": 154,
+    "chinese": "回",
+    "pinyin": "huí",
+    "vietnamese": "quay lại, về",
+    "type": "HSK 1"
+  },
+  {
+    "id": 155,
+    "chinese": "回答",
+    "pinyin": "huídá",
+    "vietnamese": "trả lời",
+    "type": "HSK 1"
+  },
+  {
+    "id": 156,
+    "chinese": "回到",
+    "pinyin": "huídào",
+    "vietnamese": "quay về",
+    "type": "HSK 1"
+  },
+  {
+    "id": 157,
+    "chinese": "回家",
+    "pinyin": "huí jiā",
+    "vietnamese": "về nhà",
+    "type": "HSK 1"
+  },
+  {
+    "id": 158,
+    "chinese": "回来",
+    "pinyin": "huí//·lái",
+    "vietnamese": "về, quay về (hướng gần)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 159,
+    "chinese": "回去",
+    "pinyin": "huí//·qù",
+    "vietnamese": "về, quay về (hướng xa)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 160,
+    "chinese": "会",
+    "pinyin": "huì",
+    "vietnamese": "sẽ, biết làm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 161,
+    "chinese": "火车",
+    "pinyin": "huǒchē",
+    "vietnamese": "xe lửa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 162,
+    "chinese": "机场",
+    "pinyin": "jīchǎng",
+    "vietnamese": "sân bay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 163,
+    "chinese": "机票",
+    "pinyin": "jīpiào",
+    "vietnamese": "vé máy bay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 164,
+    "chinese": "鸡蛋",
+    "pinyin": "jīdàn",
+    "vietnamese": "trứng gà",
+    "type": "HSK 1"
+  },
+  {
+    "id": 165,
+    "chinese": "几",
+    "pinyin": "jǐ",
+    "vietnamese": "mấy, vài",
+    "type": "HSK 1"
+  },
+  {
+    "id": 166,
+    "chinese": "记",
+    "pinyin": "jì",
+    "vietnamese": "nhớ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 167,
+    "chinese": "记得",
+    "pinyin": "jìde",
+    "vietnamese": "ghi nhớ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 168,
+    "chinese": "记住",
+    "pinyin": "jìzhù",
+    "vietnamese": "nhớ kĩ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 169,
+    "chinese": "家",
+    "pinyin": "jiā",
+    "vietnamese": "nhà",
+    "type": "HSK 1"
+  },
+  {
+    "id": 170,
+    "chinese": "家里",
+    "pinyin": "jiā lǐ",
+    "vietnamese": "trong nhà",
+    "type": "HSK 1"
+  },
+  {
+    "id": 171,
+    "chinese": "家人",
+    "pinyin": "jiārén",
+    "vietnamese": "người nhà, người trong gia đình",
+    "type": "HSK 1"
+  },
+  {
+    "id": 172,
+    "chinese": "间",
+    "pinyin": "jiān",
+    "vietnamese": "giữa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 173,
+    "chinese": "见",
+    "pinyin": "jiàn",
+    "vietnamese": "gặp, thấy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 174,
+    "chinese": "见面",
+    "pinyin": "jiàn//miàn",
+    "vietnamese": "gặp mặt",
+    "type": "HSK 1"
+  },
+  {
+    "id": 175,
+    "chinese": "教",
+    "pinyin": "jiāo",
+    "vietnamese": "dạy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 176,
+    "chinese": "叫（动）",
+    "pinyin": "jiào",
+    "vietnamese": "gọi, kêu",
+    "type": "HSK 1"
+  },
+  {
+    "id": 177,
+    "chinese": "教学楼",
+    "pinyin": "jiàoxuélóu",
+    "vietnamese": "khu nhà dạy học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 178,
+    "chinese": "姐姐｜姐",
+    "pinyin": "jiějie｜jiě",
+    "vietnamese": "chị gái",
+    "type": "HSK 1"
+  },
+  {
+    "id": 179,
+    "chinese": "介绍",
+    "pinyin": "jièshào",
+    "vietnamese": "giới thiệu",
+    "type": "HSK 1"
+  },
+  {
+    "id": 180,
+    "chinese": "今年",
+    "pinyin": "jīnnián",
+    "vietnamese": "năm nay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 181,
+    "chinese": "今天",
+    "pinyin": "jīntiān",
+    "vietnamese": "ngày hôm nay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 182,
+    "chinese": "进",
+    "pinyin": "jìn",
+    "vietnamese": "vào",
+    "type": "HSK 1"
+  },
+  {
+    "id": 183,
+    "chinese": "进来",
+    "pinyin": "jìn//·lái",
+    "vietnamese": "bước vào (lại gần chỗ người nói)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 184,
+    "chinese": "进去",
+    "pinyin": "jìn//·qù",
+    "vietnamese": "bước vào (chỗ đó đi, xa người nói)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 185,
+    "chinese": "九",
+    "pinyin": "jiǔ",
+    "vietnamese": "số 9",
+    "type": "HSK 1"
+  },
+  {
+    "id": 186,
+    "chinese": "就",
+    "pinyin": "jiù",
+    "vietnamese": "đã; lập tức, ngay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 187,
+    "chinese": "觉得",
+    "pinyin": "juéde",
+    "vietnamese": "cảm thấy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 188,
+    "chinese": "开",
+    "pinyin": "kāi",
+    "vietnamese": "mở",
+    "type": "HSK 1"
+  },
+  {
+    "id": 189,
+    "chinese": "开车",
+    "pinyin": "kāi//chē",
+    "vietnamese": "lái xe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 190,
+    "chinese": "开会",
+    "pinyin": "kāi//huì",
+    "vietnamese": "mở họp, họp",
+    "type": "HSK 1"
+  },
+  {
+    "id": 191,
+    "chinese": "开玩笑",
+    "pinyin": "kāi wánxiào",
+    "vietnamese": "nói đùa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 192,
+    "chinese": "看",
+    "pinyin": "kàn",
+    "vietnamese": "nhìn, xem, ngắm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 193,
+    "chinese": "看病",
+    "pinyin": "kàn//bìng",
+    "vietnamese": "khám bệnh",
+    "type": "HSK 1"
+  },
+  {
+    "id": 194,
+    "chinese": "看到",
+    "pinyin": "kàndào",
+    "vietnamese": "nhìn thấy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 195,
+    "chinese": "看见",
+    "pinyin": "kàn//jiàn",
+    "vietnamese": "nhìn thấy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 196,
+    "chinese": "考",
+    "pinyin": "kǎo",
+    "vietnamese": "thi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 197,
+    "chinese": "考试",
+    "pinyin": "kǎo//shì",
+    "vietnamese": "kì thi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 198,
+    "chinese": "渴",
+    "pinyin": "kě",
+    "vietnamese": "khát",
+    "type": "HSK 1"
+  },
+  {
+    "id": 199,
+    "chinese": "课",
+    "pinyin": "kè",
+    "vietnamese": "tiết (học)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 200,
+    "chinese": "课本",
+    "pinyin": "kèběn",
+    "vietnamese": "sách giáo khoa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 201,
+    "chinese": "课文",
+    "pinyin": "kèwén",
+    "vietnamese": "bài khóa, bài đọc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 202,
+    "chinese": "口",
+    "pinyin": "kǒu",
+    "vietnamese": "lượng chỉ người trong gia đình",
+    "type": "HSK 1"
+  },
+  {
+    "id": 203,
+    "chinese": "块",
+    "pinyin": "kuài",
+    "vietnamese": "tệ (đơn vị tiền tệ)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 204,
+    "chinese": "快",
+    "pinyin": "kuài",
+    "vietnamese": "nhanh",
+    "type": "HSK 1"
+  },
+  {
+    "id": 205,
+    "chinese": "来",
+    "pinyin": "lái",
+    "vietnamese": "đến, tới",
+    "type": "HSK 1"
+  },
+  {
+    "id": 206,
+    "chinese": "来到",
+    "pinyin": "láidào",
+    "vietnamese": "đến",
+    "type": "HSK 1"
+  },
+  {
+    "id": 207,
+    "chinese": "老",
+    "pinyin": "lǎo",
+    "vietnamese": "già, cũ, cổ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 208,
+    "chinese": "老人",
+    "pinyin": "lǎorén",
+    "vietnamese": "người già",
+    "type": "HSK 1"
+  },
+  {
+    "id": 209,
+    "chinese": "老师",
+    "pinyin": "lǎoshī",
+    "vietnamese": "thầy, cô giáo",
+    "type": "HSK 1"
+  },
+  {
+    "id": 210,
+    "chinese": "了",
+    "pinyin": "le",
+    "vietnamese": "trợ từ biểu thị sự thay đổi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 211,
+    "chinese": "累",
+    "pinyin": "lèi",
+    "vietnamese": "mệt mỏi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 212,
+    "chinese": "冷",
+    "pinyin": "lěng",
+    "vietnamese": "lạnh",
+    "type": "HSK 1"
+  },
+  {
+    "id": 213,
+    "chinese": "里",
+    "pinyin": "lǐ",
+    "vietnamese": "trong, bên trong",
+    "type": "HSK 1"
+  },
+  {
+    "id": 214,
+    "chinese": "里边",
+    "pinyin": "lǐbian",
+    "vietnamese": "phía trong",
+    "type": "HSK 1"
+  },
+  {
+    "id": 215,
+    "chinese": "两",
+    "pinyin": "liǎng",
+    "vietnamese": "hai",
+    "type": "HSK 1"
+  },
+  {
+    "id": 216,
+    "chinese": "零|0",
+    "pinyin": "líng|0",
+    "vietnamese": "số 0",
+    "type": "HSK 1"
+  },
+  {
+    "id": 217,
+    "chinese": "六­­",
+    "pinyin": "liù",
+    "vietnamese": "số 6",
+    "type": "HSK 1"
+  },
+  {
+    "id": 218,
+    "chinese": "楼",
+    "pinyin": "lóu",
+    "vietnamese": "tầng, lầu",
+    "type": "HSK 1"
+  },
+  {
+    "id": 219,
+    "chinese": "楼上",
+    "pinyin": "lóu shàng",
+    "vietnamese": "tầng trên",
+    "type": "HSK 1"
+  },
+  {
+    "id": 220,
+    "chinese": "楼下",
+    "pinyin": "lóu xià",
+    "vietnamese": "tầng dưới",
+    "type": "HSK 1"
+  },
+  {
+    "id": 221,
+    "chinese": "路",
+    "pinyin": "lù",
+    "vietnamese": "đường xá",
+    "type": "HSK 1"
+  },
+  {
+    "id": 222,
+    "chinese": "路口",
+    "pinyin": "lùkǒu",
+    "vietnamese": "giao lộ, đường giao nhau, ngã ba đường",
+    "type": "HSK 1"
+  },
+  {
+    "id": 223,
+    "chinese": "路上",
+    "pinyin": "lùshang",
+    "vietnamese": "trên đường",
+    "type": "HSK 1"
+  },
+  {
+    "id": 224,
+    "chinese": "妈妈｜妈",
+    "pinyin": "māma｜mā",
+    "vietnamese": "mẹ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 225,
+    "chinese": "马路",
+    "pinyin": "mǎlù",
+    "vietnamese": "đường cái, đường quốc lộ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 226,
+    "chinese": "马上",
+    "pinyin": "mǎshàng",
+    "vietnamese": "lập tức, ngay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 227,
+    "chinese": "吗",
+    "pinyin": "ma",
+    "vietnamese": "từ để hỏi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 228,
+    "chinese": "买",
+    "pinyin": "mǎi",
+    "vietnamese": "mua",
+    "type": "HSK 1"
+  },
+  {
+    "id": 229,
+    "chinese": "慢",
+    "pinyin": "màn",
+    "vietnamese": "chậm, từ từ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 230,
+    "chinese": "忙",
+    "pinyin": "máng",
+    "vietnamese": "bận, bận rộn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 231,
+    "chinese": "毛",
+    "pinyin": "máo",
+    "vietnamese": "lượng từ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 232,
+    "chinese": "没",
+    "pinyin": "méi",
+    "vietnamese": "không",
+    "type": "HSK 1"
+  },
+  {
+    "id": 233,
+    "chinese": "没关系",
+    "pinyin": "méi guānxi",
+    "vietnamese": "không sao",
+    "type": "HSK 1"
+  },
+  {
+    "id": 234,
+    "chinese": "没什么",
+    "pinyin": "méi shénme",
+    "vietnamese": "không có gì",
+    "type": "HSK 1"
+  },
+  {
+    "id": 235,
+    "chinese": "没事儿",
+    "pinyin": "méi//shìr",
+    "vietnamese": "không có việc gì",
+    "type": "HSK 1"
+  },
+  {
+    "id": 236,
+    "chinese": "没有",
+    "pinyin": "méi·yǒu",
+    "vietnamese": "không có",
+    "type": "HSK 1"
+  },
+  {
+    "id": 237,
+    "chinese": "妹妹｜妹",
+    "pinyin": "mèimei｜mèi",
+    "vietnamese": "em gái",
+    "type": "HSK 1"
+  },
+  {
+    "id": 238,
+    "chinese": "门",
+    "pinyin": "mén",
+    "vietnamese": "cửa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 239,
+    "chinese": "门口",
+    "pinyin": "ménkǒu",
+    "vietnamese": "cửa, cổng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 240,
+    "chinese": "门票",
+    "pinyin": "ménpiào",
+    "vietnamese": "vé vào cửa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 241,
+    "chinese": "们（朋友们）",
+    "pinyin": "men（péngyǒumen）",
+    "vietnamese": "từ chỉ số nhiều",
+    "type": "HSK 1"
+  },
+  {
+    "id": 242,
+    "chinese": "米饭",
+    "pinyin": "mǐfàn",
+    "vietnamese": "cơm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 243,
+    "chinese": "面包",
+    "pinyin": "miànbāo",
+    "vietnamese": "bánh mì",
+    "type": "HSK 1"
+  },
+  {
+    "id": 244,
+    "chinese": "面条儿",
+    "pinyin": "miàntiáor",
+    "vietnamese": "mì sợi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 245,
+    "chinese": "名字",
+    "pinyin": "míngzi",
+    "vietnamese": "tên",
+    "type": "HSK 1"
+  },
+  {
+    "id": 246,
+    "chinese": "明白",
+    "pinyin": "míngbai",
+    "vietnamese": "biết, hiểu",
+    "type": "HSK 1"
+  },
+  {
+    "id": 247,
+    "chinese": "明年",
+    "pinyin": "míngnián",
+    "vietnamese": "năm sau, năm tới",
+    "type": "HSK 1"
+  },
+  {
+    "id": 248,
+    "chinese": "明天",
+    "pinyin": "míngtiān",
+    "vietnamese": "ngày mai",
+    "type": "HSK 1"
+  },
+  {
+    "id": 249,
+    "chinese": "拿",
+    "pinyin": "ná",
+    "vietnamese": "lấy, cầm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 250,
+    "chinese": "哪",
+    "pinyin": "nǎ",
+    "vietnamese": "nào",
+    "type": "HSK 1"
+  },
+  {
+    "id": 251,
+    "chinese": "哪里",
+    "pinyin": "nǎ·lǐ",
+    "vietnamese": "đâu, ở đâu, ở chỗ nào",
+    "type": "HSK 1"
+  },
+  {
+    "id": 252,
+    "chinese": "哪儿",
+    "pinyin": "nǎr",
+    "vietnamese": "đâu, ở đâu",
+    "type": "HSK 1"
+  },
+  {
+    "id": 253,
+    "chinese": "哪些",
+    "pinyin": "nǎxiē",
+    "vietnamese": "những ... nào",
+    "type": "HSK 1"
+  },
+  {
+    "id": 254,
+    "chinese": "那（代）",
+    "pinyin": "nà",
+    "vietnamese": "kia, ấy, vậy, vậy thì",
+    "type": "HSK 1"
+  },
+  {
+    "id": 255,
+    "chinese": "那边",
+    "pinyin": "nàbiān",
+    "vietnamese": "bên kia",
+    "type": "HSK 1"
+  },
+  {
+    "id": 256,
+    "chinese": "那里",
+    "pinyin": "nà·lǐ",
+    "vietnamese": "ở đó, nơi đó",
+    "type": "HSK 1"
+  },
+  {
+    "id": 257,
+    "chinese": "那儿",
+    "pinyin": "nàr",
+    "vietnamese": "ở đó, nơi đó",
+    "type": "HSK 1"
+  },
+  {
+    "id": 258,
+    "chinese": "那些",
+    "pinyin": "nàxiē",
+    "vietnamese": "những ... ấy, những kia",
+    "type": "HSK 1"
+  },
+  {
+    "id": 259,
+    "chinese": "奶",
+    "pinyin": "nǎi",
+    "vietnamese": "sữa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 260,
+    "chinese": "奶奶",
+    "pinyin": "nǎinai",
+    "vietnamese": "bà nội, bà",
+    "type": "HSK 1"
+  },
+  {
+    "id": 261,
+    "chinese": "男",
+    "pinyin": "nán",
+    "vietnamese": "nam (giới tính nam)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 262,
+    "chinese": "男孩儿",
+    "pinyin": "nánháir",
+    "vietnamese": "bạn bé",
+    "type": "HSK 1"
+  },
+  {
+    "id": 263,
+    "chinese": "男朋友",
+    "pinyin": "nánpéngyǒu",
+    "vietnamese": "bạn trai",
+    "type": "HSK 1"
+  },
+  {
+    "id": 264,
+    "chinese": "男人",
+    "pinyin": "nánrén",
+    "vietnamese": "con trai, đàn ông",
+    "type": "HSK 1"
+  },
+  {
+    "id": 265,
+    "chinese": "男生",
+    "pinyin": "nánshēng",
+    "vietnamese": "nam sinh, học sinh nam",
+    "type": "HSK 1"
+  },
+  {
+    "id": 266,
+    "chinese": "南",
+    "pinyin": "nán",
+    "vietnamese": "nam",
+    "type": "HSK 1"
+  },
+  {
+    "id": 267,
+    "chinese": "南边",
+    "pinyin": "nánbian",
+    "vietnamese": "phía nam",
+    "type": "HSK 1"
+  },
+  {
+    "id": 268,
+    "chinese": "难",
+    "pinyin": "nán",
+    "vietnamese": "khó",
+    "type": "HSK 1"
+  },
+  {
+    "id": 269,
+    "chinese": "呢",
+    "pinyin": "ne",
+    "vietnamese": "đâu, thế, nhỉ, vậy...",
+    "type": "HSK 1"
+  },
+  {
+    "id": 270,
+    "chinese": "能",
+    "pinyin": "néng",
+    "vietnamese": "có thể",
+    "type": "HSK 1"
+  },
+  {
+    "id": 271,
+    "chinese": "你",
+    "pinyin": "nǐ",
+    "vietnamese": "anh, chị, bạn, ...",
+    "type": "HSK 1"
+  },
+  {
+    "id": 272,
+    "chinese": "你们",
+    "pinyin": "nǐmen",
+    "vietnamese": "các anh, các chị, các bạn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 273,
+    "chinese": "年",
+    "pinyin": "nián",
+    "vietnamese": "năm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 274,
+    "chinese": "您",
+    "pinyin": "nín",
+    "vietnamese": "ngài, ông, bà (thể hiện sự kính trọng)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 275,
+    "chinese": "牛奶",
+    "pinyin": "niúnǎi",
+    "vietnamese": "sữa bò",
+    "type": "HSK 1"
+  },
+  {
+    "id": 276,
+    "chinese": "女",
+    "pinyin": "nǚ",
+    "vietnamese": "nữ (giới tính nữ)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 277,
+    "chinese": "女儿",
+    "pinyin": "nǚ'ér",
+    "vietnamese": "con gái",
+    "type": "HSK 1"
+  },
+  {
+    "id": 278,
+    "chinese": "女孩儿",
+    "pinyin": "nǚháir",
+    "vietnamese": "cô bé",
+    "type": "HSK 1"
+  },
+  {
+    "id": 279,
+    "chinese": "女朋友",
+    "pinyin": "nǚpéngyǒu",
+    "vietnamese": "bạn gái",
+    "type": "HSK 1"
+  },
+  {
+    "id": 280,
+    "chinese": "女人",
+    "pinyin": "nǚrén",
+    "vietnamese": "con gái, phụ nữ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 281,
+    "chinese": "女生",
+    "pinyin": "nǚshēng",
+    "vietnamese": "nữ sinh, học sinh nữ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 282,
+    "chinese": "旁边",
+    "pinyin": "pángbiān",
+    "vietnamese": "bên cạnh",
+    "type": "HSK 1"
+  },
+  {
+    "id": 283,
+    "chinese": "跑",
+    "pinyin": "pǎo",
+    "vietnamese": "chạy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 284,
+    "chinese": "朋友",
+    "pinyin": "péngyǒu",
+    "vietnamese": "bạn, bạn bè",
+    "type": "HSK 1"
+  },
+  {
+    "id": 285,
+    "chinese": "票",
+    "pinyin": "piào",
+    "vietnamese": "vé, phiếu",
+    "type": "HSK 1"
+  },
+  {
+    "id": 286,
+    "chinese": "七",
+    "pinyin": "qī",
+    "vietnamese": "số 7",
+    "type": "HSK 1"
+  },
+  {
+    "id": 287,
+    "chinese": "起",
+    "pinyin": "qǐ",
+    "vietnamese": "dậy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 288,
+    "chinese": "起床",
+    "pinyin": "qǐ//chuáng",
+    "vietnamese": "thức dậy, ngủ dậy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 289,
+    "chinese": "起来",
+    "pinyin": "qǐ//·lái",
+    "vietnamese": "ngồi dậy, đứng đậy, thức dậy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 290,
+    "chinese": "汽车",
+    "pinyin": "qìchē",
+    "vietnamese": "ôtô, xe hơi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 291,
+    "chinese": "前",
+    "pinyin": "qián",
+    "vietnamese": "trước",
+    "type": "HSK 1"
+  },
+  {
+    "id": 292,
+    "chinese": "前边",
+    "pinyin": "qiánbian",
+    "vietnamese": "phía trước",
+    "type": "HSK 1"
+  },
+  {
+    "id": 293,
+    "chinese": "前天",
+    "pinyin": "qiántiān",
+    "vietnamese": "hôm kia, hôm trước",
+    "type": "HSK 1"
+  },
+  {
+    "id": 294,
+    "chinese": "钱",
+    "pinyin": "qián",
+    "vietnamese": "tiền",
+    "type": "HSK 1"
+  },
+  {
+    "id": 295,
+    "chinese": "钱包",
+    "pinyin": "qiánbāo",
+    "vietnamese": "ví tiền",
+    "type": "HSK 1"
+  },
+  {
+    "id": 296,
+    "chinese": "请",
+    "pinyin": "qǐng",
+    "vietnamese": "mời",
+    "type": "HSK 1"
+  },
+  {
+    "id": 297,
+    "chinese": "请假",
+    "pinyin": "qǐng//jià",
+    "vietnamese": "xin nghỉ phép",
+    "type": "HSK 1"
+  },
+  {
+    "id": 298,
+    "chinese": "请进",
+    "pinyin": "qǐng jìn",
+    "vietnamese": "mời vào",
+    "type": "HSK 1"
+  },
+  {
+    "id": 299,
+    "chinese": "请问",
+    "pinyin": "qǐngwèn",
+    "vietnamese": "xin hỏi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 300,
+    "chinese": "请坐",
+    "pinyin": "qǐng zuò",
+    "vietnamese": "mời ngồi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 301,
+    "chinese": "球",
+    "pinyin": "qiú",
+    "vietnamese": "quả bóng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 302,
+    "chinese": "去",
+    "pinyin": "qù",
+    "vietnamese": "đi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 303,
+    "chinese": "去年",
+    "pinyin": "qùnián",
+    "vietnamese": "năm ngoái, năm vừa rồi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 304,
+    "chinese": "热",
+    "pinyin": "rè",
+    "vietnamese": "nóng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 305,
+    "chinese": "人",
+    "pinyin": "rén",
+    "vietnamese": "người",
+    "type": "HSK 1"
+  },
+  {
+    "id": 306,
+    "chinese": "认识",
+    "pinyin": "rènshi",
+    "vietnamese": "biết, quen",
+    "type": "HSK 1"
+  },
+  {
+    "id": 307,
+    "chinese": "认真",
+    "pinyin": "rènzhēn",
+    "vietnamese": "nghiêm túc, chăm chỉ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 308,
+    "chinese": "日",
+    "pinyin": "rì",
+    "vietnamese": "ngày",
+    "type": "HSK 1"
+  },
+  {
+    "id": 309,
+    "chinese": "日期",
+    "pinyin": "rìqī",
+    "vietnamese": "ngày (xác định)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 310,
+    "chinese": "肉",
+    "pinyin": "ròu",
+    "vietnamese": "thịt",
+    "type": "HSK 1"
+  },
+  {
+    "id": 311,
+    "chinese": "三",
+    "pinyin": "sān",
+    "vietnamese": "số 3",
+    "type": "HSK 1"
+  },
+  {
+    "id": 312,
+    "chinese": "山",
+    "pinyin": "shān",
+    "vietnamese": "núi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 313,
+    "chinese": "商场",
+    "pinyin": "shāngchǎng",
+    "vietnamese": "trung tâm thương mại",
+    "type": "HSK 1"
+  },
+  {
+    "id": 314,
+    "chinese": "商店",
+    "pinyin": "shāngdiàn",
+    "vietnamese": "tiệm tạp hóa, cửa hàng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 315,
+    "chinese": "上",
+    "pinyin": "shàng",
+    "vietnamese": "trên",
+    "type": "HSK 1"
+  },
+  {
+    "id": 316,
+    "chinese": "上班",
+    "pinyin": "shàng//bān",
+    "vietnamese": "đi làm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 317,
+    "chinese": "上边",
+    "pinyin": "shàngbiān",
+    "vietnamese": "bên trên",
+    "type": "HSK 1"
+  },
+  {
+    "id": 318,
+    "chinese": "上车",
+    "pinyin": "shàngchē",
+    "vietnamese": "lên xe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 319,
+    "chinese": "上次",
+    "pinyin": "shàngcì",
+    "vietnamese": "lần trước",
+    "type": "HSK 1"
+  },
+  {
+    "id": 320,
+    "chinese": "上课",
+    "pinyin": "shàngkè",
+    "vietnamese": "vào lớp, đi học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 321,
+    "chinese": "上网",
+    "pinyin": "shàngwǎng",
+    "vietnamese": "lên mạng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 322,
+    "chinese": "上午",
+    "pinyin": "shàngwǔ",
+    "vietnamese": "buổi sáng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 323,
+    "chinese": "上学",
+    "pinyin": "shàngxué",
+    "vietnamese": "(đang) đi học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 324,
+    "chinese": "少",
+    "pinyin": "shǎo",
+    "vietnamese": "ít, thiếu",
+    "type": "HSK 1"
+  },
+  {
+    "id": 325,
+    "chinese": "谁",
+    "pinyin": "shéi",
+    "vietnamese": "ai",
+    "type": "HSK 1"
+  },
+  {
+    "id": 326,
+    "chinese": "身上",
+    "pinyin": "shēnshang",
+    "vietnamese": "trên người",
+    "type": "HSK 1"
+  },
+  {
+    "id": 327,
+    "chinese": "身体",
+    "pinyin": "shēntǐ",
+    "vietnamese": "cơ thể, sức khỏe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 328,
+    "chinese": "什么",
+    "pinyin": "shénme",
+    "vietnamese": "cái gì",
+    "type": "HSK 1"
+  },
+  {
+    "id": 329,
+    "chinese": "生病",
+    "pinyin": "shēngbìng",
+    "vietnamese": "đổ bệnh, bị ốm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 330,
+    "chinese": "生气",
+    "pinyin": "shēngqì",
+    "vietnamese": "tức giận",
+    "type": "HSK 1"
+  },
+  {
+    "id": 331,
+    "chinese": "生日",
+    "pinyin": "shēngrì",
+    "vietnamese": "ngày sinh nhật",
+    "type": "HSK 1"
+  },
+  {
+    "id": 332,
+    "chinese": "十",
+    "pinyin": "shí",
+    "vietnamese": "số 10",
+    "type": "HSK 1"
+  },
+  {
+    "id": 333,
+    "chinese": "时候",
+    "pinyin": "shíhòu",
+    "vietnamese": "thời gian, lúc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 334,
+    "chinese": "时间",
+    "pinyin": "shíjiān",
+    "vietnamese": "thời gian",
+    "type": "HSK 1"
+  },
+
+  {
+    "id": 335,
+    "chinese": "事",
+    "pinyin": "shì",
+    "vietnamese": "chuyện, việc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 336,
+    "chinese": "试",
+    "pinyin": "shì",
+    "vietnamese": "thử",
+    "type": "HSK 1"
+  },
+  {
+    "id": 337,
+    "chinese": "是",
+    "pinyin": "shì",
+    "vietnamese": "thì, là",
+    "type": "HSK 1"
+  },
+  {
+    "id": 338,
+    "chinese": "是不是",
+    "pinyin": "shìbùshì",
+    "vietnamese": "có phải hay không",
+    "type": "HSK 1"
+  },
+  {
+    "id": 339,
+    "chinese": "手",
+    "pinyin": "shǒu",
+    "vietnamese": "tay",
+    "type": "HSK 1"
+  },
+  {
+    "id": 340,
+    "chinese": "手机",
+    "pinyin": "shǒujī",
+    "vietnamese": "điện thoại di động",
+    "type": "HSK 1"
+  },
+  {
+    "id": 341,
+    "chinese": "书",
+    "pinyin": "shū",
+    "vietnamese": "sách",
+    "type": "HSK 1"
+  },
+  {
+    "id": 342,
+    "chinese": "书包",
+    "pinyin": "shūbāo",
+    "vietnamese": "cặp sách",
+    "type": "HSK 1"
+  },
+  {
+    "id": 343,
+    "chinese": "书店",
+    "pinyin": "shūdiàn",
+    "vietnamese": "cửa hàng sách, tiệm sách",
+    "type": "HSK 1"
+  },
+  {
+    "id": 344,
+    "chinese": "树",
+    "pinyin": "shù",
+    "vietnamese": "cây",
+    "type": "HSK 1"
+  },
+  {
+    "id": 345,
+    "chinese": "水",
+    "pinyin": "shuǐ",
+    "vietnamese": "nước",
+    "type": "HSK 1"
+  },
+  {
+    "id": 346,
+    "chinese": "水果",
+    "pinyin": "shuǐguǒ",
+    "vietnamese": "nước hoa quả, nước ép",
+    "type": "HSK 1"
+  },
+  {
+    "id": 347,
+    "chinese": "睡",
+    "pinyin": "shuì",
+    "vietnamese": "ngủ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 348,
+    "chinese": "睡觉",
+    "pinyin": "shuìjiào",
+    "vietnamese": "ngủ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 349,
+    "chinese": "说",
+    "pinyin": "shuō",
+    "vietnamese": "nói",
+    "type": "HSK 1"
+  },
+  {
+    "id": 350,
+    " ch": "说话",
+    "pinyin": "shuōhuà",
+    "vietnamese": "nói, trò chuyện",
+    "type": "HSK 1"
+  },
+  {
+    "id": 351,
+    "chinese": "四",
+    "pinyin": "sì",
+    "vietnamese": "số 4",
+    "type": "HSK 1"
+  },
+  {
+    "id": 352,
+    "chinese": "送",
+    "pinyin": "sòng",
+    "vietnamese": "tặng, đưa cho",
+    "type": "HSK 1"
+  },
+  {
+    "id": 353,
+    "chinese": "岁",
+    "pinyin": "suì",
+    "vietnamese": "tuổi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 354,
+    "chinese": "他",
+    "pinyin": "tā",
+    "vietnamese": "anh ấy, ông ấy (ngôi 3 chỉ nam)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 355,
+    "chinese": "他们",
+    "pinyin": "tāmen",
+    "vietnamese": "các anh ấy, bọn họ (nam)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 356,
+    "chinese": "她",
+    "pinyin": "tā",
+    "vietnamese": "cô ấy, bà ấy (ngôi 3 chỉ nữ)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 357,
+    "chinese": "她们",
+    "pinyin": "tāmen",
+    "vietnamese": "các cô ấy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 358,
+    "chinese": "太",
+    "pinyin": "tài",
+    "vietnamese": "quá",
+    "type": "HSK 1"
+  },
+  {
+    "id": 359,
+    "chinese": "天",
+    "pinyin": "tiān",
+    "vietnamese": "trời",
+    "type": "HSK 1"
+  },
+  {
+    "id": 360,
+    "chinese": "天气",
+    "pinyin": "tiānqì",
+    "vietnamese": "thời tiết",
+    "type": "HSK 1"
+  },
+  {
+    "id": 361,
+    "chinese": "听",
+    "pinyin": "tīng",
+    "vietnamese": "nghe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 362,
+    "chinese": "听到",
+    "pinyin": "tīngdào",
+    "vietnamese": "nghe thấy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 363,
+    "chinese": "听见",
+    "pinyin": "tīngjiàn",
+    "vietnamese": "nghe thấy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 364,
+    "chinese": "听写",
+    "pinyin": "tīngxiě",
+    "vietnamese": "nghe viết",
+    "type": "HSK 1"
+  },
+  {
+    "id": 365,
+    "chinese": "同学",
+    "pinyin": "tóngxué",
+    "vietnamese": "bạn học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 366,
+    "chinese": "图书馆",
+    "pinyin": "túshūguǎn",
+    "vietnamese": "thư viện",
+    "type": "HSK 1"
+  },
+  {
+    "id": 367,
+    "chinese": "外",
+    "pinyin": "wài",
+    "vietnamese": "ngoài",
+    "type": "HSK 1"
+  },
+  {
+    "id": 368,
+    "chinese": "外边",
+    "pinyin": "wàibiān",
+    "vietnamese": "bên ngoài",
+    "type": "HSK 1"
+  },
+  {
+    "id": 369,
+    "chinese": "外国",
+    "pinyin": "wàiguó",
+    "vietnamese": "nước ngoài",
+    "type": "HSK 1"
+  },
+  {
+    "id": 370,
+    "chinese": "外语",
+    "pinyin": "wàiyǔ",
+    "vietnamese": "tiếng nước ngoài, ngoại ngữ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 371,
+    "chinese": "玩儿",
+    "pinyin": "wánr",
+    "vietnamese": "chơi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 372,
+    "chinese": "晚",
+    "pinyin": "wǎn",
+    "vietnamese": "buổi tối, muộn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 373,
+    "chinese": "晚饭",
+    "pinyin": "wǎnfàn",
+    "vietnamese": "cơm tối, bữa tối",
+    "type": "HSK 1"
+  },
+  {
+    "id": 374,
+    "chinese": "晚上",
+    "pinyin": "wǎnshang",
+    "vietnamese": "buổi tối",
+    "type": "HSK 1"
+  },
+  {
+    "id": 375,
+    "chinese": "网上",
+    "pinyin": "wǎng shang",
+    "vietnamese": "trên mạng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 376,
+    "chinese": "网友",
+    "pinyin": "wǎngyǒu",
+    "vietnamese": "bạn trên mạng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 377,
+    "chinese": "忘",
+    "pinyin": "wàng",
+    "vietnamese": "quên",
+    "type": "HSK 1"
+  },
+  {
+    "id": 378,
+    "chinese": "忘记",
+    "pinyin": "wàngjì",
+    "vietnamese": "quên, quên mất",
+    "type": "HSK 1"
+  },
+  {
+    "id": 379,
+    "chinese": "问",
+    "pinyin": "wèn",
+    "vietnamese": "hỏi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 380,
+    "chinese": "我",
+    "pinyin": "wǒ",
+    "vietnamese": "tôi, tớ, bạn (ngôi thứ nhất)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 381,
+    "chinese": "我们",
+    "pinyin": "wǒmen",
+    "vietnamese": "chúng ta (nhiều người)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 382,
+    "chinese": "五",
+    "pinyin": "wǔ",
+    "vietnamese": "số 5",
+    "type": "HSK 1"
+  },
+  {
+    "id": 383,
+    "chinese": "午饭",
+    "pinyin": "wǔfàn",
+    "vietnamese": "bữa trưa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 384,
+    "chinese": "西",
+    "pinyin": "xī",
+    "vietnamese": "tây",
+    "type": "HSK 1"
+  },
+  {
+    "id": 385,
+    "chinese": "西边",
+    "pinyin": "xībian",
+    "vietnamese": "phía tây",
+    "type": "HSK 1"
+  },
+  {
+    "id": 386,
+    "chinese": "洗",
+    "pinyin": "xǐ",
+    "vietnamese": "rửa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 387,
+    "chinese": "洗手间",
+    "pinyin": "xǐshǒujiān",
+    "vietnamese": "nhà vệ sinh",
+    "type": "HSK 1"
+  },
+  {
+    "id": 388,
+    "chinese": "喜欢",
+    "pinyin": "xǐhuān",
+    "vietnamese": "thích, được yêu thích",
+    "type": "HSK 1"
+  },
+  {
+    "id": 389,
+    "chinese": "下（名、动）",
+    "pinyin": "xià",
+    "vietnamese": "xuống dưới, bên dưới",
+    "type": "HSK 1"
+  },
+  {
+    "id": 390,
+    "chinese": "下班",
+    "pinyin": "xià//bān",
+    "vietnamese": "tan làm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 391,
+    "chinese": "下边",
+    "pinyin": "xiàbian",
+    "vietnamese": "bên dưới",
+    "type": "HSK 1"
+  },
+  {
+    "id": 392,
+    "chinese": "下车",
+    "pinyin": "xià chē",
+    "vietnamese": "xuống xe",
+    "type": "HSK 1"
+  },
+  {
+    "id": 393,
+    "chinese": "下次",
+    "pinyin": "xià cì",
+    "vietnamese": "lần kế tiếp, lần sau",
+    "type": "HSK 1"
+  },
+  {
+    "id": 394,
+    "chinese": "下课",
+    "pinyin": "xià//kè",
+    "vietnamese": "tan học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 395,
+    "chinese": "下午",
+    "pinyin": "xiàwǔ",
+    "vietnamese": "buổi chiều",
+    "type": "HSK 1"
+  },
+  {
+    "id": 396,
+    "chinese": "下雨",
+    "pinyin": "xià yǔ",
+    "vietnamese": "đổ mưa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 397,
+    "chinese": "先",
+    "pinyin": "xiān",
+    "vietnamese": "trước",
+    "type": "HSK 1"
+  },
+  {
+    "id": 398,
+    "chinese": "先生",
+    "pinyin": "xiānsheng",
+    "vietnamese": "quý ông (gọi tôn kính)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 399,
+    "chinese": "现在",
+    "pinyin": "xiànzài",
+    "vietnamese": "hiện tại, bây giờ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 400,
+    "chinese": "想",
+    "pinyin": "xiǎng",
+    "vietnamese": "muốn, suy nghĩ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 401,
+    "chinese": "小",
+    "pinyin": "xiǎo",
+    "vietnamese": "nhỏ, bé",
+    "type": "HSK 1"
+  },
+  {
+    "id": 402,
+    "chinese": "小孩儿",
+    "pinyin": "xiǎoháir",
+    "vietnamese": "trẻ em",
+    "type": "HSK 1"
+  },
+  {
+    "id": 403,
+    "chinese": "小姐",
+    "pinyin": "xiǎojiě",
+    "vietnamese": "tiểu thư, cô, em",
+    "type": "HSK 1"
+  },
+  {
+    "id": 404,
+    "chinese": "小朋友",
+    "pinyin": "xiǎopéngyǒu",
+    "vietnamese": "trẻ em, bạn nhỏ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 405,
+    "chinese": "小时",
+    "pinyin": "xiǎoshí",
+    "vietnamese": "tiếng, giờ đồng hồ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 406,
+    "chinese": "小学",
+    "pinyin": "xiǎoxué",
+    "vietnamese": "bậc tiểu học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 407,
+    "chinese": "小学生",
+    "pinyin": "xiǎoxuéshēng",
+    "vietnamese": "học sinh tiểu học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 408,
+    "chinese": "笑",
+    "pinyin": "xiào",
+    "vietnamese": "cười",
+    "type": "HSK 1"
+  },
+  {
+    "id": 409,
+    "chinese": "写",
+    "pinyin": "xiě",
+    "vietnamese": "viết",
+    "type": "HSK 1"
+  },
+  {
+    "id": 410,
+    "chinese": "谢谢",
+    "pinyin": "xièxie",
+    "vietnamese": "cảm ơn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 411,
+    "chinese": "新",
+    "pinyin": "xīn",
+    "vietnamese": "mới",
+    "type": "HSK 1"
+  },
+  {
+    "id": 412,
+    "chinese": "新年",
+    "pinyin": "xīnnián",
+    "vietnamese": "năm mới",
+    "type": "HSK 1"
+  },
+  {
+    "id": 413,
+    "chinese": "星期",
+    "pinyin": "xīngqī",
+    "vietnamese": "tuần, thứ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 414,
+    "chinese": "星期日",
+    "pinyin": "xīngqīrì",
+    "vietnamese": "chủ nhật",
+    "type": "HSK 1"
+  },
+  {
+    "id": 415,
+    "chinese": "星期天",
+    "pinyin": "xīngqītiān",
+    "vietnamese": "chủ nhật",
+    "type": "HSK 1"
+  },
+  {
+    "id": 416,
+    "chinese": "行",
+    "pinyin": "xíng",
+    "vietnamese": "được, ổn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 417,
+    "chinese": "休息",
+    "pinyin": "xiūxi",
+    "vietnamese": "nghỉ ngơi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 418,
+    "chinese": "学",
+    "pinyin": "xué",
+    "vietnamese": "học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 419,
+    "chinese": "学生",
+    "pinyin": "xué·shēng",
+    "vietnamese": "học sinh, sinh viên",
+    "type": "HSK 1"
+  },
+  {
+    "id": 420,
+    "chinese": "学习",
+    "pinyin": "xuéxí",
+    "vietnamese": "học tập",
+    "type": "HSK 1"
+  },
+  {
+    "id": 421,
+    "chinese": "学校",
+    "pinyin": "xuéxiào",
+    "vietnamese": "trường học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 422,
+    "chinese": "学院",
+    "pinyin": "xuéyuàn",
+    "vietnamese": "học viện",
+    "type": "HSK 1"
+  },
+  {
+    "id": 423,
+    "chinese": "要（动）",
+    "pinyin": "yào",
+    "vietnamese": "muốn, cần, phải",
+    "type": "HSK 1"
+  },
+  {
+    "id": 424,
+    "chinese": "爷爷",
+    "pinyin": "yéye",
+    "vietnamese": "ông nội, ông",
+    "type": "HSK 1"
+  },
+  {
+    "id": 425,
+    "chinese": "也",
+    "pinyin": "yě",
+    "vietnamese": "cũng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 426,
+    "chinese": "页",
+    "pinyin": "yè",
+    "vietnamese": "trang",
+    "type": "HSK 1"
+  },
+  {
+    "id": 427,
+    "chinese": "一",
+    "pinyin": "yī",
+    "vietnamese": "số 1",
+    "type": "HSK 1"
+  },
+  {
+    "id": 428,
+    "chinese": "衣服",
+    "pinyin": "yīfu",
+    "vietnamese": "quần áo",
+    "type": "HSK 1"
+  },
+  {
+    "id": 429,
+    "chinese": "医生",
+    "pinyin": "yīshēng",
+    "vietnamese": "bác sĩ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 430,
+    "chinese": "医院",
+    "pinyin": "yīyuàn",
+    "vietnamese": "bệnh viện",
+    "type": "HSK 1"
+  },
+  {
+    "id": 431,
+    "chinese": "一半",
+    "pinyin": "yíbàn",
+    "vietnamese": "một nửa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 432,
+    "chinese": "一会儿",
+    "pinyin": "yíhuìr",
+    "vietnamese": "một chốc, một lát",
+    "type": "HSK 1"
+  },
+  {
+    "id": 433,
+    "chinese": "一块儿",
+    "pinyin": "yíkuàir",
+    "vietnamese": "cùng nơi, cùng chỗ, cùng nhau",
+    "type": "HSK 1"
+  },
+  {
+    "id": 434,
+    "chinese": "一下儿",
+    "pinyin": "yíxiàr",
+    "vietnamese": "một lát, một lúc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 435,
+    "chinese": "一样",
+    "pinyin": "yíyàng",
+    "vietnamese": "giống nhau, như nhau",
+    "type": "HSK 1"
+  },
+  {
+    "id": 436,
+    "chinese": "一边",
+    "pinyin": "yìbiān",
+    "vietnamese": "một bên, một mặt",
+    "type": "HSK 1"
+  },
+  {
+    "id": 437,
+    "chinese": "一点儿",
+    "pinyin": "yìdiǎnr",
+    "vietnamese": "một chút",
+    "type": "HSK 1"
+  },
+  {
+    "id": 438,
+    "chinese": "一起",
+    "pinyin": "yìqǐ",
+    "vietnamese": "cùng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 439,
+    "chinese": "一些",
+    "pinyin": "yìxiē",
+    "vietnamese": "một ít, một chút",
+    "type": "HSK 1"
+  },
+  {
+    "id": 440,
+    "chinese": "用",
+    "pinyin": "yòng",
+    "vietnamese": "dùng, sử dụng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 441,
+    "chinese": "有",
+    "pinyin": "yǒu",
+    "vietnamese": "có",
+    "type": "HSK 1"
+  },
+  {
+    "id": 442,
+    "chinese": "有的",
+    "pinyin": "yǒude",
+    "vietnamese": "có",
+    "type": "HSK 1"
+  },
+  {
+    "id": 443,
+    "chinese": "有名",
+    "pinyin": "yǒu//míng",
+    "vietnamese": "nổi tiếng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 444,
+    "chinese": "有时候｜有时",
+    "pinyin": "yǒushíhou｜yǒushí",
+    "vietnamese": "có lúc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 445,
+    "chinese": "有（一）些",
+    "pinyin": "yǒu（yì）xiē",
+    "vietnamese": "có một tí",
+    "type": "HSK 1"
+  },
+  {
+    "id": 446,
+    "chinese": "有用",
+    "pinyin": "yǒuyòng",
+    "vietnamese": "có ích, có tác dụng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 447,
+    "chinese": "右",
+    "pinyin": "yòu",
+    "vietnamese": "bên phải",
+    "type": "HSK 1"
+  },
+  {
+    "id": 448,
+    "chinese": "右边",
+    "pinyin": "yòubian",
+    "vietnamese": "phía bên phải",
+    "type": "HSK 1"
+  },
+  {
+    "id": 449,
+    "chinese": "雨",
+    "pinyin": "yǔ",
+    "vietnamese": "mưa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 450,
+    "chinese": "元",
+    "pinyin": "yuán",
+    "vietnamese": "đồng (đơn vị tiền tệ)",
+    "type": "HSK 1"
+  },
+  {
+    "id": 451,
+    "chinese": "远",
+    "pinyin": "yuǎn",
+    "vietnamese": "xa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 452,
+    "chinese": "月",
+    "pinyin": "yuè",
+    "vietnamese": "mặt trăng, tháng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 453,
+    "chinese": "再",
+    "pinyin": "zài",
+    "vietnamese": "lại",
+    "type": "HSK 1"
+  },
+  {
+    "id": 454,
+    "chinese": "再见",
+    "pinyin": "zàijiàn",
+    "vietnamese": "hẹn gặp lại/ Tạm biệt",
+    "type": "HSK 1"
+  },
+  {
+    "id": 455,
+    "chinese": "在",
+    "pinyin": "zài",
+    "vietnamese": "đang, ở tại",
+    "type": "HSK 1"
+  },
+  {
+    "id": 456,
+    "chinese": "在家",
+    "pinyin": "zàijiā",
+    "vietnamese": "ở nhà",
+    "type": "HSK 1"
+  },
+  {
+    "id": 457,
+    "chinese": "早",
+    "pinyin": "zǎo",
+    "vietnamese": "sớm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 458,
+    "chinese": "早饭",
+    "pinyin": "zǎofàn",
+    "vietnamese": "bữa sáng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 459,
+    "chinese": "早上",
+    "pinyin": "zǎoshàng",
+    "vietnamese": "buổi sáng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 460,
+    "chinese": "怎么",
+    "pinyin": "zěnme",
+    "vietnamese": "làm sao, thế nào",
+    "type": "HSK 1"
+  },
+  {
+    "id": 461,
+    "chinese": "站（名）",
+    "pinyin": "zhàn",
+    "vietnamese": "bến, trạm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 462,
+    "chinese": "找",
+    "pinyin": "zhǎo",
+    "vietnamese": "tìm",
+    "type": "HSK 1"
+  },
+  {
+    "id": 463,
+    "chinese": "找到",
+    "pinyin": "zhǎodào",
+    "vietnamese": "tìm thấy",
+    "type": "HSK 1"
+  },
+  {
+    "id": 464,
+    "chinese": "这",
+    "pinyin": "zhè",
+    "vietnamese": "này, đây",
+    "type": "HSK 1"
+  },
+  {
+    "id": 465,
+    "chinese": "这边",
+    "pinyin": "zhèbiān",
+    "vietnamese": "bên này",
+    "type": "HSK 1"
+  },
+  {
+    "id": 466,
+    "chinese": "这里",
+    "pinyin": "zhè·lǐ",
+    "vietnamese": "nơi đây",
+    "type": "HSK 1"
+  },
+  {
+    "id": 467,
+    "chinese": "这儿",
+    "pinyin": "zhèr",
+    "vietnamese": "đây",
+    "type": "HSK 1"
+  },
+  {
+    "id": 468,
+    "chinese": "这些",
+    "pinyin": "zhèxiē",
+    "vietnamese": "những cái này",
+    "type": "HSK 1"
+  },
+  {
+    "id": 469,
+    "chinese": "着",
+    "pinyin": "zhe",
+    "vietnamese": "",
+    "type": "HSK 1"
+  },
+  {
+    "id": 470,
+    "chinese": "真",
+    "pinyin": "zhēn",
+    "vietnamese": "thật là",
+    "type": "HSK 1"
+  },
+  {
+    "id": 471,
+    "chinese": "真的",
+    "pinyin": "zhēnde",
+    "vietnamese": "Thật ư? Thật đó!",
+    "type": "HSK 1"
+  },
+  {
+    "id": 472,
+    "chinese": "正（副）",
+    "pinyin": "zhèng",
+    "vietnamese": "khéo, chính,...",
+    "type": "HSK 1"
+  },
+  {
+    "id": 473,
+    "chinese": "正在",
+    "pinyin": "zhèngzài",
+    "vietnamese": "đang",
+    "type": "HSK 1"
+  },
+  {
+    "id": 474,
+    "chinese": "知道",
+    "pinyin": "zhī·dào",
+    "vietnamese": "biết",
+    "type": "HSK 1"
+  },
+  {
+    "id": 475,
+    "chinese": "知识",
+    "pinyin": "zhīshì",
+    "vietnamese": "kiến thức",
+    "type": "HSK 1"
+  },
+  {
+    "id": 476,
+    "chinese": "中",
+    "pinyin": "zhōng",
+    "vietnamese": "giữa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 477,
+    "chinese": "中国",
+    "pinyin": "Zhōngguó",
+    "vietnamese": "nước Trung Quốc",
+    "type": "HSK 1"
+  },
+  {
+    "id": 478,
+    "chinese": "中间",
+    "pinyin": "zhōngjiān",
+    "vietnamese": "giữa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 479,
+    "chinese": "中文",
+    "pinyin": "Zhōngwén",
+    "vietnamese": "(văn tự) Tiếng Trung",
+    "type": "HSK 1"
+  },
+  {
+    "id": 480,
+    "chinese": "中午",
+    "pinyin": "zhōngwǔ",
+    "vietnamese": "buổi trưa",
+    "type": "HSK 1"
+  },
+  {
+    "id": 481,
+    "chinese": "中学",
+    "pinyin": "zhōngxué",
+    "vietnamese": "cấp Trung học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 482,
+    "chinese": "中学生",
+    "pinyin": "zhōngxuéshēng",
+    "vietnamese": "học sinh Trung học",
+    "type": "HSK 1"
+  },
+  {
+    "id": 483,
+    "chinese": "重",
+    "pinyin": "zhòng",
+    "vietnamese": "nặng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 484,
+    "chinese": "重要",
+    "pinyin": "zhòngyào",
+    "vietnamese": "quan trọng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 485,
+    "chinese": "住",
+    "pinyin": "zhù",
+    "vietnamese": "ở tại",
+    "type": "HSK 1"
+  },
+  {
+    "id": 486,
+    "chinese": "准备",
+    "pinyin": "zhǔnbèi",
+    "vietnamese": "chuẩn bị",
+    "type": "HSK 1"
+  },
+  {
+    "id": 487,
+    "chinese": "桌子",
+    "pinyin": "zhuōzi",
+    "vietnamese": "cái bàn",
+    "type": "HSK 1"
+  },
+  {
+    "id": 488,
+    "chinese": "字",
+    "pinyin": "zì",
+    "vietnamese": "chữ, chữ viết, văn tự",
+    "type": "HSK 1"
+  },
+  {
+    "id": 489,
+    "chinese": "子（桌子）",
+    "pinyin": "zi（zhuōzi）",
+    "vietnamese": "cái",
+    "type": "HSK 1"
+  },
+  {
+    "id": 490,
+    "chinese": "走",
+    "pinyin": "zǒu",
+    "vietnamese": "đi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 491,
+    "chinese": "走路",
+    "pinyin": "zǒu//lù",
+    "vietnamese": "đi đường, đi bộ",
+    "type": "HSK 1"
+  },
+  {
+    "id": 492,
+    "chinese": "最",
+    "pinyin": "zuì",
+    "vietnamese": "nhất, số một",
+    "type": "HSK 1"
+  },
+  {
+    "id": 493,
+    "chinese": "最好",
+    "pinyin": "zuìhǎo",
+    "vietnamese": "tốt nhất",
+    "type": "HSK 1"
+  },
+  {
+    "id": 494,
+    "chinese": "最后",
+    "pinyin": "zuìhòu",
+    "vietnamese": "cuối cùng, sau cùng",
+    "type": "HSK 1"
+  },
+  {
+    "id": 495,
+    "chinese": "昨天",
+    "pinyin": "zuótiān",
+    "vietnamese": "hôm qua",
+    "type": "HSK 1"
+  },
+  {
+    "id": 496,
+    "chinese": "左",
+    "pinyin": "zuǒ",
+    "vietnamese": "bên trái",
+    "type": "HSK 1"
+  },
+  {
+    "id": 497,
+    "chinese": "左边",
+    "pinyin": "zuǒbiān",
+    "vietnamese": "bên trái",
+    "type": "HSK 1"
+  },
+  {
+    "id": 498,
+    "chinese": "坐",
+    "pinyin": "zuò",
+    "vietnamese": "ngồi",
+    "type": "HSK 1"
+  },
+  {
+    "id": 499,
+    "chinese": "坐下",
+    "pinyin": "zuòxià",
+    "vietnamese": "ngồi xuống",
+    "type": "HSK 1"
+  },
+  {
+    "id": 500,
+    "chinese": "做",
+    "pinyin": "zuò",
+    "vietnamese": "làm",
+    "type": "HSK 1"
+  }
+]

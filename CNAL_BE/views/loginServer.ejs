@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Users Management</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        width: 100%;
+        max-width: 800px;
+        transition: all 0.3s ease;
+      }
+
+      .login-section {
+        margin-bottom: 40px;
+      }
+
+      .login-section.hidden {
+        display: none;
+      }
+
+      .users-section {
+        display: none;
+      }
+
+      .users-section.visible {
+        display: block;
+      }
+
+      h1,
+      h2 {
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: 600;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e1e5e9;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+      }
+
+      input[type="text"]:focus,
+      input[type="password"]:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+      }
+
+      .btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .btn-secondary {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .message {
+        padding: 15px;
+        border-radius: 10px;
+        margin: 20px 0;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .message.success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .message.error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      .users-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .user-card {
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 25px;
+        border: 2px solid #e1e5e9;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .user-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .user-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-color: #667eea;
+      }
+
+      .user-info {
+        margin-bottom: 10px;
+      }
+
+      .user-info strong {
+        color: #333;
+        display: inline-block;
+        width: 80px;
+      }
+
+      .user-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-left: 10px;
+      }
+
+      .admin-badge {
+        background: #ff6b6b;
+        color: white;
+      }
+
+      .user-badge-normal {
+        background: #4ecdc4;
+        color: white;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+      }
+
+      .loading::after {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #667eea;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-left: 10px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .header-info {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .token-display {
+        background: #f8f9fa;
+        border: 1px solid #e1e5e9;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 20px 0;
+        word-break: break-all;
+        font-family: monospace;
+        font-size: 12px;
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px;
+          margin: 10px;
+        }
+
+        .users-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Login Section -->
+      <div id="loginSection" class="login-section">
+        <h1>🔐 Đăng nhập hệ thống</h1>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Tên đăng nhập:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              placeholder="Nhập tên đăng nhập"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Nhập mật khẩu"
+            />
+          </div>
+
+          <button type="submit" class="btn">🚀 Đăng nhập</button>
+        </form>
+
+        <div id="loginMessage"></div>
+      </div>
+
+      <!-- Users Section -->
+      <div id="usersSection" class="users-section">
+        <div class="header-info">
+          <h2>👥 Danh sách người dùng</h2>
+          <p>Quản lý thông tin người dùng trong hệ thống</p>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 30px">
+          <button id="refreshUsers" class="btn">🔄 Làm mới danh sách</button>
+          <button id="logoutBtn" class="btn btn-secondary">🚪 Đăng xuất</button>
+        </div>
+
+        <div id="tokenDisplay" class="token-display" style="display: none">
+          <strong>Access Token:</strong>
+          <div id="tokenValue"></div>
+        </div>
+
+        <div id="usersContainer">
+          <div class="loading">Đang tải dữ liệu người dùng...</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      class AuthManager {
+        constructor() {
+          this.baseURL = "http://localhost:3000";
+          this.accessToken = null;
+          this.init();
+        }
+
+        init() {
+          // Check if already logged in
+          const token = this.getStoredToken();
+          if (token) {
+            this.accessToken = token;
+            this.showUsersSection();
+            this.loadUsers();
+          } else {
+            this.showLoginSection();
+          }
+
+          this.bindEvents();
+        }
+
+        bindEvents() {
+          // Login form submit
+          document
+            .getElementById("loginForm")
+            .addEventListener("submit", (e) => {
+              e.preventDefault();
+              this.handleLogin();
+            });
+
+          // Refresh users button
+          document
+            .getElementById("refreshUsers")
+            .addEventListener("click", () => {
+              this.loadUsers();
+            });
+
+          // Logout button
+          document.getElementById("logoutBtn").addEventListener("click", () => {
+            this.handleLogout();
+          });
+        }
+
+        async handleLogin() {
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          if (!username || !password) {
+            this.showMessage(
+              "Vui lòng nhập đầy đủ thông tin!",
+              "error",
+              "loginMessage"
+            );
+            return;
+          }
+
+          try {
+            this.showMessage("Đang đăng nhập...", "success", "loginMessage");
+
+            const response = await fetch(`${this.baseURL}/login`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                username: username,
+                password: password,
+              }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.accessToken) {
+              this.accessToken = data.accessToken;
+              this.storeToken(data.accessToken);
+
+              this.showMessage(
+                "Đăng nhập thành công! 🎉",
+                "success",
+                "loginMessage"
+              );
+
+              setTimeout(() => {
+                this.showUsersSection();
+                this.loadUsers();
+              }, 1000);
+            } else {
+              throw new Error(data.message || "Đăng nhập thất bại");
+            }
+          } catch (error) {
+            console.error("Login error:", error);
+            this.showMessage(
+              `Lỗi đăng nhập: ${error.message}`,
+              "error",
+              "loginMessage"
+            );
+          }
+        }
+
+        async loadUsers() {
+          if (!this.accessToken) {
+            this.showLoginSection();
+            return;
+          }
+
+          const container = document.getElementById("usersContainer");
+          container.innerHTML =
+            '<div class="loading">Đang tải danh sách người dùng...</div>';
+
+          try {
+            const response = await fetch(`${this.baseURL}/read`, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                token: `Bearer ${this.accessToken}`,
+              },
+            });
+
+            if (response.status === 401 || response.status === 403) {
+              throw new Error("Token không hợp lệ hoặc đã hết hạn");
+            }
+
+            const data = await response.json();
+
+            if (response.ok) {
+              this.displayUsers(data.users || []);
+              this.showTokenInfo();
+            } else {
+              throw new Error(
+                data.message || "Không thể tải danh sách người dùng"
+              );
+            }
+          } catch (error) {
+            console.error("Load users error:", error);
+            container.innerHTML = `
+                        <div class="message error">
+                            ❌ ${error.message}
+                            <br><br>
+                            <button onclick="authManager.handleLogout()" class="btn">Đăng nhập lại</button>
+                        </div>
+                    `;
+          }
+        }
+
+        displayUsers(users) {
+          const container = document.getElementById("usersContainer");
+
+          if (!users || users.length === 0) {
+            container.innerHTML = `
+                        <div class="message">
+                            📝 Không có người dùng nào trong hệ thống
+                        </div>
+                    `;
+            return;
+          }
+
+          const usersHTML = users
+            .map(
+              (user) => `
+                    <div class="user-card">
+                        <div class="user-info">
+                            <strong>ID:</strong> ${user.id || "N/A"}
+                            ${
+                              user.admin
+                                ? '<span class="user-badge admin-badge">ADMIN</span>'
+                                : '<span class="user-badge user-badge-normal">USER</span>'
+                            }
+                        </div>
+                        <div class="user-info">
+                            <strong>Tên:</strong> ${user.username || "N/A"}
+                        </div>
+                        <div class="user-info">
+                            <strong>Email:</strong> ${user.email || "N/A"}
+                        </div>
+                        ${
+                          user.createdAt
+                            ? `
+                            <div class="user-info">
+                                <strong>Tạo:</strong> ${new Date(
+                                  user.createdAt
+                                ).toLocaleDateString("vi-VN")}
+                            </div>
+                        `
+                            : ""
+                        }
+                    </div>
+                `
+            )
+            .join("");
+
+          container.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <strong>📊 Tổng số người dùng: ${users.length}</strong>
+                    </div>
+                    <div class="users-grid">
+                        ${usersHTML}
+                    </div>
+                `;
+        }
+
+        showTokenInfo() {
+          const tokenDisplay = document.getElementById("tokenDisplay");
+          const tokenValue = document.getElementById("tokenValue");
+
+          if (this.accessToken) {
+            tokenValue.textContent = this.accessToken;
+            tokenDisplay.style.display = "block";
+          }
+        }
+
+        handleLogout() {
+          this.accessToken = null;
+          this.removeStoredToken();
+          this.showLoginSection();
+
+          // Reset form
+          document.getElementById("loginForm").reset();
+          document.getElementById("loginMessage").innerHTML = "";
+        }
+
+        showLoginSection() {
+          document.getElementById("loginSection").classList.remove("hidden");
+          document.getElementById("usersSection").classList.remove("visible");
+        }
+
+        showUsersSection() {
+          document.getElementById("loginSection").classList.add("hidden");
+          document.getElementById("usersSection").classList.add("visible");
+        }
+
+        showMessage(message, type, containerId) {
+          const container = document.getElementById(containerId);
+          container.innerHTML = `<div class="message ${type}">${message}</div>`;
+
+          if (type === "success") {
+            setTimeout(() => {
+              container.innerHTML = "";
+            }, 3000);
+          }
+        }
+
+        storeToken(token) {
+          // Lưu token vào memory thay vì localStorage
+          this.accessToken = token;
+        }
+
+        getStoredToken() {
+          // Trả về token từ memory
+          return this.accessToken;
+        }
+
+        removeStoredToken() {
+          // Xóa token khỏi memory
+          this.accessToken = null;
+        }
+      }
+
+      // Initialize the application
+      const authManager = new AuthManager();
+    </script>
+  </body>
+</html>

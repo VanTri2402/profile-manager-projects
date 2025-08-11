@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Users</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #1a202c, #2d3748);
+        font-family: "Inter", sans-serif;
+      }
+      .neon-blue {
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+      }
+      .hover-neon:hover {
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.7),
+          0 0 30px rgba(59, 130, 246, 0.4);
+        transform: scale(1.05);
+        background-color: rgba(59, 130, 246, 0.9);
+        transition: all 0.2s ease-in-out;
+      }
+      .focus-neon:focus {
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.7),
+          0 0 20px rgba(59, 130, 246, 0.4);
+        border-color: #3b82f6;
+        transform: scale(1.02);
+        transition: all 0.2s ease-in-out;
+      }
+      .modal-enter {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      .modal-enter-active {
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      .modal-exit {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .modal-exit-active {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      .table-row-hover:hover {
+        background-color: rgba(59, 130, 246, 0.1);
+        transform: translateY(-2px);
+        transition: all 0.2s ease-in-out;
+      }
+      td {
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body class="text-gray-200">
+    <div class="flex h-screen">
+      <!-- Navbar -->
+      <div class="w-64 bg-gray-900 p-6 flex flex-col gap-6">
+        <h1 class="text-2xl font-bold text-blue-400">Admin Panel</h1>
+        <nav class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="text-gray-300 hover:text-blue-400 hover-neon p-2 rounded"
+            >Dashboard</a
+          >
+          <a
+            href="#"
+            class="text-blue-400 font-semibold p-2 rounded bg-gray-800"
+            >Users</a
+          >
+          <a
+            href="#"
+            class="text-gray-300 hover:text-blue-400 hover-neon p-2 rounded"
+            >Settings</a
+          >
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-1 p-8 overflow-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-3xl font-bold text-white">Quản Lý Người Dùng</h2>
+          <button
+            id="btn-add-user"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover-neon"
+          >
+            + Thêm User
+          </button>
+        </div>
+
+        <!-- Users Table -->
+        <div class="bg-gray-800 p-6 rounded-xl neon-blue overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="text-gray-400">
+                <th class="p-3">ID</th>
+                <th class="p-3">Gmail</th>
+                <th class="p-3">Hành Động</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body">
+              <% if (users && users.length > 0) { %> <% users.forEach(user => {
+              %>
+              <tr class="border-t border-gray-700 table-row-hover">
+                <td class="p-3"><%= user._id.slice(-8) %></td>
+                <td class="p-3"><%= user.gmail %></td>
+                <td class="p-3 flex gap-2">
+                  <button
+                    class="bg-yellow-500 text-white px-3 py-1 rounded hover-neon btn-edit"
+                    data-gmail="<%= user.gmail %>"
+                    data-id="<%= user._id %>"
+                  >
+                    Sửa
+                  </button>
+                  <button
+                    class="bg-red-500 text-white px-3 py-1 rounded hover-neon btn-delete"
+                    data-gmail="<%= user.gmail %>"
+                    data-id="<%= user._id %>"
+                  >
+                    Xóa
+                  </button>
+                </td>
+              </tr>
+              <% }) %> <% } else { %>
+              <tr>
+                <td colspan="3" class="p-3 text-center text-gray-400">
+                  Chưa có dữ liệu người dùng
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Delete -->
+    <div
+      id="deleteModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div id="divcontainer" class="bg-gray-800 p-6 rounded-xl w-96 neon-blue">
+        <div class="flex justify-end gap-4">
+          <button
+            id="cancelDelete"
+            class="bg-gray-600 text-white px-4 py-2 rounded hover-neon"
+          >
+            Hủy
+          </button>
+          <button
+            id="confirmDelete"
+            class="bg-red-500 text-white px-4 py-2 rounded hover-neon"
+          >
+            Xóa
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Add/Edit User -->
+    <div
+      id="userModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div class="bg-gray-800 p-6 rounded-xl w-96 neon-blue">
+        <h3 id="modalTitle" class="text-xl font-bold text-white mb-4">
+          Thêm/Sửa User
+        </h3>
+        <form id="userForm">
+          <input type="hidden" id="userId" name="id" />
+          <div class="mb-4">
+            <label class="block text-gray-300 mb-2" for="gmail">Gmail</label>
+            <input
+              type="email"
+              id="gmail"
+              name="gmail"
+              class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus-neon"
+              required
+            />
+            <label class="block text-gray-300 mb-2 mt-4" for="password"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus-neon"
+              required
+            />
+            <div id="cf-password">
+              <label class="block text-gray-300 mb-2 mt-4" for="cf-password"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                name="cf-password"
+                id="inp-cfpassword"
+                class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus-neon"
+                required
+              />
+            </div>
+          </div>
+          <div class="flex justify-end gap-4">
+            <button
+              id="cancel"
+              type="button"
+              class="bg-gray-600 text-white px-4 py-2 rounded hover-neon"
+            >
+              Hủy
+            </button>
+            <button
+              id="submit"
+              type="submit"
+              class="bg-blue-500 text-white px-4 py-2 rounded hover-neon"
+            >
+              Lưu
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // DOM elements
+      const modalDelete = document.getElementById("deleteModal");
+      const userModal = document.getElementById("userModal");
+      const btnAdd = document.getElementById("btn-add-user");
+      const btnCancel = document.getElementById("cancel");
+      const formUserModal = document.getElementById("userForm");
+      const password = document.getElementById("password");
+      const cfpassword = document.getElementById("cf-password");
+      const gmail = document.getElementById("gmail");
+      const inpcfpassword = document.getElementById("inp-cfpassword");
+
+      console.log("users ", users);
+      // Attach event listeners to dynamically created buttons
+      function attachEventListeners() {
+        document.querySelectorAll(".btn-delete").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const gmail = btn.getAttribute("data-gmail");
+            const id = btn.getAttribute("data-id");
+            deleteUser(gmail, id);
+          });
+        });
+
+        document.querySelectorAll(".btn-edit").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const gmail = btn.getAttribute("data-gmail");
+            const id = btn.getAttribute("data-id");
+            modalEditUser(gmail, id);
+          });
+        });
+      }
+
+      // Delete user function
+      function deleteUser(gmail, id) {
+        const divcontainer = document.getElementById("divcontainer");
+        modalDelete.classList.remove("hidden");
+        modalDelete.classList.add("modal-enter-active");
+        setTimeout(
+          () => modalDelete.classList.remove("modal-enter-active"),
+          400
+        );
+
+        divcontainer.innerHTML = `
+          <h3 class="text-white text-2xl font-semibold text-left py-4">
+            Bạn có muốn xóa tài khoản ${gmail} không?
+          </h3>
+          <div class="flex justify-end gap-4">
+            <button id="cancelDelete" class="bg-gray-600 text-white px-4 py-2 rounded hover-neon">Hủy</button>
+            <button id="confirmDelete" class="bg-red-500 text-white px-4 py-2 rounded hover-neon">Xóa</button>
+          </div>
+        `;
+
+        const btnCancelDelete = document.getElementById("cancelDelete");
+        btnCancelDelete.addEventListener("click", () => {
+          modalDelete.classList.add("modal-exit-active");
+          setTimeout(() => {
+            modalDelete.classList.add("hidden");
+            modalDelete.classList.remove("modal-exit-active");
+          }, 300);
+        });
+
+        const deletebtn = document.getElementById("confirmDelete");
+        deletebtn.addEventListener("click", async () => {
+          try {
+            const response = await axios.delete(
+              `http://localhost:3000/delete/${id}`
+            );
+            alert("Xóa tài khoản thành công!");
+            modalDelete.classList.add("hidden");
+            window.location.reload();
+          } catch (error) {
+            alert("Lỗi khi xóa user: " + error.message);
+          }
+        });
+      }
+
+      // Add user event
+      btnAdd.addEventListener("click", () => {
+        userModal.classList.remove("hidden");
+        userModal.classList.add("modal-enter-active");
+        setTimeout(() => userModal.classList.remove("modal-enter-active"), 300);
+        document.getElementById("modalTitle").textContent = "Thêm User";
+        password.classList.remove("hidden");
+        cfpassword.classList.remove("hidden");
+        formUserModal.reset();
+        document.getElementById("userId").value = "";
+      });
+
+      // Cancel modal
+      btnCancel.addEventListener("click", () => {
+        userModal.classList.add("modal-exit-active");
+        setTimeout(() => {
+          userModal.classList.add("hidden");
+          userModal.classList.remove("modal-exit-active");
+          formUserModal.reset();
+        }, 300);
+      });
+
+      // Form submit
+      formUserModal.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (password.value !== inpcfpassword.value) {
+          alert("Password không khớp");
+          return;
+        }
+
+        const userId = document.getElementById("userId").value;
+        const method = userId ? "put" : "post";
+        const url = userId
+          ? `http://localhost:3000/update/${userId}`
+          : "http://localhost:3000/register";
+
+        try {
+          const response = await axios({
+            method,
+            url,
+            data: {
+              gmail: gmail.value,
+              password: password.value,
+            },
+          });
+
+          alert(
+            userId
+              ? "Cập nhật tài khoản thành công!"
+              : "Thêm tài khoản thành công!"
+          );
+          userModal.classList.add("modal-exit-active");
+          setTimeout(() => {
+            userModal.classList.add("hidden");
+            userModal.classList.remove("modal-exit-active");
+            formUserModal.reset();
+            window.location.reload();
+          }, 300);
+        } catch (error) {
+          alert(
+            `Lỗi khi ${userId ? "cập nhật" : "thêm"} user: ` + error.message
+          );
+        }
+      });
+
+      // Edit user function
+      function modalEditUser(gmail, id) {
+        userModal.classList.remove("hidden");
+        userModal.classList.add("modal-enter-active");
+        setTimeout(() => userModal.classList.remove("modal-enter-active"), 300);
+        document.getElementById("modalTitle").textContent =
+          "Sửa Thông Tin User";
+        password.classList.remove("hidden");
+        cfpassword.classList.remove("hidden");
+        document.getElementById("gmail").value = gmail;
+        document.getElementById("userId").value = id;
+      }
+
+      // Attach event listeners on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        attachEventListeners();
+      });
+    </script>
+  </body>
+</html>

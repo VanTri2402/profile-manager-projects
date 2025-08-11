@@ -1,0 +1,677 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  color: white;
+} /* Animation for glowing, pulsating mouse trail */
+/* Animation for glowing, pulsating mouse trail */
+@keyframes pulseAndFade {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+  }
+}
+/* Thêm vào file index.css hoặc tạo file riêng */
+
+/* Animation for mouse trail */
+@keyframes pulseAndFade {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Animation for fade in modal */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Custom pulse animation for IPA symbols */
+@keyframes ipa-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.ipa-pulse {
+  animation: ipa-pulse 2s infinite;
+}
+
+/* Custom hover effects for cards */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Button press animation */
+@keyframes button-press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-press:active {
+  animation: button-press 0.1s ease-in-out;
+}
+
+/* Loading spinner for audio */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Success animation */
+@keyframes success-bounce {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  43% {
+    transform: translate3d(0, -10px, 0);
+  }
+  70% {
+    transform: translate3d(0, -5px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.success-bounce {
+  animation: success-bounce 1s ease-in-out;
+}
+
+/* Error shake animation */
+@keyframes error-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-3px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+.error-shake {
+  animation: error-shake 0.5s ease-in-out;
+}
+
+/* Progress bar animation */
+@keyframes progress-fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--progress-width);
+  }
+}
+
+.progress-animate {
+  animation: progress-fill 0.5s ease-out;
+}
+
+/* Floating animation for background elements */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Gradient animation */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Typography animation */
+@keyframes type-in {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.type-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: type-in 2s steps(40, end);
+}
+
+/* Icon bounce animation */
+@keyframes icon-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.icon-bounce {
+  animation: icon-bounce 0.6s ease-in-out;
+}
+
+/* Scale in animation for modals */
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+/* Slide up animation */
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slide-up 0.4s ease-out;
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .mobile-stack {
+    flex-direction: column;
+  }
+
+  .mobile-full {
+    width: 100%;
+  }
+
+  .mobile-text-center {
+    text-align: center;
+  }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --border-color: #444444;
+  }
+}
+/* Thêm vào file CSS hoặc index.css */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+/* index.css hoặc styles/theme.css */
+
+/* Global Theme Variables */
+:root {
+  --transition-duration: 0.3s;
+  --border-radius-lg: 1.5rem;
+  --border-radius-xl: 2rem;
+  --shadow-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-elevation-2: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --shadow-elevation-3: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Light Theme */
+.theme-light {
+  --bg-primary: #ffffff;
+  --bg-secondary: rgba(255, 255, 255, 0.8);
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-accent: #6366f1;
+  --border-color: #e5e7eb;
+  --shadow-color: rgba(79, 70, 229, 0.1);
+}
+
+/* Dark Theme */
+.theme-dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: rgba(30, 41, 59, 0.8);
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-accent: #a855f7;
+  --border-color: rgba(148, 163, 184, 0.2);
+  --shadow-color: rgba(168, 85, 247, 0.1);
+}
+
+/* Midnight Theme */
+.theme-midnight {
+  --bg-primary: #111827;
+  --bg-secondary: rgba(31, 41, 55, 0.8);
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-accent: #6366f1;
+  --border-color: rgba(107, 114, 128, 0.2);
+  --shadow-color: rgba(99, 102, 241, 0.1);
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color var(--transition-duration) ease,
+    border-color var(--transition-duration) ease,
+    color var(--transition-duration) ease,
+    box-shadow var(--transition-duration) ease;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.5s ease-out;
+}
+
+.animate-pulse-custom {
+  animation: pulse 2s infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Utility classes */
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-inner-xl {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Glass effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-dark .glass-effect {
+  background: rgba(30, 41, 59, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.theme-midnight .glass-effect {
+  background: rgba(31, 41, 55, 0.3);
+  border: 1px solid rgba(107, 114, 128, 0.1);
+}
+
+/* Hover effects */
+.hover-glow {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hover-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    var(--text-accent),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.hover-glow:hover::before {
+  opacity: 0.3;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--text-accent), var(--text-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-primary);
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+/* Focus states for accessibility */
+.focus-visible:focus-visible {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Reduce animations on mobile for performance */
+  .animate-spin-slow {
+    animation-duration: 40s;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* src/index.css */
+.bg-darkModern-card {
+  background-color: #1e293b;
+}
+.border-darkModern-border {
+  border-color: #334155;
+}
+.text-darkModern-text {
+  color: #e2e8f0;
+}
+.text-darkModern-textSecondary {
+  color: #94a3b8;
+}
+.text-darkModern-accent {
+  color: #a78bfa;
+}
+.bg-midnightModern-card {
+  background-color: #0f172a;
+}
+.border-midnightModern-border {
+  border-color: #1e3a8a;
+}
+.text-midnightModern-text {
+  color: #dbeafe;
+}
+.text-midnightModern-textSecondary {
+  color: #93c5fd;
+}
+.text-midnightModern-accent {
+  color: #60a5fa;
+}
+.from-darkModern-button-from {
+  --tw-gradient-from: #7c3aed;
+}
+.to-darkModern-button-to {
+  --tw-gradient-to: #a855f7;
+}
+.from-darkModern-buttonHover-from {
+  --tw-gradient-from: #6d28d9;
+}
+.to-darkModern-buttonHover-to {
+  --tw-gradient-to: #9333ea;
+}
+.from-midnightModern-button-from {
+  --tw-gradient-from: #0284c7;
+}
+.to-midnightModern-button-to {
+  --tw-gradient-to: #3b82f6;
+}
+.from-midnightModern-buttonHover-from {
+  --tw-gradient-from: #0369a1;
+}
+.to-midnightModern-buttonHover-to {
+  --tw-gradient-to: #2563eb;
+}
