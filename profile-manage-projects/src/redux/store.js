@@ -4,6 +4,8 @@ import usersSlice from "./userSlice.js";
 import dataCNALSlice from "./dataCNAL.js";
 import themeSlice from "./themeSlice.js";
 import productSlice from "./productSlice.js";
+import chineseUserSlice from "./chineseUserSlice.js";
+import chineseSlice from "./chineseSlice.js";
 import {
   persistStore,
   persistReducer,
@@ -27,6 +29,8 @@ const rootReducer = combineReducers({
   dataCNAL: dataCNALSlice,
   product: productSlice,
   theme: themeSlice,
+  chineseUser: chineseUserSlice,
+  chinese: chineseSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
