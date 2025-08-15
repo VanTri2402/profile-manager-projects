@@ -23,6 +23,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+
+  const themeMode = useSelector((state) => state.theme.mode);
+  const themes = useSelector((state) => state.theme.themes);
+  const theme = themes[themeMode];
   const user = useSelector((state) => state.auth.login.currentUser);
 
   const isLoggedIn = user && user.accessToken && user.user;
@@ -124,13 +128,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-primary-500 to-primary-800 py-4 px-[16px] sm:px-4 md:p-8 lg:px-10 overflow-visible z-[100]">
+    <div className={`bg-gradient-to-br ${theme.gradient} py-4 px-[16px] sm:px-4 md:p-8 lg:px-10 overflow-visible z-[100]`}>
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center overflow-visible">
         {/* Header row - Logo và Mobile menu button */}
         <div className="flex w-full md:w-auto justify-between items-center">
           <div className="flex flex-row items-center">
-            <PiBookOpenTextLight className="text-secondary text-[40px] sm:text-[45px] md:text-[50px] font-bold" />
-            <div className="flex ml-3 md:ml-4 flex-col gap-1 md:gap-2 text-[16px] sm:text-[18px] md:text-[22px] font-bold text-white">
+            <PiBookOpenTextLight className={`${theme.text} text-[40px] sm:text-[45px] md:text-[50px] font-bold`}/>
+            <div className={`flex ml-3 md:ml-4 flex-col gap-1 md:gap-2 text-[16px] sm:text-[18px] md:text-[22px] font-bold ${theme.text}`}>
               <div className="leading-tight">Chinese App Learning</div>
               <span className="text-[14px] sm:text-[16px] md:text-[18px] leading-tight">
                 中文学习App
@@ -139,7 +143,7 @@ const Navbar = () => {
           </div>
 
           <button
-            className="md:hidden text-white text-2xl p-2"
+            className={`md:hidden ${theme.text} text-2xl p-2`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <HiX /> : <HiMenu />}
@@ -166,7 +170,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop menu items */}
-        <div className="text-[16px] lg:text-[18px] hidden font-semibold md:flex flex-row items-center gap-2 lg:gap-4 text-white transition-all duration-200">
+        <div className={`text-[16px] lg:text-[18px] hidden font-semibold md:flex flex-row items-center gap-2 lg:gap-4 ${theme.text} transition-all duration-200`}>
           {menuItems.map((item) => (
             <button
               key={item.id}
@@ -183,7 +187,7 @@ const Navbar = () => {
         {/* Desktop avatar with click-based dropdown */}
         <div className="relative hidden md:block" ref={avatarMenuRef}>
           <div
-            className="ml-4 bg-primary-500 cursor-pointer shadow-lg w-auto h-auto p-4 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 z-[110] border-2 border-white/20 hover:border-white/40"
+            className={`ml-4 cursor-pointer shadow-lg w-auto h-auto p-4 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 z-[110] border-2 ${theme.card} ${theme.border}`}
             onClick={toggleAvatarMenu}
           >
             {getUserInitials() !== null ? (
@@ -199,18 +203,18 @@ const Navbar = () => {
           </div>
 
           {isAvatarMenuOpen && (
-            <div className="absolute top-[75px] right-0 bg-white shadow-xl text-gray-800 rounded-xl font-sans w-[280px] z-[120] border border-gray-200 overflow-hidden">
+            <div className={`absolute top-[75px] right-0 ${theme.card} shadow-xl rounded-xl font-sans w-[280px] z-[120] border ${theme.border} overflow-hidden`}>
               {isLoggedIn ? (
                 // Logged in user menu
                 <>
                   {/* User Info Header */}
-                  <div className="bg-gradient-to-r from-primary-500 to-primary-600 text-white p-4">
+                  <div className={`bg-gradient-to-r ${theme.button} text-white p-4`}>
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center font-bold text-lg">
                         {getUserInitials()}
                       </div>
                       <div>
-                        <div className="font-semibold text-sm">
+                        <div className={`font-semibold text-sm ${theme.text}`}>
                           {user?.user?.gmail || "Guest User"}
                         </div>
                         <div className="text-xs text-white/80">
@@ -229,10 +233,10 @@ const Navbar = () => {
                           navigate(`${basePath || "/chinese"}/profile`);
                         })
                       }
-                      className="flex items-center space-x-3 px-4 py-3 cursor-pointer hover:bg-gray-50 transition-colors"
+                      className="flex items-center space-x-3 px-4 py-3 cursor-pointer hover:bg-gray-800/20 transition-colors"
                     >
                       <FiUser className="text-gray-500" />
-                      <span className="text-sm">Profile</span>
+                      <span className={`text-sm ${theme.text}`}>Profile</span>
                     </div>
 
                     <div
@@ -242,19 +246,19 @@ const Navbar = () => {
                           navigate(`${basePath || "/chinese"}/settings`);
                         })
                       }
-                      className="flex items-center space-x-3 px-4 py-3 cursor-pointer hover:bg-gray-50 transition-colors"
+                      className="flex items-center space-x-3 px-4 py-3 cursor-pointer hover:bg-gray-800/20 transition-colors"
                     >
                       <FiSettings className="text-gray-500" />
-                      <span className="text-sm">Settings</span>
+                      <span className={`text-sm ${theme.text}`}>Settings</span>
                     </div>
 
-                    <hr className="my-2 border-gray-200" />
+                    <hr className={`my-2 ${theme.border}`} />
 
                     <div
                       onClick={() => handleMenuItemClick(handleLogout)}
-                      className="flex items-center space-x-3 px-4 py-3 cursor-pointer hover:bg-red-50 transition-colors text-red-600"
+                      className="flex items-center space-x-3 px-4 py-3 cursor-pointer hover:bg-red-500/10 transition-colors text-red-400"
                     >
-                      <FiLogOut className="text-red-500" />
+                      <FiLogOut className="text-red-400" />
                       <span className="text-sm font-medium">Logout</span>
                     </div>
                   </div>
@@ -262,17 +266,17 @@ const Navbar = () => {
               ) : (
                 // Guest user menu - Enhanced design
                 <>
-                  <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-4 text-center">
+                  <div className={`p-4 text-center ${theme.card}`}>
                     <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-3">
                       <FiUser className="text-gray-400 text-2xl" />
                     </div>
-                    <h3 className="font-semibold text-gray-800 mb-1">
+                    <h3 className={`font-semibold ${theme.text} mb-1`}>
                       Chào mừng bạn!
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className={`text-sm ${theme.textSecondary}`}>
                       Bạn chưa đăng nhập tài khoản
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className={`text-xs ${theme.textSecondary} mt-1`}>
                       Vui lòng đăng nhập hoặc đăng ký để tiếp tục
                     </p>
                   </div>

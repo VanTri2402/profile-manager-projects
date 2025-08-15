@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import {
   FaLanguage,
   FaBook,
@@ -15,9 +16,10 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
+  const theme = useSelector((state) => state.theme.themes[state.theme.mode]);
   return (
     <footer
-      className="bg-gradient-to-br from-primary-400 to-primary-800 text-white py-12"
+      className={`bg-gradient-to-br ${theme.gradient} text-white py-12`}
       role="contentinfo"
       aria-label="Footer"
     >
@@ -26,12 +28,12 @@ const Footer = () => {
           {/* Column 1: Branding & Description */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <FaLanguage className="text-3xl text-accent" aria-hidden="true" />
+              <FaLanguage className={`text-3xl ${theme.accent}`} aria-hidden="true" />
               <h2 className="text-2xl font-bold">NHVT_cx</h2>
             </div>
-            <p className="text-gray-200 text-sm leading-relaxed max-w-xs flex items-start gap-2">
+            <p className={`${theme.textSecondary} text-sm leading-relaxed max-w-xs flex items-start gap-2`}>
               <FaHeart
-                className="text-sm text-accent mt-1"
+                className={`text-sm ${theme.accent} mt-1`}
                 aria-hidden="true"
               />
               Your personal Chinese learning companion, offering tailored
@@ -43,7 +45,7 @@ const Footer = () => {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-accent transition-colors duration-200"
+                className={`${theme.textSecondary} hover:${theme.text} transition-colors duration-200`}
                 aria-label="Visit our GitHub page"
               >
                 <FaGithub className="text-xl" />
@@ -52,14 +54,14 @@ const Footer = () => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-accent transition-colors duration-200"
+                className={`${theme.textSecondary} hover:${theme.text} transition-colors duration-200`}
                 aria-label="Visit our Twitter page"
               >
                 <FaTwitter className="text-xl" />
               </a>
               <a
                 href="mailto:support@nhvtcx.com"
-                className="text-gray-300 hover:text-accent transition-colors duration-200"
+                className={`${theme.textSecondary} hover:${theme.text} transition-colors duration-200`}
                 aria-label="Email us"
               >
                 <FaEnvelope className="text-xl" />
@@ -71,16 +73,16 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-semibold flex items-center gap-2">
               <FaGraduationCap
-                className="text-lg text-accent"
+                className={`text-lg ${theme.accent}`}
                 aria-hidden="true"
               />
               Learning Tools
             </h3>
-            <ul className="space-y-2 text-gray-300 text-sm">
+            <ul className={`space-y-2 ${theme.textSecondary} text-sm`}>
               <li>
                 <a
                   href="/vocabulary"
-                  className="flex items-center gap-2 hover:text-accent transition-colors duration-200"
+                  className={`flex items-center gap-2 hover:${theme.text} transition-colors duration-200`}
                   aria-label="Go to Vocabulary section"
                 >
                   <FaBook className="text-sm" />
@@ -90,7 +92,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/flashcard"
-                  className="flex items-center gap-2 hover:text-accent transition-colors duration-200"
+                  className={`flex items-center gap-2 hover:${theme.text} transition-colors duration-200`}
                   aria-label="Go to Flashcard section"
                 >
                   <FaLanguage className="text-sm" />
@@ -100,7 +102,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/addword"
-                  className="flex items-center gap-2 hover:text-accent transition-colors duration-200"
+                  className={`flex items-center gap-2 hover:${theme.text} transition-colors duration-200`}
                   aria-label="Go to Add Word section"
                 >
                   <FaPlus className="text-sm" />
@@ -110,7 +112,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/progress"
-                  className="flex items-center gap-2 hover:text-accent transition-colors duration-200"
+                  className={`flex items-center gap-2 hover:${theme.text} transition-colors duration-200`}
                   aria-label="Go to Progress section"
                 >
                   <FaChartLine className="text-sm" />
@@ -124,16 +126,16 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-semibold flex items-center gap-2">
               <FaInfoCircle
-                className="text-lg text-accent"
+                className={`text-lg ${theme.accent}`}
                 aria-hidden="true"
               />
               Resources
             </h3>
-            <ul className="space-y-2 text-gray-300 text-sm">
+            <ul className={`space-y-2 ${theme.textSecondary} text-sm`}>
               <li>
                 <a
                   href="/blog"
-                  className="hover:text-accent transition-colors duration-200"
+                  className={`hover:${theme.text} transition-colors duration-200`}
                   aria-label="Read our blog"
                 >
                   Blog
@@ -142,7 +144,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/faq"
-                  className="hover:text-accent transition-colors duration-200"
+                  className={`hover:${theme.text} transition-colors duration-200`}
                   aria-label="View FAQs"
                 >
                   FAQs
@@ -151,7 +153,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/tutorials"
-                  className="hover:text-accent transition-colors duration-200"
+                  className={`hover:${theme.text} transition-colors duration-200`}
                   aria-label="Watch tutorials"
                 >
                   Tutorials
@@ -160,7 +162,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/community"
-                  className="flex items-center gap-2 hover:text-accent transition-colors duration-200"
+                  className={`flex items-center gap-2 hover:${theme.text} transition-colors duration-200`}
                   aria-label="Join our community"
                 >
                   <FaUsers className="text-sm" />
@@ -173,14 +175,14 @@ const Footer = () => {
           {/* Column 4: Contact */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaPhone className="text-lg text-accent" aria-hidden="true" />
+              <FaPhone className={`text-lg ${theme.accent}`} aria-hidden="true" />
               Get in Touch
             </h3>
-            <ul className="space-y-2 text-gray-300 text-sm">
+            <ul className={`space-y-2 ${theme.textSecondary} text-sm`}>
               <li>
                 <a
                   href="mailto:support@nhvtcx.com"
-                  className="hover:text-accent transition-colors duration-200"
+                  className={`hover:${theme.text} transition-colors duration-200`}
                   aria-label="Email support"
                 >
                   support@nhvtcx.com
@@ -189,7 +191,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/feedback"
-                  className="hover:text-accent transition-colors duration-200"
+                  className={`hover:${theme.text} transition-colors duration-200`}
                   aria-label="Submit feedback"
                 >
                   Feedback
@@ -198,7 +200,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/privacy"
-                  className="hover:text-accent transition-colors duration-200"
+                  className={`hover:${theme.text} transition-colors duration-200`}
                   aria-label="Read privacy policy"
                 >
                   Privacy Policy
@@ -207,7 +209,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/terms"
-                  className="hover:text-accent transition-colors duration-200"
+                  className={`hover:${theme.text} transition-colors duration-200`}
                   aria-label="Read terms of service"
                 >
                   Terms of Service
@@ -218,10 +220,10 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <hr className="my-8 border-gray-600" />
+        <hr className={`my-8 ${theme.border}`} />
 
         {/* Copyright */}
-        <div className="text-center text-gray-400 text-sm">
+        <div className={`text-center ${theme.textSecondary} text-sm`}>
           <p>© {new Date().getFullYear()} NHVT_cx. All rights reserved.</p>
         </div>
       </div>
