@@ -1,59 +1,64 @@
-import React, { useState, useRef, useEffect } from "react";
-import { PiBookOpenTextLight } from "react-icons/pi";
-import { AiOutlineMonitor } from "react-icons/ai";
-import { HiMenu, HiX } from "react-icons/hi";
+import React, { useState, useEffect } from "react";
+// UX-IMPROVEMENT: Import motion từ framer-motion
+import { motion } from "framer-motion";
 import {
-  FiUser,
-  FiLogOut,
-  FiUserPlus,
-  FiLogIn,
-  FiSettings,
-} from "react-icons/fi";
-import { menuItems } from "../../data/menu/menuItems";
+  BookOpen,
+  Search,
+  Menu,
+  User,
+  LogOut,
+  UserPlus,
+  LogIn,
+  Settings,
+} from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { logout } from "../../api/authApi";
+import { menuItems } from "../../data/menu/menuItems";
+
+// Shadcn/ui Components
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
+// UX-IMPROVEMENT: Thêm Tooltip để tăng tính rõ ràng cho icon
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const Navbar = () => {
-  const [hoveredItem, setHoveredItem] = useState(null);
+  // Thay vì state cho hovered text, chúng ta sẽ dùng state cho item đang được hover
+  // để điều khiển animation của background pill
+  const [hoveredItemId, setHoveredItemId] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAvatarMenuOpen, setIsAvatarMenuOpen] = useState(false);
-  const avatarMenuRef = useRef(null);
+
+  // ... (Toàn bộ logic hooks và functions của bạn giữ nguyên)
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-
-  const themeMode = useSelector((state) => state.theme.mode);
-  const themes = useSelector((state) => state.theme.themes);
-  const theme = themes[themeMode];
   const user = useSelector((state) => state.auth.login.currentUser);
-
   const isLoggedIn = user && user.accessToken && user.user;
 
-  console.log("Current location:", location.pathname); // Debug log
-
-  // Close avatar menu when clicking outside
   useEffect(() => {
-    console.log("user", user); // Debug log
-    const handleClickOutside = (event) => {
-      if (
-        avatarMenuRef.current &&
-        !avatarMenuRef.current.contains(event.target)
-      ) {
-        setIsAvatarMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  // Check authentication state on mount and route changes
-  useEffect(() => {
-    // If no user or invalid token, redirect to login for protected routes
     if (
       !isLoggedIn &&
       location.pathname.startsWith("/chinese") &&
@@ -64,7 +69,6 @@ const Navbar = () => {
     }
   }, [isLoggedIn, location.pathname, navigate]);
 
-  // Xác định base path hiện tại
   const getBasePath = () => {
     if (location.pathname.startsWith("/chinese")) return "/chinese";
     if (location.pathname.startsWith("/managerUser")) return "/managerUser";
@@ -73,398 +77,283 @@ const Navbar = () => {
 
   const navigateItemInMenu = (id) => {
     const basePath = getBasePath();
-    console.log("Base path:", basePath, "Item ID:", id); // Debug log
-
     if (id === "home") {
-      // Nếu đang trong chinese app, về home của chinese app
-      if (basePath === "/chinese") {
-        navigate("/chinese");
-      } else {
-        navigate("/");
-      }
+      navigate(basePath === "/chinese" ? "/chinese" : "/");
     } else {
-      // Navigate trong context hiện tại
-      if (basePath) {
-        navigate(`${basePath}/${id}`);
-      } else {
-        // Fallback về chinese nếu không có base path
-        navigate(`/chinese/${id}`);
-      }
+      navigate(`${basePath || "/chinese"}/${id}`);
     }
     setIsMobileMenuOpen(false);
   };
 
-  // Get user initials from email with better error handling
   const getUserInitials = () => {
     if (user?.user?.gmail && isLoggedIn) {
       const email = user.user.gmail;
       const namePart = email.split("@")[0];
-      // Get first 2 characters and uppercase them
       return namePart.substring(0, 2).toUpperCase();
     }
-    return null;
+    return "G";
   };
 
-  // Handle logout with better error handling
   const handleLogout = () => {
     if (user?.user?._id) {
       logout(dispatch, user.user._id, navigate, user?.accessToken);
-      // Navigate to login page
       navigate("/chinese/login");
-      // Show success message
       toast.success("Đăng xuất thành công!");
     }
   };
 
-  // Toggle avatar menu
-  const toggleAvatarMenu = () => {
-    setIsAvatarMenuOpen(!isAvatarMenuOpen);
+  const handleAuthNavigation = (path) => {
+    const basePath = getBasePath();
+    navigate(`${basePath || "/chinese"}/${path}`);
+    setIsMobileMenuOpen(false);
   };
 
-  // Handle menu item click and close menu
-  const handleMenuItemClick = (action) => {
-    action();
-    setIsAvatarMenuOpen(false);
-  };
+  // Component cho menu người dùng, không thay đổi nhiều
+  const UserMenuItems = ({ isMobile = false }) => (
+    <>
+      {isLoggedIn ? (
+        <>
+          {isMobile ? null : (
+            <>
+              <DropdownMenuLabel className="font-normal">
+                <div className="flex flex-col space-y-1">
+                  <p className="text-sm font-medium leading-none text-slate-900">
+                    {user?.user?.gmail || "Guest User"}
+                  </p>
+                  <p className="text-xs leading-none text-slate-600">
+                    {user?.user?.admin ? "Admin" : "Member"}
+                  </p>
+                </div>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator className="border-slate-200" />
+            </>
+          )}
+          <DropdownMenuItem
+            className="cursor-pointer font-sans text-slate-600 focus:bg-slate-100 focus:text-slate-900"
+            onSelect={() => handleAuthNavigation("profile")}
+          >
+            <User className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="cursor-pointer font-sans text-slate-600 focus:bg-slate-100 focus:text-slate-900"
+            onSelect={() => handleAuthNavigation("settings")}
+          >
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Settings</span>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator className="border-slate-200" />
+          <DropdownMenuItem
+            className="cursor-pointer font-sans text-red-500 focus:bg-red-50 focus:text-red-600"
+            onSelect={handleLogout}
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            <span>Đăng xuất</span>
+          </DropdownMenuItem>
+        </>
+      ) : (
+        <>
+          <div className="p-4 text-center">
+            <h3 className="font-medium text-slate-900">Chào mừng bạn!</h3>
+            <p className="text-sm text-slate-600 mt-1">
+              Vui lòng đăng nhập hoặc đăng ký để tiếp tục.
+            </p>
+          </div>
+          <div className="p-2 pt-0 space-y-2">
+            <Button
+              className="w-full bg-blue-500 hover:bg-blue-600 transition-colors"
+              onClick={() => handleAuthNavigation("login")}
+            >
+              <LogIn className="mr-2 h-4 w-4" /> Đăng nhập
+            </Button>
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => handleAuthNavigation("register")}
+            >
+              <UserPlus className="mr-2 h-4 w-4" /> Đăng ký
+            </Button>
+          </div>
+        </>
+      )}
+    </>
+  );
 
   return (
-    <div className={`bg-gradient-to-br ${theme.gradient} py-4 px-[16px] sm:px-4 md:p-8 lg:px-10 overflow-visible z-[100]`}>
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center overflow-visible">
-        {/* Header row - Logo và Mobile menu button */}
-        <div className="flex w-full md:w-auto justify-between items-center">
-          <div className="flex flex-row items-center">
-            <PiBookOpenTextLight className={`${theme.text} text-[40px] sm:text-[45px] md:text-[50px] font-bold`}/>
-            <div className={`flex ml-3 md:ml-4 flex-col gap-1 md:gap-2 text-[16px] sm:text-[18px] md:text-[22px] font-bold ${theme.text}`}>
-              <div className="leading-tight">Chinese App Learning</div>
-              <span className="text-[14px] sm:text-[16px] md:text-[18px] leading-tight">
-                中文学习App
-              </span>
-            </div>
-          </div>
-
-          <button
-            className={`md:hidden ${theme.text} text-2xl p-2`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <HiX /> : <HiMenu />}
-          </button>
-        </div>
-
-        {/* Desktop search section */}
-        <div className="min-w-[300px] lg:min-w-[500px] p-4 hidden md:flex items-center gap-4">
-          <div className="relative flex items-center duration-300 gap-3 hover:scale-105 cursor-pointer">
-            <label
-              htmlFor="navbar-search"
-              className="text-white text-sm lg:text-base"
-            >
-              Search
-            </label>
-            <AiOutlineMonitor className="absolute text-primary-500 text-xl lg:text-2xl left-[50px] lg:left-[65px] hover:rotate-3" />
-            <input
-              type="text"
-              id="navbar-search"
-              className="focus:w-[250px] lg:focus:w-[400px] focus:duration-200 px-6 lg:px-8 hover:w-[250px] lg:hover:w-[400px] duration-300 bg-white w-[150px] lg:w-[200px] border border-gray-200 rounded-3xl py-1 text-sm lg:text-base text-gray-800 placeholder-gray-500 focus:ring focus:ring-primary-300 outline-none"
-              placeholder="Search words"
-            />
-          </div>
-        </div>
-
-        {/* Desktop menu items */}
-        <div className={`text-[16px] lg:text-[18px] hidden font-semibold md:flex flex-row items-center gap-2 lg:gap-4 ${theme.text} transition-all duration-200`}>
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onMouseEnter={() => setHoveredItem(item.id)}
-              onMouseLeave={() => setHoveredItem(null)}
-              onClick={() => navigateItemInMenu(item.id)}
-              className="min-w-[90px] lg:min-w-[108px] inline-block hover:text-hover px-2 py-1 rounded text-center whitespace-nowrap bg-transparent border-none cursor-pointer"
-            >
-              {hoveredItem === item.id ? item.chinese : item.english}
-            </button>
-          ))}
-        </div>
-
-        {/* Desktop avatar with click-based dropdown */}
-        <div className="relative hidden md:block" ref={avatarMenuRef}>
-          <div
-            className={`ml-4 cursor-pointer shadow-lg w-auto h-auto p-4 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 z-[110] border-2 ${theme.card} ${theme.border}`}
-            onClick={toggleAvatarMenu}
-          >
-            {getUserInitials() !== null ? (
-              <div className="text-white text-2xl m-auto font-semibold text-center">
-                {getUserInitials()}
+    // TooltipProvider bao bọc toàn bộ component để Tooltip hoạt động
+    <TooltipProvider>
+      <header className="relative top-0 z-50 w-full border-b border-slate-200 bg-slate-50/95 backdrop-blur h-[100px] text-xl flex items-center supports-[backdrop-filter]:bg-slate-50/60 font-sans">
+        <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          {/* Left Section: Logo & Desktop Nav */}
+          <div className="flex items-center gap-6">
+            <a href="/" className="flex items-center gap-2 text-2xl">
+              <BookOpen className="h-6 w-6 text-slate-900" />
+              <div className="flex flex-col">
+                <span className="font-bold leading-tight text-slate-900">
+                  ChineseApp
+                </span>
+                <span className="text-sm leading-tight text-slate-600">
+                  中文学习
+                </span>
               </div>
-            ) : (
-              <div className="text-white text-center">
-                <FiUser className="text-2xl mx-auto mb-1" />
-                <div className="text-xs whitespace-nowrap">Chưa đăng nhập</div>
-              </div>
-            )}
-          </div>
+            </a>
 
-          {isAvatarMenuOpen && (
-            <div className={`absolute top-[75px] right-0 ${theme.card} shadow-xl rounded-xl font-sans w-[280px] z-[120] border ${theme.border} overflow-hidden`}>
-              {isLoggedIn ? (
-                // Logged in user menu
-                <>
-                  {/* User Info Header */}
-                  <div className={`bg-gradient-to-r ${theme.button} text-white p-4`}>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center font-bold text-lg">
-                        {getUserInitials()}
-                      </div>
-                      <div>
-                        <div className={`font-semibold text-sm ${theme.text}`}>
-                          {user?.user?.gmail || "Guest User"}
-                        </div>
-                        <div className="text-xs text-white/80">
-                          {user?.user?.admin ? "Admin" : "Member"}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Menu Items */}
-                  <div className="py-2">
-                    <div
-                      onClick={() =>
-                        handleMenuItemClick(() => {
-                          const basePath = getBasePath();
-                          navigate(`${basePath || "/chinese"}/profile`);
-                        })
-                      }
-                      className="flex items-center space-x-3 px-4 py-3 cursor-pointer hover:bg-gray-800/20 transition-colors"
-                    >
-                      <FiUser className="text-gray-500" />
-                      <span className={`text-sm ${theme.text}`}>Profile</span>
-                    </div>
-
-                    <div
-                      onClick={() =>
-                        handleMenuItemClick(() => {
-                          const basePath = getBasePath();
-                          navigate(`${basePath || "/chinese"}/settings`);
-                        })
-                      }
-                      className="flex items-center space-x-3 px-4 py-3 cursor-pointer hover:bg-gray-800/20 transition-colors"
-                    >
-                      <FiSettings className="text-gray-500" />
-                      <span className={`text-sm ${theme.text}`}>Settings</span>
-                    </div>
-
-                    <hr className={`my-2 ${theme.border}`} />
-
-                    <div
-                      onClick={() => handleMenuItemClick(handleLogout)}
-                      className="flex items-center space-x-3 px-4 py-3 cursor-pointer hover:bg-red-500/10 transition-colors text-red-400"
-                    >
-                      <FiLogOut className="text-red-400" />
-                      <span className="text-sm font-medium">Logout</span>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                // Guest user menu - Enhanced design
-                <>
-                  <div className={`p-4 text-center ${theme.card}`}>
-                    <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <FiUser className="text-gray-400 text-2xl" />
-                    </div>
-                    <h3 className={`font-semibold ${theme.text} mb-1`}>
-                      Chào mừng bạn!
-                    </h3>
-                    <p className={`text-sm ${theme.textSecondary}`}>
-                      Bạn chưa đăng nhập tài khoản
-                    </p>
-                    <p className={`text-xs ${theme.textSecondary} mt-1`}>
-                      Vui lòng đăng nhập hoặc đăng ký để tiếp tục
-                    </p>
-                  </div>
-
-                  <div className="p-3 space-y-2">
-                    <button
-                      onClick={() =>
-                        handleMenuItemClick(() => {
-                          const basePath = getBasePath();
-                          navigate(`${basePath || "/chinese"}/login`);
-                        })
-                      }
-                      className="w-full flex items-center justify-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-200 font-medium"
-                    >
-                      <FiLogIn className="text-lg" />
-                      <span>Đăng nhập</span>
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        handleMenuItemClick(() => {
-                          const basePath = getBasePath();
-                          navigate(`${basePath || "/chinese"}/register`);
-                        })
-                      }
-                      className="w-full flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-all duration-200 font-medium"
-                    >
-                      <FiUserPlus className="text-lg" />
-                      <span>Đăng ký</span>
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Mobile menu overlay */}
-        {isMobileMenuOpen && (
-          <div
-            className="md:hidden fixed inset-0 z-[100] bg-black bg-opacity-50 overflow-visible"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <div
-              className="absolute top-0 right-0 w-80 h-full bg-gradient-to-b from-primary-600 to-primary-700 shadow-lg overflow-visible"
-              onClick={(e) => e.stopPropagation()}
+            {/* UX-IMPROVEMENT: Desktop Navigation với hiệu ứng Framer Motion */}
+            <nav
+              className="hidden md:flex items-center gap-1 relative"
+              onMouseLeave={() => setHoveredItemId(null)} // Reset khi chuột rời khỏi cả khu vực nav
             >
-              <div className="flex justify-between items-center p-4 border-b border-primary-500">
-                <h3 className="text-white font-semibold text-lg">Menu</h3>
-                <button
-                  className="text-white text-2xl p-1"
-                  onClick={() => setIsMobileMenuOpen(false)}
+              {menuItems.map((item) => (
+                <Button
+                  key={item.id}
+                  variant="ghost"
+                  className="font-semibold text-slate-600 text-lg hover:text-slate-900 transition-colors relative px-4 py-2" // Thêm relative và padding để background pill vừa vặn
+                  onMouseEnter={() => setHoveredItemId(item.id)}
+                  onClick={() => navigateItemInMenu(item.id)}
                 >
-                  <HiX />
-                </button>
-              </div>
+                  {/* Background pill di chuyển mượt mà */}
+                  {hoveredItemId === item.id && (
+                    <motion.span
+                      className="absolute inset-0 rounded-md bg-slate-200/80 -z-10"
+                      layoutId="hoverBackground" // Cùng layoutId để Framer Motion biết đây là cùng một element đang di chuyển
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, transition: { duration: 0.15 } }}
+                      exit={{
+                        opacity: 0,
+                        transition: { duration: 0.15, delay: 0.1 },
+                      }}
+                    />
+                  )}
+                  {item.english}
+                </Button>
+              ))}
+            </nav>
+          </div>
 
-              {/* User Info in Mobile Menu */}
-              {isLoggedIn ? (
-                <div className="bg-primary-500/50 p-4 border-b border-primary-500">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center font-bold text-white">
-                      {getUserInitials()}
-                    </div>
-                    <div>
-                      <div className="text-white font-semibold text-sm">
-                        {user?.user?.gmail || "Guest User"}
-                      </div>
-                      <div className="text-primary-200 text-xs">
-                        {user?.user?.admin ? "Admin" : "Member"}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="bg-primary-500/50 p-4 border-b border-primary-500 text-center">
-                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <FiUser className="text-white text-2xl" />
-                  </div>
-                  <div className="text-white font-semibold text-lg mb-1">
-                    Chào mừng bạn!
-                  </div>
-                  <div className="text-primary-200 text-sm">
-                    Bạn chưa đăng nhập tài khoản
-                  </div>
-                  <div className="text-primary-200 text-xs mt-1">
-                    Vui lòng đăng nhập hoặc đăng ký để tiếp tục
-                  </div>
-                </div>
-              )}
+          {/* Right Section: Search, User Menu & Mobile Menu */}
+          <div className="flex items-center gap-2 text-2xl">
+            {/* UX-IMPROVEMENT: Ô search mở rộng khi focus */}
+            <div className="relative hidden sm:block">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-600 pointer-events-none" />
+              <Input
+                type="search"
+                placeholder="Search words..."
+                // Thêm transition và thay đổi width khi focus
+                className="w-full rounded-2xl bg-white pl-9 sm:w-[200px] lg:w-[250px] border-slate-200 focus:w-[300px] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+              />
+            </div>
 
-              <div className="p-4 border-b border-primary-500">
-                <div className="relative">
-                  <AiOutlineMonitor className="absolute text-primary-300 text-xl left-3 top-1/2 transform -translate-y-1/2" />
-                  <input
-                    type="text"
-                    className="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-800 placeholder-gray-500 focus:ring focus:ring-primary-300 outline-none"
-                    placeholder="Search words"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col p-4 gap-2">
-                {menuItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => navigateItemInMenu(item.id)}
-                    className="block text-white hover:text-hover hover:bg-primary-500 px-4 py-3 rounded-lg transition-all duration-200 border border-transparent hover:border-primary-400 text-left bg-transparent cursor-pointer w-full"
+            {/* Desktop User Menu */}
+            <div className="hidden md:block">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="relative h-13 w-13 rounded-full"
                   >
-                    <div className="font-semibold">{item.english}</div>
-                    <div className="text-sm text-primary-200">
-                      {item.chinese}
+                    <Avatar className="h-12 w-12 border-2 border-slate-200 group-hover:border-blue-400 transition-colors">
+                      <AvatarImage src={user?.user?.avatarUrl} alt="Avatar" />
+                      <AvatarFallback className="bg-slate-200 text-slate-900 font-semibold">
+                        {getUserInitials()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                {/* UX-IMPROVEMENT: Thêm animation cho DropdownMenuContent */}
+                <DropdownMenuContent
+                  className="w-56 bg-white shadow-lg rounded-xl border-slate-200 font-sans data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
+                  align="end"
+                  forceMount
+                >
+                  <UserMenuItems />
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Mobile Menu */}
+            <div className="md:hidden">
+              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <SheetTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                        <Menu className="h-5 w-5 text-slate-900" />
+                        <span className="sr-only">Toggle Menu</span>
+                      </Button>
+                    </SheetTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Mở Menu</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                {/* UX-IMPROVEMENT: Animation cho SheetContent */}
+                <SheetContent
+                  side="right"
+                  className="w-[300px] sm:w-[340px] bg-slate-50 border-l-slate-200"
+                >
+                  {/* ... (Nội dung SheetContent giữ nguyên) */}
+                  <SheetHeader>
+                    <SheetTitle>
+                      <a href="/" className="flex items-center gap-2">
+                        <BookOpen className="h-6 w-6 text-slate-900" />
+                        <span className="font-bold text-lg text-slate-900">
+                          Menu
+                        </span>
+                      </a>
+                    </SheetTitle>
+                  </SheetHeader>
+                  <div className="mt-4 flex flex-col h-full">
+                    {isLoggedIn && (
+                      <>
+                        <div className="flex items-center gap-3 p-2 rounded-lg bg-slate-100">
+                          <Avatar className="h-10 w-10 border-2 border-white">
+                            <AvatarImage src={user?.user?.avatarUrl} />
+                            <AvatarFallback className="bg-slate-200 text-slate-900 font-semibold">
+                              {getUserInitials()}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium text-slate-900">
+                              {user?.user?.gmail}
+                            </span>
+                            <span className="text-xs text-slate-600">
+                              {user?.user?.admin ? "Admin" : "Member"}
+                            </span>
+                          </div>
+                        </div>
+                        <Separator className="my-4 bg-slate-200" />
+                      </>
+                    )}
+                    <nav className="flex flex-col gap-2">
+                      {menuItems.map((item) => (
+                        <Button
+                          key={item.id}
+                          variant="ghost"
+                          className="font-semibold text-slate-600 justify-start p-4 h-auto text-base hover:bg-slate-200/60 hover:text-slate-900"
+                          onClick={() => navigateItemInMenu(item.id)}
+                        >
+                          <div className="flex flex-col items-start">
+                            <span>{item.english}</span>
+                            <span className="text-sm font-normal text-slate-500">
+                              {item.chinese}
+                            </span>
+                          </div>
+                        </Button>
+                      ))}
+                    </nav>
+                    <Separator className="my-4 bg-slate-200" />
+                    <div className="flex flex-col gap-2">
+                      <UserMenuItems isMobile={true} />
                     </div>
-                  </button>
-                ))}
-
-                {/* Mobile Auth Buttons */}
-                <hr className="my-2 border-primary-500" />
-
-                {isLoggedIn ? (
-                  <>
-                    <button
-                      onClick={() => {
-                        const basePath = getBasePath();
-                        navigate(`${basePath || "/chinese"}/profile`);
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="flex items-center space-x-3 text-white hover:text-hover hover:bg-primary-500 px-4 py-3 rounded-lg transition-all duration-200 bg-transparent cursor-pointer w-full"
-                    >
-                      <FiUser />
-                      <span>Profile</span>
-                    </button>
-
-                    <button
-                      onClick={() => {
-                        handleLogout();
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="flex items-center space-x-3 text-red-300 hover:text-red-200 hover:bg-red-500/20 px-4 py-3 rounded-lg transition-all duration-200 bg-transparent cursor-pointer w-full"
-                    >
-                      <FiLogOut />
-                      <span>Logout</span>
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      onClick={() => {
-                        const basePath = getBasePath();
-                        navigate(`${basePath || "/chinese"}/login`);
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="flex items-center justify-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-200 font-medium w-full"
-                    >
-                      <FiLogIn />
-                      <span>Đăng nhập</span>
-                    </button>
-
-                    <button
-                      onClick={() => {
-                        const basePath = getBasePath();
-                        navigate(`${basePath || "/chinese"}/register`);
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-all duration-200 font-medium w-full"
-                    >
-                      <FiUserPlus />
-                      <span>Đăng ký</span>
-                    </button>
-                  </>
-                )}
-              </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
-        )}
-      </div>
-
-      <div className="md:hidden mt-4 px-4">
-        <div className="relative">
-          <AiOutlineMonitor className="absolute text-primary-300 text-xl left-3 top-1/2 transform -translate-y-1/2" />
-          <input
-            type="text"
-            className="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-800 placeholder-gray-500 focus:ring focus:ring-primary-300 outline-none"
-            placeholder="Search words"
-          />
         </div>
-      </div>
-    </div>
+      </header>
+    </TooltipProvider>
   );
 };
 

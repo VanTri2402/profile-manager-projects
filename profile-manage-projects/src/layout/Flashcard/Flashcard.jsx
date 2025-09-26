@@ -1,289 +1,238 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProgress, getWords } from "../../api/chineseApi";
-import { createAxios } from "../../createInstance";
-import { loginSuccess } from "../../redux/chineseUserSlice";
-
-// Icons components (sử dụng lucide-react thay thế react-icons)
-import { BookOpen, Monitor, Menu, X } from "lucide-react";
-import menuHsk from "../../data/menu/menuWord";
 import { useParams, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Flashcard Component
-const Flashcard = ({ onBack }) => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.chineseUser.login?.currentUser);
-  const theme = useSelector((state) => state.theme.themes[state.theme.mode]);
-  
-  // Get progress state from Redux
-  const { streak, progress, lastCheckIn, dailyWordCount } = useSelector(
-    (state) => state.chinese.progress
-  );
-  const { currentHSK, currentWordId, previewWords } = useSelector(
-    (state) => state.chinese.words
-  );
+// Lucide React Icons
+import {
+  ChevronLeft,
+  ChevronRight,
+  Check,
+  X,
+  Shuffle,
+  Loader2,
+  Volume2,
+} from "lucide-react";
 
-  const [flippedCards, setFlippedCards] = useState({});
-  const [currentHsk, setCurrentHsk] = useState(null);
-  const [words, setWords] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  
+// Shadcn/ui Components
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+
+// Dữ liệu
+import menuHsk from "../../data/menu/menuWord";
+
+const FlashcardSession = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const selectedHskId = parseInt(id, 10); // Chuyển id thành số
+  const dispatch = useDispatch();
 
-  // Axios JWT instance
-  const axiosJWT = createAxios(user, dispatch, loginSuccess);
-
-  // Check authentication
+  const user = useSelector((state) => state.auth.login?.currentUser) || {
+    accessToken: true,
+  }; // Giả lập user
   const isLoggedIn = user && user.accessToken;
 
-  const backgroundColors = [
-    "bg-gradient-to-br from-pink-400 via-pink-500 to-red-500",
-    "bg-gradient-to-br from-blue-400 via-blue-500 to-purple-600",
-    "bg-gradient-to-br from-green-400 via-teal-500 to-blue-500",
-    "bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500",
-    "bg-gradient-to-br from-purple-400 via-purple-500 to-pink-500",
-    "bg-gradient-to-br from-indigo-400 via-indigo-500 to-blue-600",
-    "bg-gradient-to-br from-teal-400 via-green-500 to-blue-500",
-    "bg-gradient-to-br from-red-400 via-pink-500 to-purple-500",
-  ];
+  const [words, setWords] = useState([]);
+  const [currentHsk, setCurrentHsk] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [learnedWords, setLearnedWords] = useState(new Set());
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!isLoggedIn) {
-      // Redirect to login if not authenticated
+      navigate("/chinese/login");
       return;
     }
 
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        await getProgress(dispatch, axiosJWT, user.accessToken);
-        await getWords(dispatch, axiosJWT, user.accessToken);
-      } catch (error) {
-        console.error("Error fetching flashcard data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [isLoggedIn, dispatch, user?.accessToken]);
-
-  useEffect(() => {
-    const selectedHsk = menuHsk.find((hsk) => hsk.id === selectedHskId);
+    const selectedHsk = menuHsk.find((hsk) => hsk.id == id);
     if (selectedHsk) {
       setCurrentHsk(selectedHsk);
       setWords(selectedHsk.link || []);
-      setFlippedCards({});
+    } else {
+      navigate("/chinese/flashcard");
     }
-  }, [selectedHskId]);
+    setIsLoading(false);
+  }, [id, isLoggedIn, navigate]);
 
-  const getRandomBackground = (index) => {
-    return backgroundColors[index % backgroundColors.length];
+  const handleFlip = () => setIsFlipped((prev) => !prev);
+
+  const handleNext = () => {
+    if (currentIndex < words.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+      setIsFlipped(false);
+    }
   };
 
-  const handleCardClick = (wordId) => {
-    setFlippedCards((prev) => {
-      const currentState = prev[wordId] || 0;
-      const nextState = currentState === 0 ? 1 : 0;
-      return {
-        ...prev,
-        [wordId]: nextState,
-      };
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+      setIsFlipped(false);
+    }
+  };
+
+  const handleToggleLearned = () => {
+    setLearnedWords((prev) => {
+      const newSet = new Set(prev);
+      const currentWordId = words[currentIndex].id;
+      if (newSet.has(currentWordId)) {
+        newSet.delete(currentWordId);
+      } else {
+        newSet.add(currentWordId);
+      }
+      return newSet;
     });
   };
 
-  const backout = () => {
-    navigate("/flashcard");
+  const handleShuffle = () => {
+    setWords((prevWords) => [...prevWords].sort(() => Math.random() - 0.5));
+    setCurrentIndex(0);
+    setIsFlipped(false);
   };
 
-  if (!isLoggedIn) {
-    return (
-      <div className={`min-h-screen bg-gradient-to-br ${theme.gradient} flex items-center justify-center`}>
-        <div className="text-center">
-          <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${theme.border} mx-auto mb-4`}></div>
-          <p className={theme.textSecondary}>
-            Vui lòng đăng nhập để truy cập flashcard
-          </p>
-        </div>
-      </div>
-    );
-  }
+  const currentWord = words[currentIndex];
+  const progressPercentage =
+    words.length > 0 ? ((currentIndex + 1) / words.length) * 100 : 0;
 
-  if (isLoading) {
+  if (isLoading || !currentWord) {
     return (
-      <div className={`min-h-screen bg-gradient-to-br ${theme.gradient} flex items-center justify-center`}>
-        <div className="text-center">
-          <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${theme.border} mx-auto mb-4`}></div>
-          <p className={theme.textSecondary}>Đang tải dữ liệu flashcard...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!currentHsk) {
-    return (
-      <div className={`min-h-screen bg-gradient-to-br ${theme.gradient} flex items-center justify-center`}>
-        <div className={`text-center ${theme.text}`}>
-          <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${theme.border} mx-auto mb-4`}></div>
-          <div className={`text-xl ${theme.textSecondary}`}>Đang tải dữ liệu...</div>
-        </div>
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <Loader2 className="h-10 w-10 text-blue-500 animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className={`min-h-screen m-auto bg-gradient-to-br ${theme.gradient} p-4 md:p-6`}>
-      <style jsx>{`
-        .flip-card {
-          perspective: 1000px;
-        }
-
-        .flip-card-inner {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          transition: transform 0.6s;
-          transform-style: preserve-3d;
-        }
-
-        .flip-card.flipped .flip-card-inner {
-          transform: rotateY(180deg);
-        }
-
-        .flip-card-front,
-        .flip-card-back {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-          border-radius: 1rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .flip-card-back {
-          transform: rotateY(180deg);
-        }
-
-        @media (min-width: 768px) {
-          .flip-card-front,
-          .flip-card-back {
-            border-radius: 1.5rem;
-          }
-        }
-      `}</style>
-
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8 flex items-center justify-center gap-9">
-          {onBack && (
-            <button
-              onClick={onBack}
-              className={`mb-4 bg-gradient-to-r ${theme.button} text-white px-4 py-2 rounded-lg transition-colors duration-300`}
-            >
-              ← Quay lại
-            </button>
-          )}
-          <h1 className={`text-3xl md:text-4xl font-bold ${theme.text} mb-2`}>
-            Flashcard {currentHsk.level}
-          </h1>
-          <p className={`${theme.textSecondary} text-sm md:text-base`}>
-            Click vào thẻ để lật và xem nghĩa • Tổng cộng: {words.length} từ
-          </p>
-          <div className="">
-            <button
-              onClick={backout}
-              className={`w-[100px] h-[70px] bg-gradient-to-r ${theme.button} cursor-pointer hover:opacity-90 duration-300 transition-colors font-bold text-[16px] rounded-3xl px-4 py-2 text-white`}
-            >
-              Quay Lai
-            </button>
+    <main className="w-full h-screen bg-white font-sans z-10 flex flex-col p-4 sm:p-6 lg:p-8 overflow-hidden">
+      <header className="w-full max-w-5xl mx-auto mb-6">
+        <div className="flex items-center justify-between gap-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate("/chinese/flashcard")}
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </Button>
+          <div className="flex-1 text-center">
+            <h1 className="text-xl font-bold text-slate-900">
+              {currentHsk?.level}
+            </h1>
+            <p className="text-sm text-slate-600">
+              {currentIndex + 1} / {words.length}
+            </p>
           </div>
+          <Button variant="ghost" size="icon" onClick={handleShuffle}>
+            <Shuffle className="h-5 w-5" />
+          </Button>
         </div>
-      </div>
-      <div className={`overflow-y-scroll sm:m-auto md:m-auto lg:m-auto h-screen shadow-xl p-8 w-[65vw] ${theme.card} border ${theme.border} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6`}>
-        {words.map((word, index) => {
-          const isFlipped = flippedCards[word.id] === 1;
+        <Progress value={progressPercentage} className="h-2 mt-3" />
+      </header>
 
-          return (
-            <div
-              key={word.id}
-              className={`flip-card ${
-                isFlipped ? "flipped" : ""
-              } h-48 md:h-56 cursor-pointer transform hover:scale-105 transition-transform duration-300`}
-              onClick={() => handleCardClick(word.id)}
+      <div
+        className="flex-1 flex flex-col items-center justify-center w-full"
+        style={{ perspective: "1000px" }}
+      >
+        <AnimatePresence>
+          <motion.div
+            key={currentIndex}
+            className="w-full max-w-2xl h-[400px] md:h-[450px]"
+            onClick={handleFlip}
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -50, scale: 0.95 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            <motion.div
+              className="relative w-full h-full cursor-pointer"
+              style={{ transformStyle: "preserve-3d" }}
+              animate={{ rotateY: isFlipped ? 180 : 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
             >
-              <div className="flip-card-inner">
-                <div
-                  className={`flip-card-front ${getRandomBackground(
-                    index
-                  )} shadow-lg text-white hover:shadow-2xl transition-shadow duration-300`}
-                >
-                  <div className="text-center p-4 relative w-full h-full flex flex-col justify-center">
-                    <div className="absolute top-3 right-3 text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full font-medium">
-                      {word.type}
-                    </div>
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 font-serif drop-shadow-lg">
-                      {word.chinese}
-                    </div>
-                    <div className="text-base md:text-lg font-medium opacity-90 drop-shadow">
-                      {word.pinyin}
-                    </div>
-                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-xs opacity-70">
-                      Click để xem nghĩa
-                    </div>
-                  </div>
-                </div>
+              {/* Card Front */}
+              <Card
+                className="absolute w-full h-full flex flex-col items-center justify-center p-6 bg-slate-50 border-slate-200"
+                style={{ backfaceVisibility: "hidden" }}
+              >
+                <CardContent className="flex flex-col items-center justify-center text-center gap-4">
+                  <Badge variant="outline">{currentWord.type}</Badge>
+                  <p className="text-6xl md:text-8xl font-serif text-slate-900">
+                    {currentWord.chinese}
+                  </p>
+                  <p className="text-xl md:text-2xl text-slate-500">
+                    {currentWord.pinyin}
+                  </p>
+                </CardContent>
+              </Card>
 
-                <div
-                  className={`flip-card-back ${getRandomBackground(
-                    index
-                  )} shadow-lg text-white hover:shadow-2xl transition-shadow duration-300`}
-                >
-                  <div className="text-center p-4 relative w-full h-full flex flex-col justify-center">
-                    <div className="absolute top-3 right-3 text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full font-medium">
-                      Nghĩa
-                    </div>
-                    <div className="text-xl md:text-2xl font-bold mb-3 drop-shadow-lg">
-                      {word.vietnamese}
-                    </div>
-                    <div className="text-sm md:text-base opacity-75 drop-shadow">
-                      {word.chinese} ({word.pinyin})
-                    </div>
-                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-xs opacity-70">
-                      Click để quay lại
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+              {/* Card Back */}
+              <Card
+                className="absolute w-full h-full flex flex-col items-center justify-center p-6 bg-blue-500 border-blue-600 text-white"
+                style={{
+                  backfaceVisibility: "hidden",
+                  transform: "rotateY(180deg)",
+                }}
+              >
+                <CardContent className="flex flex-col items-center justify-center text-center gap-4">
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="absolute top-4 right-4 text-white hover:bg-white/20"
+                  >
+                    <Volume2 />
+                  </Button>
+                  <p className="text-3xl md:text-4xl font-bold">
+                    {currentWord.vietnamese}
+                  </p>
+                  <p className="text-lg md:text-xl opacity-80">
+                    {currentWord.pinyin}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
-      {words.length > 0 && (
-        <div className={`text-center mt-12 p-6 ${theme.card} rounded-lg shadow-sm border ${theme.border}`}>
-          <div className={theme.textSecondary}>
-            <span className={`font-semibold ${theme.text}`}>
-              {currentHsk.level}
-            </span>{" "}
-            - Tổng cộng {words.length} từ vựng
-          </div>
-          <div className={`text-sm ${theme.textSecondary} mt-2`}>
-            Đã lật:{" "}
-            {
-              Object.keys(flippedCards).filter((key) => flippedCards[key] === 1)
-                .length
-            }{" "}
-            thẻ
-          </div>
+
+      <footer className="w-full max-w-2xl mx-auto mt-6">
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <Button
+            variant={learnedWords.has(currentWord.id) ? "default" : "outline"}
+            className={`w-40 transition-colors ${
+              learnedWords.has(currentWord.id)
+                ? "bg-green-500 hover:bg-green-600 border-green-500"
+                : ""
+            }`}
+            onClick={handleToggleLearned}
+          >
+            {learnedWords.has(currentWord.id) ? (
+              <Check className="mr-2 h-4 w-4" />
+            ) : (
+              <X className="mr-2 h-4 w-4" />
+            )}
+            {learnedWords.has(currentWord.id) ? "Đã thuộc" : "Chưa thuộc"}
+          </Button>
         </div>
-      )}
-    </div>
+        <div className="flex items-center justify-between">
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={handlePrevious}
+            disabled={currentIndex === 0}
+          >
+            <ChevronLeft className="mr-2 h-5 w-5" /> Trước
+          </Button>
+          <Button
+            size="lg"
+            onClick={handleNext}
+            disabled={currentIndex === words.length - 1}
+          >
+            Tiếp theo <ChevronRight className="ml-2 h-5 w-5" />
+          </Button>
+        </div>
+      </footer>
+    </main>
   );
 };
 
-export default Flashcard;
+export default FlashcardSession;

@@ -15,6 +15,8 @@ import { persistor } from "./redux/store.js";
 import store from "./redux/store.js";
 import Baitaphtml from "./baitaphtml.jsx";
 import AppProduct from "../web/AppProduct/AppProduct.jsx";
+import PracticeSession from "./layout/Practive/PractiveSession";
+import CommunityPage from "./layout/Community/Comuinity";
 // Modern Mouse Trail Component with Random Colors
 const MouseTrail = () => {
   const [positions, setPositions] = useState([]);
@@ -84,22 +86,26 @@ class ErrorBoundary extends Component {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ErrorBoundary>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <BrowserRouter>
-              <MouseTrail /> {/* Modern trail with random colors */}
-              <Routes>
-                <Route path="/*" element={<HomeApp />} />
-                <Route path="/chinese/*" element={<AppChinese />} />
-                <Route path="/managerUser/*" element={<AppMangerUser />} />
-                <Route path="/ipa-learning/*" element={<AppIPALearning />} />
-                <Route path="/product/*" element={<AppProduct />} />
-                <Route path="/baitap" element={<Baitaphtml />} />
-              </Routes>
-            </BrowserRouter>
-          </PersistGate>
-        </Provider>
-        <ToastContainer position="top-right" autoClose={5000} />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <MouseTrail /> {/* Modern trail with random colors */}
+            <Routes>
+              <Route path="/*" element={<HomeApp />} />
+              <Route path="/chinese/*" element={<AppChinese />} />
+              <Route path="/managerUser/*" element={<AppMangerUser />} />
+              <Route path="/ipa-learning/*" element={<AppIPALearning />} />
+              <Route path="/product/*" element={<AppProduct />} />
+              <Route path="/baitap" element={<Baitaphtml />} />
+              <Route
+                path="/chinese/practice/:id"
+                element={<PracticeSession />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+      <ToastContainer position="top-right" autoClose={5000} />
     </ErrorBoundary>
   </StrictMode>
 );

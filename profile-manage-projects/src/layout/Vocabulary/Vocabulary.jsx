@@ -1,135 +1,243 @@
-import React from "react";
-import menuHsk from "../../data/menu/menuWord";
-import { useState } from "react";
-import { FaPen, FaCheck } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux"; // Sử dụng hook của Redux
 import { useNavigate } from "react-router-dom";
-import { getCurrentWord } from "../../data/progress/progress";
-import { totalWords, totalWordHsk } from "../../data/menu/menuWord";
+import { motion } from "framer-motion";
 
-const Vocabulary = ({ menuItems, onMenuClick }) => {
-  const [selectedHsk, setSelectedHsk] = useState(menuHsk[0] || {});
-  const [hoveredWord, setHoveredWord] = useState(null);
-  const currentWord = getCurrentWord(); // Sử dụng hàm getCurrentWord
+// Lucide React Icons
+import {
+  BookMarked,
+  CheckCircle2,
+  PenLine,
+  Sparkles,
+  Loader2,
+} from "lucide-react";
+
+// Shadcn/ui Components
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+// Dữ liệu
+import menuHsk from "../../data/menu/menuWord";
+
+const Vocabulary = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // ✅ Function bị thiếu - đã thêm
+  // --- THAY ĐỔI QUAN TRỌNG: Cập nhật Redux Selector ---
+  // 1. Lấy user từ chineseUser slice thay vì auth slice
+  const user = useSelector((state) => state.auth.login?.currentUser);
+
+  // 2. Lấy dữ liệu tiến trình từ chinese slice
+  const { currentWord, isLoading } = useSelector(
+    (state) => state.chinese.progress
+  );
+
+  const [selectedHsk, setSelectedHsk] = useState(menuHsk[0] || {});
+
+  const isLoggedIn = user && user.accessToken;
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/chinese/login");
+    }
+    // Ở đây bạn có thể dispatch một action để fetch dữ liệu từ vựng nếu cần
+    // dispatch(fetchVocabularyData());
+  }, [isLoggedIn, navigate, dispatch]);
+
   const handleHskClick = (item) => {
     setSelectedHsk(item);
   };
 
   const handleNavigateFlashcard = () => {
-    // ✅ Sửa cách truyền id qua URL parameter
-    const flashcardLink = `/flashcard/${selectedHsk.id}`;
+    const flashcardLink = `/chinese/flashcard/${selectedHsk.id}`;
     navigate(flashcardLink);
   };
 
+  const wordsInLevel = selectedHsk.link?.length || 0;
+  // 3. Sử dụng currentWord từ Redux, có thể cần check null/undefined
+  const wordsLearnedInLevel = Math.min(currentWord || 0, wordsInLevel);
+  const progressPercentage =
+    wordsInLevel > 0 ? (wordsLearnedInLevel / wordsInLevel) * 100 : 0;
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.05 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <Loader2 className="h-10 w-10 text-blue-500 animate-spin" />
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-background flex flex-col md:flex-row gap-6 w-full h-[80vh] p-4">
-      <div className="w-full md:w-[130px] bg-gradient-to-b from-blue-500 to-blue-600 shadow-lg rounded-lg">
-        <div className="flex flex-col h-full py-4">
-          {menuHsk.length > 0 ? (
-            menuHsk.map((item) => (
-              <div
-                key={item.id}
-                className={`cursor-pointer transition-all duration-300 text-center flex items-center justify-center font-medium text-white hover:bg-white/20 hover:scale-105 border-b border-white/10 ${
-                  selectedHsk.id === item.id ? "bg-white/20 scale-105" : ""
-                }`}
-                onClick={() => handleHskClick(item)} // ✅ Đã sửa
-              >
-                <span className="text-lg sm:text-xl">{item.level}</span>
-              </div>
-            ))
-          ) : (
-            <div className="text-center text-white">Không có dữ liệu HSK</div>
-          )}
-        </div>
-      </div>
-
-      <div className="flex-1 p-4 sm:pl-[30px] space-y-4 max-h-[70vh] items-center justify-center overflow-y-auto">
-        {selectedHsk.link && selectedHsk.link.length > 0 ? (
-          selectedHsk.link.map((word, index) => {
-            const isLearned = word.id <= currentWord && currentWord > 0;
-            return (
-              <div
-                key={word.id || index}
-                className={`bg-white w-full sm:w-[90%] hover:-translate-y-1 cursor-pointer rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 ${
-                  isLearned ? "border-green-500 bg-green-75" : "border-red-500"
-                }`}
-                onMouseEnter={() => setHoveredWord(word.id || index)}
-                onMouseLeave={() => setHoveredWord(null)}
-              >
-                <div className="flex items-center p-4 shadow-xl">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 text-black text-[30px] rounded-lg flex items-center justify-center font-bold sm:text-lg mr-2 sm:mr-4">
-                    {index + 1}
-                  </div>
-                  <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 items-center">
-                    <div className="text-center">
-                      <div className="text-2xl sm:text-3xl font-serif text-gray-800 mb-1">
-                        {word.chinese}
-                      </div>
-                      <div className="text-sm sm:text-base text-gray-500 italic">
-                        {word.pinyin}
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-base sm:text-lg font-sans text-blue-600 mb-1">
-                        {word.vietnamese}
-                      </div>
-                      <div className="text-xs sm:text-sm text-gray-400">
-                        ({word.type})
-                      </div>
-                    </div>
-                    <div className="flex flex-row gap-4 items-center justify-center text-center">
-                      <button
-                        className={`inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-medium transition-all duration-300 ${
-                          hoveredWord === (word.id || index)
-                            ? "bg-red-500 text-white shadow-md transform scale-105"
-                            : "bg-red-100 text-red-600 hover:bg-red-200"
-                        }`}
-                      >
-                        <FaPen size={14} />
-                        <span className="text-sm sm:text-base">Luyện viết</span>
-                      </button>
-                      {isLearned && (
-                        <FaCheck className="text-green-500 ml-2 text-2xl" />
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })
-        ) : (
-          <div className="text-center text-gray-500">
-            Không có từ vựng để hiển thị
-          </div>
-        )}
-      </div>
-
-      <div className="gap-2 font-semibold bg-background text-gray-500 shadow-lg w-[300px] max-h-[230px] flex flex-col items-center justify-center px-4 py-6">
-        <div className="text-center text-xl">Progress</div>
-        <div className="text-center mt-2">
-          số từ đã học được{" "}
-          <span className="font-semibold text-xl text-primary-400">
-            {currentWord}
-          </span>
-          / {selectedHsk.link?.length || 0} từ
-        </div>
-        <div className="text-left text-gray-600">
-          level:{" "}
-          <span className="text-primary-400 text-left font-bold text-xl">
-            {selectedHsk.level}
-          </span>
-        </div>
-        <button
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 shadow-md"
-          onClick={handleNavigateFlashcard}
-          type="button"
+    <main className="w-full min-h-screen bg-white font-sans z-10">
+      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <motion.section
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          Học bằng Flashcard
-        </button>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h1 className="text-4xl font-bold tracking-tight text-slate-900">
+                Thư Viện Từ Vựng
+              </h1>
+              <p className="mt-2 text-lg text-slate-600">
+                Khám phá và ôn tập từ vựng theo từng cấp độ HSK.
+              </p>
+            </div>
+            <div className="flex-shrink-0 p-1 bg-slate-100 rounded-lg flex gap-1">
+              {menuHsk.map((item) => (
+                <Button
+                  key={item.id}
+                  variant={selectedHsk.id === item.id ? "default" : "ghost"}
+                  onClick={() => handleHskClick(item)}
+                  className={`transition-all duration-300 ${
+                    selectedHsk.id === item.id
+                      ? "bg-blue-500 text-white shadow"
+                      : "text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {item.level}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        <Separator className="my-8 bg-slate-200" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          <motion.div
+            key={selectedHsk.id}
+            className="lg:col-span-2 max-h-[calc(100vh-320px)] overflow-y-auto pr-4"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {selectedHsk.link && selectedHsk.link.length > 0 ? (
+              <div className="space-y-3">
+                {selectedHsk.link.map((word, index) => {
+                  const isLearned = word.id <= (currentWord || 0);
+                  return (
+                    <motion.div
+                      key={word.id || index}
+                      variants={itemVariants}
+                      className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:border-blue-300 hover:bg-white transition-colors duration-300"
+                    >
+                      <div className="grid grid-cols-12 items-center gap-4">
+                        <div className="col-span-1 text-center text-slate-500 font-medium">
+                          {index + 1}
+                        </div>
+                        <div className="col-span-4">
+                          <p className="text-2xl font-serif text-slate-800">
+                            {word.chinese}
+                          </p>
+                          <p className="text-sm text-slate-500 italic">
+                            {word.pinyin}
+                          </p>
+                        </div>
+                        <div className="col-span-4">
+                          <p className="text-base font-sans text-blue-600">
+                            {word.vietnamese}
+                          </p>
+                          <p className="text-xs text-slate-400">
+                            ({word.type})
+                          </p>
+                        </div>
+                        <div className="col-span-3 flex items-center justify-end gap-3">
+                          {isLearned && (
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <CheckCircle2 className="h-5 w-5 text-green-500" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Đã học</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          )}
+                          <Button variant="ghost" size="sm" className="h-8">
+                            <PenLine className="mr-2 h-4 w-4" />
+                            Luyện viết
+                          </Button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="text-center py-16 text-slate-500">
+                Không có từ vựng để hiển thị.
+              </div>
+            )}
+          </motion.div>
+
+          <motion.div
+            className="lg:col-span-1 sticky top-24"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Card className="shadow-sm border-slate-200">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BookMarked className="h-6 w-6 text-blue-500" />
+                  Tiến Trình {selectedHsk.level}
+                </CardTitle>
+                <CardDescription>
+                  Bạn đã học được {wordsLearnedInLevel} trên tổng số{" "}
+                  {wordsInLevel} từ.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Progress value={progressPercentage} className="h-2 mb-4" />
+                <div className="flex justify-between items-center text-sm text-slate-600 mb-6">
+                  <span>Bắt đầu</span>
+                  <span>Hoàn thành</span>
+                </div>
+                <Button
+                  size="lg"
+                  className="w-full bg-blue-500 hover:bg-blue-600"
+                  onClick={handleNavigateFlashcard}
+                >
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Học bằng Flashcard
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 

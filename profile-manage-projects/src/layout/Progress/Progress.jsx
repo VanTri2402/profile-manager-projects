@@ -1,160 +1,328 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProgress, getWords } from "../../api/chineseApi";
-import { createAxios } from "../../createInstance";
-import { loginSuccess } from "../../redux/chineseUserSlice";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  Bar,
+  BarChart,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  Legend,
+} from "recharts";
 
-const Progress = () => {
+// Lucide React Icons
+import {
+  Flame,
+  Target,
+  Trophy,
+  BookCopy,
+  Star,
+  Award,
+  CalendarCheck,
+  Loader2,
+} from "lucide-react";
+
+// Shadcn/ui Components
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
+
+// Dữ liệu và Logic
+import menuHsk from "../../data/menu/menuWord";
+// import { getProgress, getWords } from "../../api/chineseApi";
+// import { createAxios } from "../../createInstance";
+// import { loginSuccess } from "../../redux/chineseUserSlice";
+
+// --- MOCK DATA for Chart & Achievements (Dữ liệu giả để hiển thị) ---
+const weeklyActivityData = [
+  { day: "T2", words: 5 },
+  { day: "T3", words: 8 },
+  { day: "T4", words: 12 },
+  { day: "T5", words: 7 },
+  { day: "T6", words: 15 },
+  { day: "T7", words: 10 },
+  { day: "CN", words: 20 },
+];
+
+const achievementsData = [
+  {
+    icon: <Flame className="h-6 w-6" />,
+    title: "Chuỗi 7 ngày",
+    unlocked: true,
+  },
+  {
+    icon: <BookCopy className="h-6 w-6" />,
+    title: "100 từ đầu tiên",
+    unlocked: true,
+  },
+  {
+    icon: <Trophy className="h-6 w-6" />,
+    title: "Hoàn thành HSK 1",
+    unlocked: true,
+  },
+  {
+    icon: <Star className="h-6 w-6" />,
+    title: "Học viên chăm chỉ",
+    unlocked: false,
+  },
+  {
+    icon: <CalendarCheck className="h-6 w-6" />,
+    title: "Check-in 1 tháng",
+    unlocked: false,
+  },
+  {
+    icon: <Award className="h-6 w-6" />,
+    title: "Bậc thầy HSK 2",
+    unlocked: false,
+  },
+];
+// --------------------------------------------------------------------
+
+const ProgressPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.chineseUser.login?.currentUser);
-  const theme = useSelector((state) => state.theme.themes[state.theme.mode]);
-  
-  // Get progress state from Redux
-  const { streak, progress, lastCheckIn, dailyWordCount } = useSelector(
-    (state) => state.chinese.progress
-  );
-  const { currentHSK, currentWordId, previewWords } = useSelector(
-    (state) => state.chinese.words
-  );
 
-  const [isLoading, setIsLoading] = useState(true);
+  const user = useSelector((state) => state.auth .login?.currentUser);
+  const { streak, progress, lastCheckIn, dailyWordCount, totalWordsLearned } =
+    useSelector((state) => state.chinese.progress);
+  const { currentHSK } = useSelector((state) => state.chinese.words);
 
-  // Axios JWT instance
-  const axiosJWT = createAxios(user, dispatch, loginSuccess);
-
-  // Check authentication
+  const [isLoading, setIsLoading] = useState(false);
   const isLoggedIn = user && user.accessToken;
 
   useEffect(() => {
     if (!isLoggedIn) {
-      // Redirect to login if not authenticated
-      return;
+      navigate("/chinese/login");
     }
-
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        await getProgress(dispatch, axiosJWT, user.accessToken);
-        await getWords(dispatch, axiosJWT, user.accessToken);
-      } catch (error) {
-        console.error("Error fetching progress data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [isLoggedIn, dispatch, user?.accessToken]);
-
-  if (!isLoggedIn) {
-    return (
-      <div className={`min-h-screen bg-gradient-to-br ${theme.gradient} flex items-center justify-center`}>
-        <div className="text-center">
-          <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${theme.border} mx-auto mb-4`}></div>
-          <p className={theme.textSecondary}>
-            Vui lòng đăng nhập để xem tiến độ học tập
-          </p>
-        </div>
-      </div>
-    );
-  }
+    // Logic fetch data thật của bạn sẽ ở đây
+  }, [isLoggedIn, navigate]);
 
   if (isLoading) {
     return (
-      <div className={`min-h-screen bg-gradient-to-br ${theme.gradient} flex items-center justify-center`}>
-        <div className="text-center">
-          <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${theme.border} mx-auto mb-4`}></div>
-          <p className={theme.textSecondary}>Đang tải dữ liệu tiến độ...</p>
-        </div>
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <Loader2 className="h-10 w-10 text-blue-500 animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${theme.gradient}`}>
-      <div className="container mx-auto px-4 py-8">
-        <h1 className={`text-4xl font-bold text-center ${theme.text} mb-8`}>
-          Tiến Độ Học Tập
-        </h1>
+    <main className="w-full min-h-screen bg-white font-sans z-10">
+      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        {/* === Header === */}
+        <motion.section
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900">
+            Tiến độ học tập
+          </h1>
+          <p className="mt-2 text-lg text-slate-600">
+            Chào mừng quay trở lại, {user?.username || "bạn"}! Cùng xem lại hành
+            trình của mình nhé.
+          </p>
+        </motion.section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {/* Streak Card */}
-          <div className={`${theme.card} rounded-xl shadow-lg p-6 border ${theme.border}`}>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className={`text-xl font-semibold ${theme.text}`}>Streak</h3>
-              <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-500 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl font-bold">🔥</span>
-              </div>
-            </div>
-            <div className={`text-3xl font-bold ${theme.text}`}>{streak || 0}</div>
-            <p className={`${theme.textSecondary} text-sm`}>ngày liên tiếp</p>
+        <Separator className="my-8 bg-slate-200" />
+
+        {/* === Key Metrics === */}
+        <motion.section
+          initial="hidden"
+          animate="visible"
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+        >
+          <KeyMetricCard
+            icon={<Flame className="text-orange-500" />}
+            value={streak || 0}
+            label="Ngày Streak"
+            delay={0.1}
+          />
+          <KeyMetricCard
+            icon={<BookCopy className="text-blue-500" />}
+            value={totalWordsLearned || 0}
+            label="Tổng số từ đã học"
+            delay={0.2}
+          />
+          <KeyMetricCard
+            icon={<Trophy className="text-amber-500" />}
+            value={achievementsData.filter((a) => a.unlocked).length}
+            label="Thành tích đạt được"
+            delay={0.3}
+          />
+        </motion.section>
+
+        {/* === Main Dashboard Grid === */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left Column */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Weekly Activity Chart */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Card>
+                <CardHeader>
+                  <CardTitle>Hoạt động 7 ngày qua</CardTitle>
+                  <CardDescription>
+                    Biểu đồ số từ mới bạn đã học mỗi ngày.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pl-2">
+                  <ResponsiveContainer width="100%" height={300}>
+                    <BarChart data={weeklyActivityData}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                      <XAxis
+                        dataKey="day"
+                        stroke="#94a3b8"
+                        fontSize={12}
+                        tickLine={false}
+                        axisLine={false}
+                      />
+                      <YAxis
+                        stroke="#94a3b8"
+                        fontSize={12}
+                        tickLine={false}
+                        axisLine={false}
+                        allowDecimals={false}
+                      />
+                      <Tooltip
+                        contentStyle={{
+                          background: "white",
+                          border: "1px solid #e2e8f0",
+                          borderRadius: "0.5rem",
+                        }}
+                      />
+                      <Bar
+                        dataKey="words"
+                        fill="hsl(221.2 83.2% 53.3%)"
+                        radius={[4, 4, 0, 0]}
+                        name="Từ mới"
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Achievements */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <Card>
+                <CardHeader>
+                  <CardTitle>Thành Tích</CardTitle>
+                  <CardDescription>
+                    Những cột mốc đáng nhớ trên hành trình của bạn.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {achievementsData.map((ach, index) => (
+                    <div
+                      key={index}
+                      className={`flex flex-col items-center justify-center text-center p-4 rounded-lg border ${
+                        ach.unlocked
+                          ? "bg-amber-50 border-amber-200"
+                          : "bg-slate-50 border-slate-200"
+                      }`}
+                    >
+                      <div
+                        className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${
+                          ach.unlocked
+                            ? "bg-amber-100 text-amber-500"
+                            : "bg-slate-200 text-slate-500"
+                        }`}
+                      >
+                        {ach.icon}
+                      </div>
+                      <p
+                        className={`font-semibold text-sm ${
+                          ach.unlocked ? "text-amber-900" : "text-slate-600"
+                        }`}
+                      >
+                        {ach.title}
+                      </p>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
 
-          {/* Progress Card */}
-          <div className={`${theme.card} rounded-xl shadow-lg p-6 border ${theme.border}`}>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className={`text-xl font-semibold ${theme.text}`}>Tiến Độ</h3>
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl font-bold">📊</span>
-              </div>
-            </div>
-            <div className={`text-3xl font-bold ${theme.text}`}>{progress || 0}%</div>
-            <p className={`${theme.textSecondary} text-sm`}>hoàn thành</p>
-          </div>
-
-          {/* HSK Level Card */}
-          <div className={`${theme.card} rounded-xl shadow-lg p-6 border ${theme.border}`}>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className={`text-xl font-semibold ${theme.text}`}>HSK Level</h3>
-              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl font-bold">📚</span>
-              </div>
-            </div>
-            <div className={`text-3xl font-bold ${theme.text}`}>{currentHSK || 1}</div>
-            <p className={`${theme.textSecondary} text-sm`}>cấp độ hiện tại</p>
-          </div>
-
-          {/* Daily Words Card */}
-          <div className={`${theme.card} rounded-xl shadow-lg p-6 border ${theme.border}`}>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className={`text-xl font-semibold ${theme.text}`}>Từ Vựng/ngày</h3>
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl font-bold">📝</span>
-              </div>
-            </div>
-            <div className={`text-3xl font-bold ${theme.text}`}>{dailyWordCount || 5}</div>
-            <p className={`${theme.textSecondary} text-sm`}>từ mới</p>
-          </div>
-        </div>
-
-        {/* Progress Bar */}
-        <div className={`${theme.card} rounded-xl shadow-lg p-6 border ${theme.border} mb-8`}>
-          <h3 className={`text-xl font-semibold ${theme.text} mb-4`}>Tiến Độ HSK {currentHSK || 1}</h3>
-          <div className="w-full bg-gray-200 rounded-full h-4 mb-2">
-            <div
-              className={`bg-gradient-to-r ${theme.button} h-4 rounded-full transition-all duration-1000`}
-              style={{ width: `${progress || 0}%` }}
-            ></div>
-          </div>
-          <p className={`${theme.textSecondary} text-sm`}>{progress || 0}% hoàn thành</p>
-        </div>
-
-        {/* Recent Activity */}
-        <div className={`${theme.card} rounded-xl shadow-lg p-6 border ${theme.border}`}>
-          <h3 className={`text-xl font-semibold ${theme.text} mb-4`}>Hoạt Động Gần Đây</h3>
-          <div className="space-y-4">
-            <div className={`flex items-center justify-between p-4 rounded-lg ${theme.card}`}>
-              <div className={`flex items-center space-x-3 ${theme.text}`}>
-                <span className="w-3 h-3 bg-green-500 rounded-full"></span>
-                <span>Check-in thành công</span>
-              </div>
-              <span className={`${theme.textSecondary} text-sm`}>{lastCheckIn ? new Date(lastCheckIn).toLocaleDateString('vi-VN') : 'Chưa có'}</span>
-            </div>
+          {/* Right Column */}
+          <div className="lg:col-span-1 space-y-8">
+            {/* Overall HSK Progress */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <Card>
+                <CardHeader>
+                  <CardTitle>Lộ trình HSK</CardTitle>
+                  <CardDescription>
+                    Tiến độ tổng quan qua các cấp độ.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {menuHsk.map((level) => {
+                    // Giả lập tiến độ cho mỗi level
+                    const levelProgress =
+                      level.id === "hsk1" ? 100 : level.id === "hsk2" ? 65 : 0;
+                    return (
+                      <div key={level.id}>
+                        <div className="flex justify-between items-center mb-1">
+                          <p className="font-medium text-sm text-slate-800">
+                            {level.level}
+                          </p>
+                          <p className="font-medium text-sm text-slate-600">
+                            {levelProgress}%
+                          </p>
+                        </div>
+                        <Progress value={levelProgress} />
+                      </div>
+                    );
+                  })}
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
-export default Progress;
+// Component con cho các thẻ chỉ số chính
+const KeyMetricCard = ({ icon, value, label, delay }) => (
+  <motion.div
+    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+    transition={{ duration: 0.5, delay }}
+  >
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <CardTitle className="text-sm font-medium text-slate-600">
+          {label}
+        </CardTitle>
+        {icon}
+      </CardHeader>
+      <CardContent>
+        <div className="text-3xl font-bold text-slate-900">{value}</div>
+      </CardContent>
+    </Card>
+  </motion.div>
+);
+
+export default ProgressPage;

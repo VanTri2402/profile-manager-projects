@@ -24,4 +24,10 @@ export const menuItems = [
     english: "Progress",
     chinese: "进步",
   },
+  {
+    link: "/chinese/community",
+    id: "community",
+    english: "Community",
+    chinese: "社区",
+  },
 ];

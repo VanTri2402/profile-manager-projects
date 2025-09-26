@@ -272,7 +272,7 @@ const AppIPALearning = () => {
           <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
             <Award className="w-16 h-16 mx-auto mb-4 text-yellow-600" />
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              Game Complete!
+              Game Complete!k
             </h2>
             <div className="text-6xl font-bold text-yellow-600 mb-4">
               {percentage}%

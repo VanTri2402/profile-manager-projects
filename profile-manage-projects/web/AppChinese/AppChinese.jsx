@@ -9,6 +9,8 @@ import Navbar from "../../src/layout/home/Navbar";
 import Footer from "../../src/layout/home/Footer";
 import Login from "../../src/components/Login/Login";
 import Register from "../../src/components/Register/Register";
+import CommunityPage from "../../src/layout/Community/Comuinity";
+
 import { menuItems } from "../../src/data/menu/menuItems";
 
 const AppChinese = () => {
@@ -40,6 +42,7 @@ const AppChinese = () => {
           <Route path="flashcard/:id" element={<Flashcard />} />
           <Route path="progress" element={<Progress />} />
           <Route path="practive" element={<Practive />} />
+          <Route path="community" element={<CommunityPage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Routes>
