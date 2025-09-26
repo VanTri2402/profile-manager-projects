@@ -38,9 +38,9 @@ import { Separator } from "@/components/ui/separator";
 
 // Dữ liệu và Logic
 import menuHsk from "../../data/menu/menuWord";
-// import { getProgress, getWords } from "../../api/chineseApi";
-// import { createAxios } from "../../createInstance";
-// import { loginSuccess } from "../../redux/chineseUserSlice";
+import { getProgress, getWords } from "../../api/chineseApi";
+import { createAxios } from "../../createInstance";
+import { loginSuccess } from "../../redux/authSlice";
 
 // --- MOCK DATA for Chart & Achievements (Dữ liệu giả để hiển thị) ---
 const weeklyActivityData = [
@@ -91,7 +91,7 @@ const ProgressPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.auth .login?.currentUser);
+  const user = useSelector((state) => state.auth.login?.currentUser);
   const { streak, progress, lastCheckIn, dailyWordCount, totalWordsLearned } =
     useSelector((state) => state.chinese.progress);
   const { currentHSK } = useSelector((state) => state.chinese.words);

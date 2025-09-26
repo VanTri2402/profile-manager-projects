@@ -97,7 +97,7 @@ const trendingTopics = [
 
 const CommunityPage = () => {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.chineseUser.login?.currentUser);
+  const user = useSelector((state) => state.auth.login?.currentUser);
   const isLoggedIn = user && user.accessToken;
   const isLoading = false; // Giả lập
 

@@ -1,161 +1,154 @@
-import axios from "axios";
-import {
-  loginStart,
-  loginSuccess,
-  loginFailed,
-  registerStart,
-  registerSuccess,
-  registerFailed,
-  logoutStart,
-  logoutSuccess,
-  logoutFailed,
-} from "../redux/chineseUserSlice";
+import { toast } from "react-toastify";
 
+// Import tất cả các action cần thiết từ Redux slice
 import {
-  checkInStart,
-  checkInSuccess,
-  checkInFailed,
-  getWordsStart,
-  getWordsSuccess,
-  getWordsFailed,
   getProgressStart,
   getProgressSuccess,
   getProgressFailed,
+  getWordsStart,
+  getWordsSuccess,
+  getWordsFailed,
+  checkInStart,
+  checkInSuccess,
+  checkInFailed,
   updateSettingsStart,
   updateSettingsSuccess,
   updateSettingsFailed,
   resetProgressStart,
   resetProgressSuccess,
   resetProgressFailed,
-} from "../redux/chineseSlice";
+} from "../redux/chineseSlice"; // Đảm bảo đường dẫn đúng
 
-const API_URL = "http://localhost:3000/api/chinese";
+const API_URL = "http://localhost:3000/api/chinese"; // Base URL cho API
 
-// Auth APIs
-export const loginChinese = async (user, dispatch) => {
-  dispatch(loginStart());
+/**
+ * Lấy dữ liệu tiến trình học tập của người dùng.
+ * @param {Function} dispatch - Hàm dispatch của Redux.
+ * @param {Object} axiosJWT - Instance của Axios đã được cấu hình với interceptor.
+ * @param {string} accessToken - Access token của người dùng.
+ * @returns {Promise<Object|undefined>} Dữ liệu tiến trình hoặc undefined nếu lỗi.
+ */
+export const getProgress = async (dispatch, axiosJWT, accessToken) => {
+  dispatch(getProgressStart());
   try {
-    const response = await axios.post(`${API_URL}/login`, user, {
-      withCredentials: true,
+    const res = await axiosJWT.get(`${API_URL}/progress`, {
+      headers: { token: `Bearer ${accessToken}` },
     });
-    dispatch(loginSuccess(response.data));
-    return response.data;
+    dispatch(getProgressSuccess(res.data));
+    return res.data;
   } catch (error) {
-    const errorMessage = error.response?.data?.message || error.message;
-    dispatch(loginFailed());
-    throw new Error(errorMessage);
+    const errorMessage =
+      error.response?.data?.message || "Không thể tải dữ liệu tiến trình.";
+    dispatch(getProgressFailed(errorMessage));
+    toast.error(errorMessage);
   }
 };
 
-export const registerChinese = async (user, dispatch) => {
-  dispatch(registerStart());
+/**
+ * Lấy danh sách từ vựng gợi ý cho người dùng.
+ * @param {Function} dispatch - Hàm dispatch của Redux.
+ * @param {Object} axiosJWT - Instance của Axios đã được cấu hình.
+ * @param {string} accessToken - Access token của người dùng.
+ * @returns {Promise<Object|undefined>} Dữ liệu từ vựng hoặc undefined nếu lỗi.
+ */
+export const getWords = async (dispatch, axiosJWT, accessToken) => {
+  dispatch(getWordsStart());
   try {
-    const response = await axios.post(`${API_URL}/register`, user);
-    dispatch(registerSuccess());
-    return response.data;
+    const res = await axiosJWT.get(`${API_URL}/words`, {
+      headers: { token: `Bearer ${accessToken}` },
+    });
+    dispatch(getWordsSuccess(res.data));
+    return res.data;
   } catch (error) {
-    const errorMessage = error.response?.data?.message || error.message;
-    dispatch(registerFailed());
-    throw new Error(errorMessage);
+    const errorMessage =
+      error.response?.data?.message || "Không thể tải danh sách từ vựng.";
+    dispatch(getWordsFailed(errorMessage));
+    toast.error(errorMessage);
   }
 };
 
-export const logoutChinese = async (dispatch, axiosJWT, token) => {
-  dispatch(logoutStart());
-  try {
-    await axiosJWT.post(
-      `${API_URL}/logout`,
-      {},
-      {
-        headers: { token: `Bearer ${token}` },
-      }
-    );
-    dispatch(logoutSuccess());
-  } catch (error) {
-    dispatch(logoutFailed());
-  }
-};
-
-// Learning APIs
-export const checkIn = async (dispatch, axiosJWT, token) => {
+/**
+ * Thực hiện check-in hàng ngày.
+ * @param {Function} dispatch - Hàm dispatch của Redux.
+ * @param {Object} axiosJWT - Instance của Axios đã được cấu hình.
+ * @param {string} accessToken - Access token của người dùng.
+ * @returns {Promise<Object|undefined>} Kết quả check-in hoặc undefined nếu lỗi.
+ */
+export const checkIn = async (dispatch, axiosJWT, accessToken) => {
   dispatch(checkInStart());
   try {
-    const response = await axiosJWT.post(
+    // API check-in là POST và không cần gửi body
+    const res = await axiosJWT.post(
       `${API_URL}/check-in`,
       {},
       {
-        headers: { token: `Bearer ${token}` },
+        headers: { token: `Bearer ${accessToken}` },
       }
     );
-    dispatch(checkInSuccess(response.data));
-    return response.data;
+    dispatch(checkInSuccess(res.data));
+    toast.success(res.data.message || "Check-in thành công!");
+    return res.data;
   } catch (error) {
-    const errorMessage = error.response?.data?.message || error.message;
+    const errorMessage = error.response?.data?.message || "Check-in thất bại.";
     dispatch(checkInFailed(errorMessage));
-    throw new Error(errorMessage);
+    toast.error(errorMessage);
   }
 };
 
-export const getWords = async (dispatch, axiosJWT, token) => {
-  dispatch(getWordsStart());
-  try {
-    const response = await axiosJWT.get(`${API_URL}/words`, {
-      headers: { token: `Bearer ${token}` },
-    });
-    dispatch(getWordsSuccess(response.data));
-    return response.data;
-  } catch (error) {
-    const errorMessage = error.response?.data?.message || error.message;
-    dispatch(getWordsFailed(errorMessage));
-    throw new Error(errorMessage);
-  }
-};
-
-export const getProgress = async (dispatch, axiosJWT, token) => {
-  dispatch(getProgressStart());
-  try {
-    const response = await axiosJWT.get(`${API_URL}/progress`, {
-      headers: { token: `Bearer ${token}` },
-    });
-    dispatch(getProgressSuccess(response.data));
-    return response.data;
-  } catch (error) {
-    const errorMessage = error.response?.data?.message || error.message;
-    dispatch(getProgressFailed(errorMessage));
-    throw new Error(errorMessage);
-  }
-};
-
-export const updateSettings = async (settings, dispatch, axiosJWT, token) => {
+/**
+ * Cập nhật cài đặt của người dùng.
+ * @param {Function} dispatch - Hàm dispatch của Redux.
+ * @param {Object} axiosJWT - Instance của Axios đã được cấu hình.
+ * @param {string} accessToken - Access token của người dùng.
+ * @param {Object} settings - Object chứa các cài đặt cần cập nhật (vd: { dailyWordCount: 20 }).
+ * @returns {Promise<Object|undefined>} Dữ liệu cài đặt đã cập nhật hoặc undefined nếu lỗi.
+ */
+export const updateSettings = async (
+  dispatch,
+  axiosJWT,
+  accessToken,
+  settings
+) => {
   dispatch(updateSettingsStart());
   try {
-    const response = await axiosJWT.put(`${API_URL}/settings`, settings, {
-      headers: { token: `Bearer ${token}` },
+    const res = await axiosJWT.put(`${API_URL}/settings`, settings, {
+      headers: { token: `Bearer ${accessToken}` },
     });
-    dispatch(updateSettingsSuccess(response.data));
-    return response.data;
+    dispatch(updateSettingsSuccess(res.data));
+    toast.success(res.data.message || "Cập nhật cài đặt thành công!");
+    return res.data;
   } catch (error) {
-    const errorMessage = error.response?.data?.message || error.message;
+    const errorMessage =
+      error.response?.data?.message || "Cập nhật cài đặt thất bại.";
     dispatch(updateSettingsFailed(errorMessage));
-    throw new Error(errorMessage);
+    toast.error(errorMessage);
   }
 };
 
-export const resetProgress = async (dispatch, axiosJWT, token) => {
+/**
+ * Reset tiến trình học tập của người dùng.
+ * @param {Function} dispatch - Hàm dispatch của Redux.
+ * @param {Object} axiosJWT - Instance của Axios đã được cấu hình.
+ * @param {string} accessToken - Access token của người dùng.
+ * @returns {Promise<Object|undefined>} Dữ liệu tiến trình sau khi reset hoặc undefined nếu lỗi.
+ */
+export const resetProgress = async (dispatch, axiosJWT, accessToken) => {
   dispatch(resetProgressStart());
   try {
-    const response = await axiosJWT.post(
+    const res = await axiosJWT.post(
       `${API_URL}/reset-progress`,
       {},
       {
-        headers: { token: `Bearer ${token}` },
+        headers: { token: `Bearer ${accessToken}` },
       }
     );
-    dispatch(resetProgressSuccess(response.data));
-    return response.data;
+    dispatch(resetProgressSuccess(res.data));
+    toast.success(res.data.message || "Reset tiến trình thành công!");
+    return res.data;
   } catch (error) {
-    const errorMessage = error.response?.data?.message || error.message;
+    const errorMessage =
+      error.response?.data?.message || "Reset tiến trình thất bại.";
     dispatch(resetProgressFailed(errorMessage));
-    throw new Error(errorMessage);
+    toast.error(errorMessage);
   }
 };

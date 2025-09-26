@@ -5,8 +5,8 @@ const router = express.Router();
 const { checkLastCheckIn } = require("../middleware/chineseMiddleware");
 
 const initWebChineseApp = (app) => {
-  router.post("/register", chineseController.register);
-  router.post("/login", chineseController.login);
+  // router.post("/register", chineseController.register);
+  // router.post("/login", chineseController.login);
   router.delete(
     "/delete/:id",
     middlewareController.verifyTokenAndAdminAuth,
@@ -18,12 +18,12 @@ const initWebChineseApp = (app) => {
     middlewareController.verifyToken,
     chineseController.getallUsers
   );
-  router.post("/refresh", chineseController.requestRefreshToken);
-  router.post(
-    "/logout",
-    middlewareController.verifyToken,
-    chineseController.userLogout
-  );
+  // router.post("/refresh", chineseController.requestRefreshToken);
+  // router.post(
+  //   "/logout",
+  //   middlewareController.verifyToken,
+  //   chineseController.userLogout
+  // );
   router.post(
     "/auth-admin",
     middlewareController.verifyToken,

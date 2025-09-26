@@ -17,7 +17,7 @@ const generateAccessToken = (existingUser) => {
       admin: existingUser.admin,
     },
     process.env.JWT_ACCESS_TOKEN,
-    { expiresIn: "30s" }
+    { expiresIn: "3d" }
   );
 };
 

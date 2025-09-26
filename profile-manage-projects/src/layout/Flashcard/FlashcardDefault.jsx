@@ -24,7 +24,7 @@ import { Separator } from "@/components/ui/separator";
 import menuHsk from "../../data/menu/menuWord";
 import { getProgress, getWords } from "../../api/chineseApi";
 import { createAxios } from "../../createInstance";
-import { loginSuccess } from "../../redux/chineseUserSlice";
+import { loginSuccess } from "../../redux/authSlice";
 
 const FlashcardPage = () => {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const FlashcardPage = () => {
       try {
         // Bạn không cần setIsLoading(true) ở đây nữa vì đã có ở ngoài
         await getProgress(dispatch, axiosJWT, user.accessToken);
-        await getWords(dispatch, axiosJWT , user.accessToken);
+        await getWords(dispatch, axiosJWT, user.accessToken);
       } catch (error) {
         console.error("Lỗi khi tải dữ liệu trang Flashcard:", error);
         // Có thể xử lý lỗi thêm ở đây, ví dụ: hiển thị thông báo

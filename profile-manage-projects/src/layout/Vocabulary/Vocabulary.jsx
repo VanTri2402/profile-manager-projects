@@ -38,7 +38,6 @@ const Vocabulary = () => {
   const dispatch = useDispatch();
 
   // --- THAY ĐỔI QUAN TRỌNG: Cập nhật Redux Selector ---
-  // 1. Lấy user từ chineseUser slice thay vì auth slice
   const user = useSelector((state) => state.auth.login?.currentUser);
 
   // 2. Lấy dữ liệu tiến trình từ chinese slice

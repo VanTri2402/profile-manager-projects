@@ -16,7 +16,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { logout } from "../../api/authApi";
 import { menuItems } from "../../data/menu/menuItems";
-
+import { useMemo } from "react";
+import { createAxios } from "@/createInstance";
+import { loginSuccess } from "@/redux/authSlice";
 // Shadcn/ui Components
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -46,8 +48,6 @@ import {
 } from "@/components/ui/tooltip";
 
 const Navbar = () => {
-  // Thay vì state cho hovered text, chúng ta sẽ dùng state cho item đang được hover
-  // để điều khiển animation của background pill
   const [hoveredItemId, setHoveredItemId] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -93,12 +93,16 @@ const Navbar = () => {
     }
     return "G";
   };
+  const axiosJWT = useMemo(() => {
+    if (!user) return null;
+    return createAxios(user, dispatch, loginSuccess); // Thay loginSuccess bằng slice tương ứng
+  }, [user, dispatch]);
 
-  const handleLogout = () => {
-    if (user?.user?._id) {
-      logout(dispatch, user.user._id, navigate, user?.accessToken);
-      navigate("/chinese/login");
-      toast.success("Đăng xuất thành công!");
+  const handleLogout = async () => {
+    if (user?.accessToken && axiosJWT) {
+      await logout(dispatch, navigate, user.accessToken, axiosJWT);
+    } else {
+      toast.error("Không thể đăng xuất, vui lòng thử lại.");
     }
   };
 

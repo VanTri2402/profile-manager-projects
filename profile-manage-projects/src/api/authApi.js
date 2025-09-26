@@ -35,6 +35,7 @@ export const login = async (user, dispatch, navigate) => {
     });
     console.log("data login : ", response.data.refreshToken);
     dispatch(loginSuccess(response.data));
+    navigate("/chinese");
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || // BE trả về message
@@ -96,15 +97,26 @@ export const deleteUser = async (accessToken, dispatch, id) => {
   }
 };
 
-export const logout = async (dispatch, id, navigate, token, axiosJWT) => {
+export const logout = async (dispatch, navigate, token, axiosJWT) => {
   dispatch(logoutStart());
   try {
-    await axiosJWT.post(`${API_URL}/logout`, id, {
-      headers: { token: `Bearer ${token}` },
-    });
+    await axiosJWT.post(
+      `${API_URL}/logout`,
+      {},
+      {
+        headers: { token: `Bearer ${token}` },
+      }
+    );
+
     dispatch(logoutSuccess());
+
+    toast.success("Đăng xuất thành công!");
+    navigate("/chinese/login"); // SỬA LỖI: Bỏ chữ "login" thừa
   } catch (error) {
     dispatch(logoutFailed());
+    const errorMessage =
+      error.response?.data?.message || "Đăng xuất thất bại, vui lòng thử lại.";
+    toast.error(errorMessage);
   }
 };
 

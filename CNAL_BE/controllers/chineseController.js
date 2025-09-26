@@ -112,145 +112,145 @@ function isValidEmail(email) {
   return regex.test(email);
 }
 
-const generateAccessToken = (existingUser) => {
-  return jwt.sign(
-    {
-      id: existingUser._id,
-      email: existingUser.gmail,
-      admin: existingUser.admin,
-    },
-    process.env.JWT_SECRET || process.env.JWT_ACCESS_TOKEN,
-    { expiresIn: "7d" } // Extended for better UX
-  );
-};
+// const generateAccessToken = (existingUser) => {
+//   return jwt.sign(
+//     {
+//       id: existingUser._id,
+//       email: existingUser.gmail,
+//       admin: existingUser.admin,
+//     },
+//     process.env.JWT_SECRET || process.env.JWT_ACCESS_TOKEN,
+//     { expiresIn: "7d" } // Extended for better UX
+//   );
+// };
 
-const generateRefreshToken = (existingUser) => {
-  return jwt.sign(
-    {
-      id: existingUser._id,
-      email: existingUser.gmail,
-      admin: existingUser.admin,
-    },
-    process.env.JWT_REFRESH_KEY,
-    { expiresIn: "365d" }
-  );
-};
+// const generateRefreshToken = (existingUser) => {
+//   return jwt.sign(
+//     {
+//       id: existingUser._id,
+//       email: existingUser.gmail,
+//       admin: existingUser.admin,
+//     },
+//     process.env.JWT_REFRESH_KEY,
+//     { expiresIn: "365d" }
+//   );
+// };
 
-const register = asyncHandler(async (req, res) => {
-  try {
-    const { gmail, password } = req.body;
-    if (!isValidEmail(gmail)) {
-      return res.status(400).json({ message: "Email is invalid!" });
-    }
+// const register = asyncHandler(async (req, res) => {
+//   try {
+//     const { gmail, password } = req.body;
+//     if (!isValidEmail(gmail)) {
+//       return res.status(400).json({ message: "Email is invalid!" });
+//     }
 
-    if (!gmail || !password || !gmail.trim() || !password.trim()) {
-      return res
-        .status(400)
-        .json({ message: "Email and password are required!" });
-    }
-    const existingUser = await ChineseUser.findOne({ gmail });
-    if (existingUser) {
-      return res.status(400).json({ message: "Email already registered" });
-    }
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    const user = await ChineseUser.create({
-      gmail: gmail.trim(),
-      password: hashedPassword,
-    });
-    const { password: _, ...userWithoutPass } = user._doc;
-    return res
-      .status(201)
-      .json({ message: "User registered successfully", user: userWithoutPass });
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+//     if (!gmail || !password || !gmail.trim() || !password.trim()) {
+//       return res
+//         .status(400)
+//         .json({ message: "Email and password are required!" });
+//     }
+//     const existingUser = await ChineseUser.findOne({ gmail });
+//     if (existingUser) {
+//       return res.status(400).json({ message: "Email already registered" });
+//     }
+//     const hashedPassword = bcrypt.hashSync(password, 10);
+//     const user = await ChineseUser.create({
+//       gmail: gmail.trim(),
+//       password: hashedPassword,
+//     });
+//     const { password: _, ...userWithoutPass } = user._doc;
+//     return res
+//       .status(201)
+//       .json({ message: "User registered successfully", user: userWithoutPass });
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+// });
 
-const login = asyncHandler(async (req, res) => {
-  try {
-    const { gmail, password } = req.body;
-    if (!isValidEmail(gmail)) {
-      return res.status(400).json({ message: "Email is invalid!" });
-    }
-    if (!gmail || !password) {
-      return res.status(400).json({
-        message: "Email and password are required",
-      });
-    }
-    if (!gmail.trim() || !password.trim()) {
-      return res.status(400).json({ message: "no spaces in input" });
-    }
-    const existingUser = await ChineseUser.findOne({ gmail });
-    if (!existingUser) {
-      return res.status(400).json({ message: "Email is not exist" });
-    }
+// const login = asyncHandler(async (req, res) => {
+//   try {
+//     const { gmail, password } = req.body;
+//     if (!isValidEmail(gmail)) {
+//       return res.status(400).json({ message: "Email is invalid!" });
+//     }
+//     if (!gmail || !password) {
+//       return res.status(400).json({
+//         message: "Email and password are required",
+//       });
+//     }
+//     if (!gmail.trim() || !password.trim()) {
+//       return res.status(400).json({ message: "no spaces in input" });
+//     }
+//     const existingUser = await ChineseUser.findOne({ gmail });
+//     if (!existingUser) {
+//       return res.status(400).json({ message: "Email is not exist" });
+//     }
 
-    const isMatchPass = await bcrypt.compare(password, existingUser.password);
-    if (!isMatchPass) {
-      return res.status(400).json({ message: "password is not match" });
-    }
+//     const isMatchPass = await bcrypt.compare(password, existingUser.password);
+//     if (!isMatchPass) {
+//       return res.status(400).json({ message: "password is not match" });
+//     }
 
-    const accessToken = generateAccessToken(existingUser);
-    const refreshToken = generateRefreshToken(existingUser);
-    const { password: _, ...userWithoutPass } = existingUser._doc;
-    refreshTokens.push(refreshToken);
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: false,
-      path: "/",
-      sameSite: "strict",
-    });
-    console.log("refresh token : ", refreshToken);
-    console.log("access token : ", accessToken);
-    return res.status(200).json({
-      message: "Login successful",
-      user: userWithoutPass,
-      accessToken,
-    });
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+//     const accessToken = generateAccessToken(existingUser);
+//     const refreshToken = generateRefreshToken(existingUser);
+//     const { password: _, ...userWithoutPass } = existingUser._doc;
+//     refreshTokens.push(refreshToken);
+//     res.cookie("refreshToken", refreshToken, {
+//       httpOnly: true,
+//       secure: false,
+//       path: "/",
+//       sameSite: "strict",
+//     });
+//     console.log("refresh token : ", refreshToken);
+//     console.log("access token : ", accessToken);
+//     return res.status(200).json({
+//       message: "Login successful",
+//       user: userWithoutPass,
+//       accessToken,
+//     });
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+// });
 
-const requestRefreshToken = asyncHandler(async (req, res) => {
-  try {
-    const refreshToken = req.cookies.refreshToken;
-    console.log("Cookies: ", req.cookies);
+// const requestRefreshToken = asyncHandler(async (req, res) => {
+//   try {
+//     const refreshToken = req.cookies.refreshToken;
+//     console.log("Cookies: ", req.cookies);
 
-    if (!refreshToken) {
-      return res.status(401).json("You 're not authenticate");
-    }
-    if (!refreshTokens.includes(refreshToken)) {
-      return res.status(403).json({ message: "refresh token is not valid" });
-    }
-    jwt.verify(refreshToken, process.env.JWT_REFRESH_KEY, (err, user) => {
-      if (err) {
-        return res.status(403).json({ message: "refresh token is not valid" });
-      }
-      refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
-      const newAccessToken = generateAccessToken(user);
-      const newRefreshToken = generateRefreshToken(user);
-      refreshTokens.push(newRefreshToken);
-      res.cookie("refreshToken", newRefreshToken, {
-        httpOnly: true,
-        secure: false,
-        path: "/",
-        sameSite: "strict",
-      });
-      res.status(200).json({ accessToken: newAccessToken });
-    });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+//     if (!refreshToken) {
+//       return res.status(401).json("You 're not authenticate");
+//     }
+//     if (!refreshTokens.includes(refreshToken)) {
+//       return res.status(403).json({ message: "refresh token is not valid" });
+//     }
+//     jwt.verify(refreshToken, process.env.JWT_REFRESH_KEY, (err, user) => {
+//       if (err) {
+//         return res.status(403).json({ message: "refresh token is not valid" });
+//       }
+//       refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
+//       const newAccessToken = generateAccessToken(user);
+//       const newRefreshToken = generateRefreshToken(user);
+//       refreshTokens.push(newRefreshToken);
+//       res.cookie("refreshToken", newRefreshToken, {
+//         httpOnly: true,
+//         secure: false,
+//         path: "/",
+//         sameSite: "strict",
+//       });
+//       res.status(200).json({ accessToken: newAccessToken });
+//     });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-const userLogout = asyncHandler(async (req, res) => {
-  res.clearCookie("refreshToken");
-  refreshTokens = refreshTokens.filter(
-    (token) => token !== req.cookies.refreshToken
-  );
-  res.status(200).json("Logged out success !");
-});
+// const userLogout = asyncHandler(async (req, res) => {
+//   res.clearCookie("refreshToken");
+//   refreshTokens = refreshTokens.filter(
+//     (token) => token !== req.cookies.refreshToken
+//   );
+//   res.status(200).json("Logged out success !");
+// });
 
 const deleteUser = asyncHandler(async (req, res) => {
   try {
@@ -611,12 +611,9 @@ module.exports = {
   deleteUser,
   getNextWords,
   getHSKLevelWordCount,
-  getWordByLevelAndId,
   searchWords,
   updateUser,
   getallUsers,
-  requestRefreshToken,
-  userLogout,
   authAdmin,
   checkIn,
   getWords,
